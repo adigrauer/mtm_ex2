@@ -5,8 +5,8 @@
 //#include <fstream>
 #include <iostream>
 #include <set>
-#include "skill.h"
-#include "citizen.h"
+#include "Skill.h"
+#include "Citizen.h"
 
 //are all needed??
 using std::ostream;
@@ -36,4 +36,4 @@ namespace mtm {
     ostream& printShort (ostream& os);
     ostream& printLong (ostream& os);
 }
-#endif /* employee */
+#endif /* EMPLOYEE_H */

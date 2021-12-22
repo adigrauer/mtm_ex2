@@ -2,10 +2,9 @@
 #define SKILL_H
 
 #include <string>
-//#include <fstream>
+#include <fstream>
 #include <iostream>
 
-//are all needed??
 using std::ostream;
 using std::cout;
 using std::endl;
@@ -41,5 +40,5 @@ namespace mtm {
     Skill operator+ (const Skill& skill, int points);
 }
 
-#endif /* skill */ 
+#endif /* SKILL_H */ 
 

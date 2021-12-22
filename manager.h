@@ -5,9 +5,9 @@
 //#include <fstream>
 #include <iostream>
 #include <set>
-#include "skill.h"
-#include "citizen.h"
-#include "employee.h"
+#include "Skill.h"
+#include "Citizen.h"
+#include "Employee.h"
 
 //are all needed??
 using std::ostream;

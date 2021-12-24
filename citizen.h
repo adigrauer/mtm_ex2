@@ -12,17 +12,16 @@ using std::endl;
 using std::string;
 
 namespace mtm {
-/*template <class T>*/ typedef T;
     class Citizen {
     private:
-        //class T
-        int id_citizen;
         string first_name;
         string last_name;
         int birth_year;
+    protected:
+        int id_citizen;
     public:
         Citizen (int id_citizen, string first_name, string last_name, int birth_year);
-        Citizen* clone ();
+        virtual Citizen* clone () const = 0;
         int getBirthYear () const;
         int getId () const;
         string getFirstName () const;
@@ -30,13 +29,14 @@ namespace mtm {
         friend bool operator< (const Citizen& citizen_a, const Citizen& citizen_b);
         friend bool operator== (const Citizen& citizen_a, const Citizen& citizen_b);
         friend ostream& operator<< (ostream& os, const Citizen& citizen);
+        virtual ostream& printShort (ostream& os) = 0;
+        virtual ostream& printLong (ostream& os) = 0;
     };
     bool operator!= (const Citizen& citizen_a, const Citizen& citizen_b);
     bool operator<= (const Citizen& citizen_a, const Citizen& citizen_b);
     bool operator>= (const Citizen& citizen_a, const Citizen& citizen_b);
     bool operator> (const Citizen& citizen_a, const Citizen& citizen_b);
-    ostream& printShort (ostream& os);
-    ostream& printLong (ostream& os);
+    
 }
 
 #endif /* CITIZEN */

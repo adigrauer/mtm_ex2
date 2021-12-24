@@ -16,13 +16,13 @@ using std::endl;
 using std::string;
 
 namespace mtm {
-    class Employee {
+    class Employee : public Citizen {
     private:
         int salary;
         int score;
         set<Skill> skill_set;
-        Employee(int id_citizen, string first_name, string last_name, int birth_year); //??
-        Employee* clone ();
+        Employee(int id_citizen, string first_name, string last_name, int birth_year); 
+        virtual Citizen* clone () const;
         int getSalary () const;
         int getScore () const;
     public:
@@ -32,8 +32,8 @@ namespace mtm {
         void setSalary (int salary);
         void setScore (int score);
         friend ostream& operator<< (ostream& os, const Employee& employee);
+        ostream& printShort (ostream& os) override;
+        ostream& printLong (ostream& os) override;
     };
-    ostream& printShort (ostream& os);
-    ostream& printLong (ostream& os);
 }
 #endif /* EMPLOYEE_H */

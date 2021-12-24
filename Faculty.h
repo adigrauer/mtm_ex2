@@ -20,15 +20,16 @@ namespace mtm {
     class Faculty {
     private:
         Skill skill;
-        unsigned int id_worker;
+        unsigned int faculty_id;
         unsigned int add_points;
-        //pointer to condition function
+        //function conditin
     public:
         Faculty (Skill skill, int point_to_add);
         Skill getSkill ();
         unsigned int getId ();
         unsigned int getAddedPoints ();
         Faculty teach (Employee& Employee);
+        bool operator() (int number) const;
     };
 }
 

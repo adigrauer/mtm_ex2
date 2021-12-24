@@ -17,21 +17,21 @@ using std::endl;
 using std::string;
 
 namespace mtm {
-    class Manager {
+    class Manager : public Citizen {
     private:
         int salary;
-        set<Employee> employyes;
+        set<Citizen*> employees;
     public:
         Manager (int id_citizen, string first_name, string last_name, int birth_year);
         int getSalary ();
-        Manager* clone ();
-        void addEmployee (const Employee* employee);
+        virtual Citizen* clone () const;
+        void addEmployee (Employee* const employee);
         void removeEmployee (const unsigned int id_employee);
         void setSalary (unsigned int salary);
         friend ostream& operator<< (ostream& os, const Manager& employee);
+        ostream& printShort (ostream& os) override;
+        ostream& printLong (ostream& os) override;
     };
-    ostream& printShort (ostream& os);
-    ostream& printLong (ostream& os);
 }
 
 #endif /* MANAGER_H */

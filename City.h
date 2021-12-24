@@ -22,15 +22,21 @@ namespace mtm {
     class City {
     private:
         string city_name;
-        set<Citizen> citizens;
+        set<Citizen*> citizens;
         set<Faculty> fuculties;
         set<Workplace> workplaces;
     public:
         City (const string city_name);
-        City addEmployee (int id_citizen, string first_name, string last_name, int birth_year);
-        City addManager (int id_citizen, string first_name, string last_name, int birth_year);
-        City addFaculty (Skill skill, int point_to_add);
-        City createWorkplace (unsigned int workplace_id, unsigned int workers_salary, unsigned int managers_salary, string workplace_name);
+        void addEmployee (int id_citizen, string first_name, string last_name, int birth_year);
+        void addManager (int id_citizen, string first_name, string last_name, int birth_year);
+        void addFaculty (Skill skill, int point_to_add);
+        void createWorkplace (unsigned int workplace_id, unsigned int workers_salary, unsigned int managers_salary, string workplace_name);
+        void teachAtFaculty (unsigned int employee_id, unsigned int faculty_id);
+        void hireEmployeeAtWorkplace (/* condition function, */ unsigned int employee_id, unsigned int manager_id, unsigned int workplace_id);
+        void hireManagerAtWorkplace (unsigned int manager_id, unsigned int workplace_id);
+        void fireEmployeeAtWorkplace (/* condition function, */ unsigned int employee_id, unsigned int manager_id, unsigned int workplace_id);
+        void fireManagerAtWorkplace (unsigned int manager_id, unsigned int workplace_id);
+        ostream& getAllAboveSalary (ostream&, unsigned int salary_to_print);
     };
 }
 

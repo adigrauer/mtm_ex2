@@ -19,12 +19,10 @@ namespace mtm {
         int strong;
     public:
         Skill(int id_skill, string name, unsigned int required_points, int strong);
-        //copy constructor
-        //assigined operation
-        ~Skill ();
+        ~Skill () = default;
         int getId () const;
         string getName () const;
-        int getRequiredPoints () const;
+        unsigned int getRequiredPoints () const;
         //print
         friend bool operator< (const Skill& skill_a, const Skill& skill_b);
         friend bool operator== (const Skill& skill_a, const Skill& skill_b);
@@ -37,7 +35,7 @@ namespace mtm {
     bool operator<= (const Skill& skill_a, const Skill& skill_b);
     bool operator>= (const Skill& skill_a, const Skill& skill_b);
     bool operator> (const Skill& skill_a, const Skill& skill_b);
-    Skill operator+ (const Skill& skill, int points);
+    Skill operator+ (const Skill& skill, int points); 
 }
 
 #endif /* SKILL_H */ 

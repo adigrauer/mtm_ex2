@@ -1,19 +1,9 @@
 #include "Skill.h"
-#include <string>
-#include <fstream>
-#include <iostream>
-
-using std::ostream;
-using std::cout;
-using std::endl;
-using std::string;
-using namespace mtm;
 
 namespace mtm {
 
     Skill::Skill (int id_skill, string name, unsigned int required_points, int strong): 
-        id_skill(id_skill), required_points(required_points), strong(strong), name(name)
-    {}
+        id_skill(id_skill), required_points(required_points), strong(strong), name(name){}
 
     int Skill::getId () const
     {
@@ -46,12 +36,3 @@ namespace mtm {
         return os;
     }
 }
-
-int main() {
-    Skill s1(1, "C++", 0, 10);
-    cout << s1;
-    return 0;
-}
-
-    
-

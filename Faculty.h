@@ -4,7 +4,6 @@
 #include <string>
 //#include <fstream>
 #include <iostream>
-#include <set>
 #include "Skill.h"
 #include "Citizen.h"
 #include "Employee.h"
@@ -24,7 +23,7 @@ namespace mtm {
         unsigned int add_points;
         //function conditin
     public:
-        Faculty (Skill skill, int point_to_add);
+        Faculty (bool (*compareFunction)(Employee), Skill skill, int point_to_add);
         Skill getSkill ();
         unsigned int getId ();
         unsigned int getAddedPoints ();

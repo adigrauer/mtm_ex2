@@ -20,9 +20,11 @@ namespace mtm {
     class Manager : public Citizen {
     private:
         int salary;
-        set<Citizen*> employees;
+        set<Employee*> employees;
     public:
         Manager (int id_citizen, string first_name, string last_name, int birth_year);
+        Manager (const Manager& manager);
+        ~Manager ();
         int getSalary ();
         virtual Citizen* clone () const;
         void addEmployee (Employee* const employee);

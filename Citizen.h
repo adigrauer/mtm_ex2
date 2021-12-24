@@ -36,7 +36,6 @@ namespace mtm {
     bool operator<= (const Citizen& citizen_a, const Citizen& citizen_b);
     bool operator>= (const Citizen& citizen_a, const Citizen& citizen_b);
     bool operator> (const Citizen& citizen_a, const Citizen& citizen_b);
-    
 }
 
 #endif /* CITIZEN */

@@ -29,7 +29,6 @@ namespace mtm {
         friend bool operator== (const Skill& skill_a, const Skill& skill_b);
         friend ostream& operator<< (ostream& os, const Skill& skill);
         Skill& operator+= (int point_to_add);
-        //Skill& operator++ (int); //how???
         Skill& operator++ (int);
     };
     //compere by id 

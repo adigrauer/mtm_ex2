@@ -19,6 +19,7 @@ namespace mtm {
         int strong;
     public:
         Skill(int id_skill, string name, unsigned int required_points, int strong);
+        Skill(const Skill& skill) = default;
         ~Skill () = default;
         int getId () const;
         string getName () const;
@@ -27,10 +28,11 @@ namespace mtm {
         friend bool operator< (const Skill& skill_a, const Skill& skill_b);
         friend bool operator== (const Skill& skill_a, const Skill& skill_b);
         friend ostream& operator<< (ostream& os, const Skill& skill);
-        Skill& operator+= (const Skill& skill);
-        Skill& operator++ (); //think about it
+        Skill& operator+= (int point_to_add);
+        //Skill& operator++ (int); //how???
+        Skill& operator++ (int);
     };
-    //compere by id
+    //compere by id 
     bool operator!= (const Skill& skill_a, const Skill& skill_b);
     bool operator<= (const Skill& skill_a, const Skill& skill_b);
     bool operator>= (const Skill& skill_a, const Skill& skill_b);

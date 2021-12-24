@@ -10,8 +10,16 @@ using std::string;
 using namespace mtm;
 
 int main() {
-    Skill s1(1, "C++", 0, 10);
-    cout << "hello";
+    Skill s1(1, "a", 0, 0);
     cout << s1;
+    Skill s2(2, "b", 1, 1);
+    Skill s3(3, "c", 2, 2);
+    if(s3 < s2)
+        return -1;
+    if(s3 <= s2)
+        return -1;
+    s2 += 2;
+    s2++;
+    cout << s2;
     return 0;
 }

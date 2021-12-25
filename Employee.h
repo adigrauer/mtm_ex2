@@ -18,11 +18,14 @@ using std::string;
 
 namespace mtm {
     class Employee : public Citizen {
+        /* const declerations */
+    const int STARTING_SALARY = 0;
+    const int STARTING_SCORE = 0;
     private:
         int salary;
         int score;
         set<Skill> skill_set;
-        public:
+    public:
         Employee(int id_citizen, string first_name, string last_name, int birth_year); 
         ~Employee ();
         virtual Citizen* clone () const;
@@ -33,10 +36,8 @@ namespace mtm {
         bool hasSkill (const unsigned int id_skill);
         void setSalary (int salary_to_add);
         void setScore (int score_to_add);
-        friend ostream& operator<< (ostream& os, const Employee& employee);
         ostream& printShort (ostream& os) override;
         ostream& printLong (ostream& os) override;
-        //Skill* Employee::findSkillById (const unsigned int id_skill);
     };
 }
 #endif /* EMPLOYEE_H */

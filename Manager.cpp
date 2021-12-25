@@ -1,24 +1,28 @@
 #include "Manager.h"
 #include "Employee.h"
-
+#include "exception.h"
 namespace mtm {
     
     Manager::Manager (int id_citizen, string first_name, string last_name, int birth_year) :
         Citizen(id_citizen, first_name, last_name, birth_year),
-        salary(STARTING_SALARY), employees()
+        salary(STARTING_SALARY)
     {
+        vector<shared_ptr<Employee>> employees;
     }
     
     Manager::Manager (const Manager& manager) :
-        salary(manager.salary),
-        Citizen(manager)
+        Citizen(manager),
+        salary(manager.salary)
     {
         for (int it = 0 ; it != manager.employees.size() ; ++it){
             shared_ptr<Employee> ptr_to_add (employees[it]);
             employees.push_back(ptr_to_add);
         }
     }
-    
+    Manager:: ~Manager (){
+        employees.clear();
+    }
+
     int Manager::getSalary ()
     {
         return salary;
@@ -29,10 +33,10 @@ namespace mtm {
         return new Manager(*this);
     }
     
-    bool Manager::cheackIfEmployeeExist (const Employee* employee)
+    bool Manager::cheackIfEmployeeExist (Employee employee)
     {
         for(int it = 0 ; it != employees.size() ; ++it){
-            if(*(employees[it]) == *(employee))
+            if(*(employees[it]) == (employee))
                 return true;
         }
         return false;
@@ -40,18 +44,22 @@ namespace mtm {
 
     void Manager::addEmployee (Employee* employee)
     {
-        /*if(cheackIfEmployeeExist(employee) == true){
-            thorw EmployeeAlreadyHired;
-        }*/
+        if(cheackIfEmployeeExist(*employee) == true){
+            throw EmployeeAlreadyHired();
+        }
         shared_ptr<Employee> ptr_to_add (employee);
         employees.push_back(ptr_to_add);
     }
     
     void Manager::removeEmployee (const unsigned int employee_id)
-    {
-        for(int it = 0 ; it != employees.size() ; ++it){
-            if(*(employees[it]) == employee_id){
-                employees.push_back(employees[it]);
+    {   
+        Employee temp_employee(employee_id, "temp", 0, 0); 
+        if(cheackIfEmployeeExist(temp_employee) == false){
+            throw EmployeeNotHired();
+        }
+        for(vector<shared_ptr<Employee>>::iterator iterator = employees.begin() ; iterator != employees.end() ; ++iterator){
+            if((**iterator) == temp_employee){
+                employees.erase(iterator);
                 return;
             }
         }
@@ -65,21 +73,19 @@ namespace mtm {
 
     ostream& Manager::printShort (ostream& os)
     {
-        os << "Short_print" << endl 
-        << getFirstName() << " " << getLastName() << endl
-        << "salary: " << this->salary << endl;
+        os << getFirstName() << " " << getLastName() << endl
+        << "salary: " << salary << endl;
         return os;
     }
 
     ostream& Manager::printLong (ostream& os)
     {
-        os << "Long_print" << endl;
         os << getFirstName() << " " << getLastName() << endl;
         os << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl;
-        os << "salary: " << this->salary << endl;
+        os << "salary: " << salary << endl;
         os << "Employees:" << endl;
         for(int it = 0 ; it != employees.size() ; ++it){
-            (employees[it])->printShort(os);
+            (*employees[it]).printShort(os);
         }
         return os;
     }

@@ -36,7 +36,7 @@ namespace mtm {
         Manager (const Manager& manager);
         
         /* Manager D'tor */
-        ~Manager () = default;
+        ~Manager ();
 
         /* getSalary: return copy of Manager's salary.
         return-
@@ -52,7 +52,7 @@ namespace mtm {
         return-
         True- if the employee is already hired
         False- otherwise*/
-        bool cheackIfEmployeeExist (const Employee* employee);
+        bool cheackIfEmployeeExist (Employee employee);
 
         /* addEmployee- add new Employee the the set of employees of the Manager by pointer the the employee.
         return-

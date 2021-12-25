@@ -14,7 +14,8 @@ namespace mtm {
         Citizen(manager)
     {
         for (int it = 0 ; it != manager.employees.size() ; ++it){
-            employees[it] = ((manager.employees[it]).clone());
+            shared_ptr<Employee> ptr_to_add (employees[it]);
+            employees.push_back(ptr_to_add);
         }
     }
     
@@ -37,20 +38,25 @@ namespace mtm {
         return false;
     }
 
-    void Manager::addEmployee (const Employee* employee)
+    void Manager::addEmployee (Employee* employee)
     {
         /*if(cheackIfEmployeeExist(employee) == true){
             thorw EmployeeAlreadyHired;
         }*/
-        employees.push_back(*employee);
+        shared_ptr<Employee> ptr_to_add (employee);
+        employees.push_back(ptr_to_add);
     }
     
-    void Manager::removeEmployee (const unsigned int id_employee)
+    void Manager::removeEmployee (const unsigned int employee_id)
     {
-        
+        for(int it = 0 ; it != employees.size() ; ++it){
+            if(*(employees[it]) == employee_id){
+                employees.push_back(employees[it]);
+                return;
+            }
+        }
     }
     
-
     void Manager::setSalary (unsigned int salary_to_add)
     {
         salary += salary_to_add;
@@ -67,11 +73,14 @@ namespace mtm {
 
     ostream& Manager::printLong (ostream& os)
     {
-        os << "Long_print" << endl
-        << getFirstName() << " " << getLastName() << endl
-        << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl
-        << "salary: " << this->salary << endl;
-        //print workers
+        os << "Long_print" << endl;
+        os << getFirstName() << " " << getLastName() << endl;
+        os << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl;
+        os << "salary: " << this->salary << endl;
+        os << "Employees:" << endl;
+        for(int it = 0 ; it != employees.size() ; ++it){
+            (employees[it])->printShort(os);
+        }
         return os;
     }
 }

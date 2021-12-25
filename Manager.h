@@ -57,12 +57,12 @@ namespace mtm {
         /* addEmployee- add new Employee the the set of employees of the Manager by pointer the the employee.
         return-
         EmployeeAlreadyHired- in case that the employee already exist in the Manager employees.*/
-        void addEmployee (const Employee* employee);
-        
+        void addEmployee (Employee* employee);
+
         /* removeEmployee- remove employee fron the employees of given manager by employee's id
         return-
         EmployeeNotHired- in case that the employee does not a worker of the given manager.*/
-        void removeEmployee (const unsigned int id_employee);
+        void removeEmployee (const unsigned int employee_id);
         
         /* setSalary- raise the salary of the Manager by given amount
         return-

@@ -21,7 +21,7 @@ namespace mtm {
         int strong;
     public:
         /* Skill C'tor */
-        Skill(int id_skill, string name, unsigned int required_points, int strong);
+        Skill(int id_skill, string name, unsigned int required_points, int strong = 0);
         
         /* Skill copy C'tor */
         Skill(const Skill& skill) = default;

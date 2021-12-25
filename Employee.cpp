@@ -1,6 +1,6 @@
 #include "Employee.h"
 #include "exception.h"
-#include "Faculty.h"
+//#include "Faculty.h"
 
 namespace mtm {
     Employee::Employee (int id_citizen, string first_name, string last_name, int birth_year): 
@@ -12,6 +12,7 @@ namespace mtm {
     }
 
     Employee::~Employee () {
+
         skill_set.clear();
     }
 
@@ -29,20 +30,20 @@ namespace mtm {
     }
 
     void Employee::learnSkill (const Skill& skill) {
-        if (skill == *(skill_set.find(skill))){
+        /*if (skill == *(skill_set.find(skill))){
             throw SkillAlreadyLearned(); 
-        }
-        try {
+        }*/
+       /* try {
             Faculty::teach((*this)); //need to figure 
         } catch (EmployeeNotAccepted) {
             throw canNotLearnSkill();
-        }
+        }*/
         skill_set.insert (skill); // which class changes the skill set? does teach method in faculty?
     }
 
     void Employee::forgetSkill (const unsigned int id_skill){
         if (hasSkill(id_skill) == false){
-            throw DidNotLearnSkill(); 
+            //throw DidNotLearnSkill(); 
         }
         Skill temp_skill(id_skill, "temp", 0,  0);
         skill_set.erase(skill_set.find(temp_skill));
@@ -67,7 +68,7 @@ namespace mtm {
     ostream& Employee::printShort (ostream& os)
     {
         os << getFirstName() << " " << getLastName() << endl
-        << "Salary: " << salary << "Score: "<< score << endl;
+        << "Salary: " << salary << " Score: "<< score << endl;
         return os;
     }
 
@@ -76,7 +77,7 @@ namespace mtm {
         set<Skill>::iterator print_iterator;
         os << getFirstName() << " " << getLastName() << endl
         << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl
-        << "Salary: " << salary << "Score: "<< score << "Skills:" << endl;
+        << "Salary: " << salary << " Score: "<< score << " Skills:" << endl;
         for (print_iterator=skill_set.begin(); print_iterator!=skill_set.end(); ++print_iterator) {
             os << ((*print_iterator).getName()) << endl;
         }

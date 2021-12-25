@@ -40,6 +40,7 @@ namespace mtm {
         void fireEmployeeAtWorkplace (/* condition function, */ unsigned int employee_id, unsigned int manager_id, unsigned int workplace_id);
         void fireManagerAtWorkplace (unsigned int manager_id, unsigned int workplace_id);
         ostream& getAllAboveSalary (ostream&, unsigned int salary_to_print);
+        
     };
 }
 

@@ -7,7 +7,7 @@
 #include <set>
 #include "Skill.h"
 #include "Citizen.h"
-#include "Faculty.h"
+//#include "Faculty.h"
 #include "exception.h"
 //are all needed??
 using std::ostream;

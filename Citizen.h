@@ -29,7 +29,7 @@ namespace mtm {
         Citizen (const Citizen& citizen) = default;
         
         /* Manager virtual D'tor */
-        virtual ~Citizen () = 0 ;
+        ~Citizen () = default;
 
         /* clone: return copy of existing Citizen.
         return-

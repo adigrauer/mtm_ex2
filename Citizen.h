@@ -2,7 +2,6 @@
 #define CITIZEN_H
 
 #include <string>
-//#include <fstream>
 #include <iostream>
 
 //are all needed??

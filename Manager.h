@@ -4,7 +4,7 @@
 #include <string>
 //#include <fstream>
 #include <iostream>
-#include <vector>
+#include <set>
 #include <memory>
 #include "Skill.h"
 #include "Citizen.h"
@@ -12,7 +12,7 @@
 
 //are all needed??
 using std::ostream;
-using std::vector;
+using std::set;
 using std::cout;
 using std::endl;
 using std::string;
@@ -27,7 +27,7 @@ namespace mtm {
     class Manager : public Citizen {
     private:
         int salary;
-        vector<shared_ptr<Employee>> employees;
+        set<Employee> employees;
     public:
         /* Manager C'tor */
         Manager (int id_citizen, string first_name, string last_name, int birth_year);
@@ -36,7 +36,7 @@ namespace mtm {
         Manager (const Manager& manager);
         
         /* Manager D'tor */
-        ~Manager ();
+        ~Manager () = default;
 
         /* getSalary: return copy of Manager's salary.
         return-
@@ -62,12 +62,12 @@ namespace mtm {
         /* removeEmployee- remove employee fron the employees of given manager by employee's id
         return-
         EmployeeNotHired- in case that the employee does not a worker of the given manager.*/
-        void removeEmployee (const unsigned int employee_id);
+        void removeEmployee (const int employee_id);
         
         /* setSalary- raise the salary of the Manager by given amount
         return-
         void function*/
-        void setSalary (unsigned int salary_to_add);
+        void setSalary (int salary_to_add);
         
         /* printShort- print short information of the Manager by given format */
         ostream& printShort (ostream& os) override;

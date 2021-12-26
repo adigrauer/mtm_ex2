@@ -6,17 +6,12 @@ namespace mtm {
     Employee::Employee (int id_citizen, string first_name, string last_name, int birth_year): 
         Citizen(id_citizen, first_name, last_name, birth_year),
         salary(STARTING_SALARY),
-        score(STARTING_SCORE)
+        score(STARTING_SCORE),
+        skill_set()
     {
-        set<Skill> skill_set;
     }
 
-    Employee::~Employee () {
-
-        skill_set.clear();
-    }
-
-    Citizen* Employee::clone () const
+    Citizen* Employee::clone () const //בדוק שלא אותם שדות ולא אותה כתובת אבל אותו תוכן
     {
         return new Employee(*this);
     }
@@ -36,19 +31,19 @@ namespace mtm {
        if (getScore() < skill.getRequiredPoints()){
             //throw canNotLearnSkill();
         }
-        skill_set.insert (skill); // which class changes the skill set? does teach method in faculty?
+        skill_set.insert (skill);
     }
 
-    void Employee::forgetSkill (const unsigned int id_skill){
+    void Employee::forgetSkill (const int id_skill){
         if (hasSkill(id_skill) == false){
             //throw DidNotLearnSkill(); 
         }
-        Skill temp_skill(id_skill, "temp", 0,  0);
+        Skill temp_skill(id_skill, "temp", 0);
         skill_set.erase(skill_set.find(temp_skill));
     }
 
-    bool Employee::hasSkill (const unsigned int id_skill){
-        Skill temp_skill(id_skill, "temp", 0,  0);
+    bool Employee::hasSkill (const int id_skill){
+        Skill temp_skill(id_skill, "temp", 0);
         if (temp_skill == *(skill_set.find(temp_skill))){
             return true;
         }
@@ -56,7 +51,7 @@ namespace mtm {
     }
 
     void Employee::setSalary (int salary_to_add){
-        if ((salary+salary_to_add)<=STARTING_SALARY){
+        if ((salary+salary_to_add) <= STARTING_SALARY){
             salary = STARTING_SALARY;
             return;
         }
@@ -64,7 +59,7 @@ namespace mtm {
     }
 
     void Employee::setScore (int score_to_add){
-        if ((score+score_to_add)<=STARTING_SCORE) {
+        if ((score+score_to_add) <= STARTING_SCORE) {
             score = STARTING_SCORE;
             return;
         }

@@ -18,30 +18,29 @@ using std::string;
 namespace mtm {
     class Workplace {
     private:
-        unsigned int workplace_id;
-        unsigned int workers_salary;
-        unsigned int managers_salary;
+        int workplace_id;
+        int workers_salary;
+        int managers_salary;
         string workplace_name;
-        set<Citizen*> manager;
-        class Condition {
-        private:
-            int condition_to_comapre;
-        public:
-            Condition (int condition);
-            bool operator() (int condition) const;
-        };
+        set<Manager> manager;
     public:
-        Workplace (unsigned int workplace_id, unsigned int workers_salary, unsigned int managers_salary, string workplace_name);
-        unsigned int getId ();
-        unsigned int gerWorkersSalary(); 
+        template <typename condition> 
+        void hireEnployee(condition cond, Employee* employee, int manager_id){
+            if(!(cond(Employee){
+                throw EmployeeNotSelected();
+            }
+        }
+        Workplace (int workplace_id, int workers_salary, int managers_salary, string workplace_name);
+        int getId () const;
+        int gerWorkersSalary(); 
         string getName ();
         Workplace hireManager (Manager* manager);
             //bool cheackIfManagerExist (Workplace workplace, unsigned int id_manager);
             //bool cheackIfManagerWorkInOtherPlace (Workplace workplace, unsigned int id_manager);
         //hireEmployee
-        Workplace hireEmployee (/* function */ Employee* employee, unsigned int manager_id);
-        Workplace fireEmployee (unsigned int worker_id, unsigned int manager_id);
-        Workplace fireManager (unsigned int manager_id);
+        Workplace hireEmployee (/* function */ Employee* employee, int manager_id);
+        Workplace fireEmployee (int worker_id, int manager_id);
+        Workplace fireManager (int manager_id);
         friend ostream& operator<< (ostream& os, const Skill& skill);
     };
 }

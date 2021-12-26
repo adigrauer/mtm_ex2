@@ -5,9 +5,9 @@ namespace mtm {
     
     Manager::Manager (int id_citizen, string first_name, string last_name, int birth_year) :
         Citizen(id_citizen, first_name, last_name, birth_year),
-        salary(STARTING_SALARY)
+        salary(STARTING_SALARY),
+        employees()
     {
-        vector<shared_ptr<Employee>> employees;
     }
     
     Manager::Manager (const Manager& manager) :
@@ -19,10 +19,7 @@ namespace mtm {
             employees.push_back(ptr_to_add);
         }
     }
-    Manager:: ~Manager (){
-        employees.clear();
-    }
-
+  
     int Manager::getSalary ()
     {
         return salary;

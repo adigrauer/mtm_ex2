@@ -17,11 +17,10 @@ namespace mtm {
     private: 
         int id_skill;
         string name;
-        unsigned int required_points;
-        int strong;
+        int required_points;
     public:
         /* Skill C'tor */
-        Skill(int id_skill, string name, unsigned int required_points, int strong = 0);
+        Skill(int id_skill, string name, int required_points);
         
         /* Skill copy C'tor */
         Skill(const Skill& skill) = default;
@@ -58,7 +57,8 @@ namespace mtm {
     bool operator<= (const Skill& skill_a, const Skill& skill_b);
     bool operator>= (const Skill& skill_a, const Skill& skill_b);
     bool operator> (const Skill& skill_a, const Skill& skill_b);
-    Skill operator+ (const Skill& skill, int points); 
+    Skill operator+ (const Skill& skill, int points); //need to be symetric
+    Skill operator+ (int points, const Skill& skill);
 }
 
 #endif /* SKILL_H */ 

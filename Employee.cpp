@@ -56,11 +56,19 @@ namespace mtm {
     }
 
     void Employee::setSalary (int salary_to_add){
-        salary += salary_to_add; /*האם צריך לבדוק חוקיות*/
+        if ((salary+salary_to_add)<=STARTING_SALARY){
+            salary = STARTING_SALARY;
+            return;
+        }
+        salary += salary_to_add; 
     }
 
     void Employee::setScore (int score_to_add){
-        score += score_to_add; /*האם צריך לבדוק חוקיות*/
+        if ((score+score_to_add)<=STARTING_SCORE) {
+            score = STARTING_SCORE;
+            return;
+        }
+        score += score_to_add;
     }
 
     ostream& Employee::printShort (ostream& os)

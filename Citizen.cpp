@@ -20,6 +20,11 @@ namespace mtm {
         return id_citizen;
     }
 
+    int Citizen::getId ()
+    {
+        return id_citizen;
+    }
+
     string Citizen::getFirstName () const
     {
         return first_name;

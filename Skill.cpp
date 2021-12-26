@@ -2,8 +2,12 @@
 
 namespace mtm {
 
-    Skill::Skill (int id_skill, string name, unsigned int required_points, int strong): 
-        id_skill(id_skill), required_points(required_points), strong(strong), name(name){}
+    Skill::Skill (int id_skill, string name, int required_points): 
+        id_skill(id_skill),
+        required_points(required_points),
+        name(name)
+    {
+    }
 
     int Skill::getId () const
     {
@@ -15,7 +19,7 @@ namespace mtm {
         return name;
     }
 
-    unsigned int Skill::getRequiredPoints () const
+    int Skill::getRequiredPoints () const
     {
         return required_points;
     }
@@ -32,7 +36,7 @@ namespace mtm {
 
     ostream& operator<< (ostream& os, const Skill& skill)
     {
-        os << skill.name << " level: " << skill.strong << endl;
+        os << skill.name << /*" level: " << skill.strong <<*/ endl;
         return os;
     }
 
@@ -76,6 +80,11 @@ namespace mtm {
     Skill operator+ (const Skill& skill, int points)
     {
         return Skill(skill) += points;
+    }
+
+    Skill operator+ (int points, const Skill& skill)
+    {
+         return Skill(skill) += points;
     }
 
 }

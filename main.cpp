@@ -13,23 +13,23 @@ using std::endl;
 using std::string;
 using namespace mtm;
 
-int main() {
-    Skill s1(1, "a", 0, 0);
+void test_our()
+{
+    Skill s1(1, "a", 0);
     cout << s1;
-    Skill s2(2, "b", 1, 1);
-    Skill s3(3, "c", 2, 2);
+    Skill s2(2, "b", 1);
+    Skill s3(3, "c", 2);
     if(s3 < s2)
-        return -1;
+        return;
     if(s3 <= s2)
-        return -1;
+        return;
     s2 += 2;
     s2++;
     cout << s2;
-
     Employee employee1(1, "Lottem", "Arava", 1999);
     Employee employee2(1, "Adi", "Grauer", 1998);
     if(employee1.getSalary() != 0){
-        return -1;
+        return;
     }
     employee1.setSalary(1000);
     employee1.setScore(80);
@@ -39,9 +39,18 @@ int main() {
     employee1.forgetSkill(2);
     employee1.printLong(cout);
     employee2.printShort(cout);
-    return 0;
-    /* their test*/
-    /*Employee e1(1, "John", "Williams", 2002);
+}
+
+void test_skill()
+{
+    Skill s1(1, "C++", 0);
+    cout << s1;
+    return;
+}
+
+void test_employee()
+{
+    Employee e1(1, "John", "Williams", 2002);
     Skill s1(1,"C++",0);
     Skill s2(2, "Java", 0);
     e1.learnSkill(s1);
@@ -50,5 +59,32 @@ int main() {
     e1.printShort(cout);
     cout << "Long Print" << endl;
     e1.printLong(cout);
-    return 0;*/
+}
+
+void test_manager()
+{
+    Employee e1(1, "John", "Williams", 2002);
+    Employee e2(2, "Alex", "Martinez", 2000);
+    Manager m1(1,"Robert", "stark", 1980);
+    m1.addEmployee(&e1);
+    m1.addEmployee(&e2);
+    cout << "Short_Print" << endl;
+    m1.printShort(cout);
+    cout << "Long Print" << endl;
+    m1.printLong(cout);
+}
+
+void test_faculty()
+{
+    class Condition{
+    public:
+        bool operator()(Employee* emp){
+            return emp->getId()>0;
+        }
+    };
+}
+
+int main()
+{
+    return 0;
 }

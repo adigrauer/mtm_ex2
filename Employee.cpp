@@ -28,21 +28,21 @@ namespace mtm {
         if (skill == *(skill_set.find(skill))){
             //throw SkillAlreadyLearned(); 
         }
-       if (getScore() < skill.getRequiredPoints()){
+        if (getScore() < skill.getRequiredPoints()){
             //throw canNotLearnSkill();
         }
-        skill_set.insert (skill);
+        skill_set.insert(skill);
     }
 
     void Employee::forgetSkill (const int id_skill){
-        if (hasSkill(id_skill) == false){
+        if (checkIfEmployeeHasSkill(id_skill) == false){
             //throw DidNotLearnSkill(); 
         }
         Skill temp_skill(id_skill, "temp", 0);
         skill_set.erase(skill_set.find(temp_skill));
     }
 
-    bool Employee::hasSkill (const int id_skill){
+    bool Employee::checkIfEmployeeHasSkill (const int id_skill){
         Skill temp_skill(id_skill, "temp", 0);
         if (temp_skill == *(skill_set.find(temp_skill))){
             return true;
@@ -66,20 +66,20 @@ namespace mtm {
         score += score_to_add;
     }
 
-    ostream& Employee::printShort (ostream& os)
+    ostream& Employee::printShort (ostream& os) const
     {
         os << getFirstName() << " " << getLastName() << endl
-        << "Salary: " << salary << " Score: "<< score << endl;
+        << "Salary: " << getSalary() << " Score: " << getScore() << endl;
         return os;
     }
 
-    ostream& Employee::printLong (ostream& os)
+    ostream& Employee::printLong (ostream& os) const
     {
         set<Skill>::iterator print_iterator;
         os << getFirstName() << " " << getLastName() << endl
         << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl
-        << "Salary: " << salary << " Score: "<< score << " Skills:" << endl;
-        for (print_iterator=skill_set.begin(); print_iterator!=skill_set.end(); ++print_iterator) {
+        << "Salary: " << getSalary() << " Score: "<< getScore() << " Skills:" << endl;
+        for (print_iterator = skill_set.begin(); print_iterator != skill_set.end(); ++print_iterator) {
             os << ((*print_iterator).getName()) << endl;
         }
         return os;

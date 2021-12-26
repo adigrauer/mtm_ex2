@@ -40,8 +40,8 @@ namespace mtm {
         
         /* getRequiredPoints: return the rwquired points of a skill.
         return-
-        unsigned int required points */
-        unsigned int getRequiredPoints () const;
+        int required points */
+        int getRequiredPoints () const;
 
         /* friens bool operators */
         friend bool operator< (const Skill& skill_a, const Skill& skill_b);
@@ -57,7 +57,7 @@ namespace mtm {
     bool operator<= (const Skill& skill_a, const Skill& skill_b);
     bool operator>= (const Skill& skill_a, const Skill& skill_b);
     bool operator> (const Skill& skill_a, const Skill& skill_b);
-    Skill operator+ (const Skill& skill, int points); //need to be symetric
+    Skill operator+ (const Skill& skill, int points); 
     Skill operator+ (int points, const Skill& skill);
 }
 

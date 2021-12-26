@@ -21,7 +21,7 @@ using std::shared_ptr;
 namespace mtm {
 
     /* const declerations */
-    const int STARTING_SALARY = 0;
+    const int STARTING_SALARY_MANAGER = 0;
 
     /* Manager class declaration */
     class Manager : public Citizen {
@@ -33,7 +33,7 @@ namespace mtm {
         Manager (int id_citizen, string first_name, string last_name, int birth_year);
         
         /* Manager copy C'tor */
-        Manager (const Manager& manager);
+        Manager (const Manager& manager) = default;
         
         /* Manager D'tor */
         ~Manager () = default;
@@ -41,7 +41,7 @@ namespace mtm {
         /* getSalary: return copy of Manager's salary.
         return-
         int salary */
-        int getSalary ();
+        int getSalary () const;
 
         /* clone: return copy of existing Manager.
         return-
@@ -52,7 +52,7 @@ namespace mtm {
         return-
         True- if the employee is already hired
         False- otherwise*/
-        bool cheackIfEmployeeExist (Employee employee);
+        bool cheackIfEmployeeExist (Employee employee) const;
 
         /* addEmployee- add new Employee the the set of employees of the Manager by pointer the the employee.
         return-
@@ -62,7 +62,7 @@ namespace mtm {
         /* removeEmployee- remove employee fron the employees of given manager by employee's id
         return-
         EmployeeNotHired- in case that the employee does not a worker of the given manager.*/
-        void removeEmployee (const int employee_id);
+        void removeEmployee (int employee_id);
         
         /* setSalary- raise the salary of the Manager by given amount
         return-
@@ -70,10 +70,10 @@ namespace mtm {
         void setSalary (int salary_to_add);
         
         /* printShort- print short information of the Manager by given format */
-        ostream& printShort (ostream& os) override;
+        ostream& printShort (ostream& os) const override;
         
         /* printShort- print long information of the Manager by given format */
-        ostream& printLong (ostream& os) override;
+        ostream& printLong (ostream& os) const override;
     };
 
 }

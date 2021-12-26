@@ -24,10 +24,12 @@ namespace mtm {
         compareFunction compare_function;
     public:
         Faculty (compareFunction compare_function, Skill skill, int point_to_add, int faculty_id);
+        Faculty (const Faculty& faculty) = default;
+        ~Faculty() = default;
         Skill getSkill ();
         int getId ();
         int getAddedPoints ();
-        Faculty teach (Employee& Employee);
+        void teach (Employee* employee); //does teach gets pointer of employee??
     };
 }
 

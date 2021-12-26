@@ -26,18 +26,19 @@ namespace mtm {
         int score;
         set<Skill> skill_set; //print skills by id
     public:
-        Employee(int id_citizen, string first_name, string last_name, int birth_year); 
+        Employee (int id_citizen, string first_name, string last_name, int birth_year); 
+        Employee (const Employee& employee) = default; 
         ~Employee () = default;
         virtual Citizen* clone () const;
         int getSalary () const;
         int getScore () const;
         void learnSkill (const Skill& skill);
         void forgetSkill (const int id_skill);
-        bool hasSkill (const int id_skill);
+        bool checkIfEmployeeHasSkill (const int id_skill);
         void setSalary (int salary_to_add);
         void setScore (int score_to_add);
-        ostream& printShort (ostream& os) override;
-        ostream& printLong (ostream& os) override;
+        ostream& printShort (ostream& os) const override;
+        ostream& printLong (ostream& os) const override;
     };
 }
 #endif /* EMPLOYEE_H */

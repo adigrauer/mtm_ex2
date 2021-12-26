@@ -40,10 +40,15 @@ namespace mtm {
         int birthday year */
         int getBirthYear () const;
 
-        /* getId: return copy of Citizen's id.
+        /* getId: return copy of Citizen's id from const citizen.
         return-
         int id */
         int getId () const;
+
+        /* getId: return copy of Citizen's id from non const citizen.
+        return-
+        int id */
+        int getId ();
 
         /* getFirstName: return copy of Citizen's first name.
         return-
@@ -60,10 +65,10 @@ namespace mtm {
         friend bool operator== (const Citizen& citizen_a, const Citizen& citizen_b);
         
         /* printShort- virtual print short information of the Manager by given format */
-        virtual ostream& printShort (ostream& os) = 0;
+        virtual ostream& printShort (ostream& os) const = 0;
 
         /* printShort- virtual print long information of the Manager by given format */
-        virtual ostream& printLong (ostream& os) = 0;
+        virtual ostream& printLong (ostream& os) const = 0;
     };
 
     /* overloud operators */

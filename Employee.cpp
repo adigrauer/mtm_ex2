@@ -30,14 +30,12 @@ namespace mtm {
     }
 
     void Employee::learnSkill (const Skill& skill) {
-        /*if (skill == *(skill_set.find(skill))){
-            throw SkillAlreadyLearned(); 
-        }*/
-       /* try {
-            Faculty::teach((*this)); //need to figure 
-        } catch (EmployeeNotAccepted) {
-            throw canNotLearnSkill();
-        }*/
+        if (skill == *(skill_set.find(skill))){
+            //throw SkillAlreadyLearned(); 
+        }
+       if (getScore() < skill.getRequiredPoints()){
+            //throw canNotLearnSkill();
+        }
         skill_set.insert (skill); // which class changes the skill set? does teach method in faculty?
     }
 

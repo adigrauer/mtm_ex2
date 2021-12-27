@@ -78,13 +78,19 @@ namespace mtm {
         managers.erase((managers.find(temp_manager)));
     }
 
-    ostream& operator<< (ostream& os, const Workplace& workplace){
+    ostream& operator<< (ostream& os, const Workplace& workplace) 
+    {
         set<Manager>::iterator print_iterator;
-        os << "Workplace name - " << workplace.getName() << " Groups:" << endl;
-        for (print_iterator = (workplace.managers).begin(); print_iterator != (workplace.managers).end(); ++print_iterator)
-        {
-            (*print_iterator).printLong(os);
+        if(workplace.managers.empty() == false){
+            os << "Workplace name - " << workplace.getName() << " Groups:" << endl;
+            os << "Manager" << " ";
+            for (print_iterator = (workplace.managers).begin(); print_iterator != (workplace.managers).end(); ++print_iterator)
+            {
+                (*print_iterator).printLong(os);
+            }
+            return os;
         }
+        os << "Workplace name - " << workplace.getName() << endl;
         return os;
     }
 }

@@ -94,15 +94,16 @@ void test_faculty()
     Meta.hireEmployee(condition,e2,m1->getId());
     cout << Meta;
     Meta.fireManager(m1->getId());
+    //cout << endl << "Meta after fire manager----------" << endl << endl; for us just to seperate
     cout << Meta;
 }
 
 int main()
 {
-    test_employee();
+    //test_employee();
     test_faculty();
-    test_manager();
-    test_our();
-    test_skill();
+    //test_manager();
+    //test_our();
+    //test_skill();
     return 0;
 }

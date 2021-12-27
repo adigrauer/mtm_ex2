@@ -57,16 +57,16 @@ namespace mtm {
         if(checkIfManagerExist((manager_id) == false)){
             throw ManagerIsNotHired();
         }
+        set<Manager>::iterator it;
+        it = managers.find(temp_manager);
         Employee temp_employee(worker_id, "temp", 0, 0); 
-        if(((*(managers.find(temp_manager))).cheackIfEmployeeExist(temp_employee)) == false){
+        if(((*(it)).cheackIfEmployeeExist(temp_employee)) == false){
             throw EmployeeIsNotHired();
         }
-        /*************/
-        /*************/
-        (*(managers.find(temp_manager))).removeEmployee(worker_id);
-        //I think the problem is thar find returns const iterator
-        /*************/
-        /*************/
+        Manager copy_manager = (*it);
+        copy_manager.removeEmployee(worker_id);
+        managers.erase(temp_manager);
+        managers.insert(copy_manager);
     }
 
     void Workplace::fireManager (int manager_id)

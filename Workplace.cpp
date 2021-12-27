@@ -1,7 +1,7 @@
 #include "Workplace.h"
 
 namespace mtm {
-    Workplace::Workplace (int workplace_id, int workers_salary, int managers_salary, string workplace_name):
+    Workplace::Workplace (int workplace_id, string workplace_name, int workers_salary, int managers_salary):
         workplace_id(workplace_id),
         workers_salary(workers_salary),
         managers_salary(managers_salary),
@@ -32,7 +32,7 @@ namespace mtm {
 
     bool Workplace::checkIfManagerExist (int manager_id)
     {
-        Manager temp_manager(manager_id, "temp", "temp", 0);
+        const Manager temp_manager(manager_id, "temp", "temp", 0);
         
         if (temp_manager == *(managers.find(temp_manager))){
             return true;
@@ -78,6 +78,13 @@ namespace mtm {
         managers.erase((managers.find(temp_manager)));
     }
 
-    //ostream& operator<< (ostream& os, const Skill& skill);
-
+    ostream& operator<< (ostream& os, const Workplace& workplace){
+        set<Manager>::iterator print_iterator;
+        os << "Workplace name - " << workplace.getName() << " Groups:" << endl;
+        for (print_iterator = (workplace.managers).begin(); print_iterator != (workplace.managers).end(); ++print_iterator)
+        {
+            (*print_iterator).printLong(os);
+        }
+        return os;
+    }
 }

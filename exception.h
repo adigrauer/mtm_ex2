@@ -32,15 +32,9 @@ namespace mtm {
     class EmployeeNotSelected: public Exception {
     };
 
-    class EmployeeNotAccepted: public Exception {
-    };
-
     class ManagerIsNotHired: public Exception {
     };
     
-    class EmployeeAlreadyHired: public Exception {
-    };
-
     class ManagerAlreadyHired: public Exception {
     };
 

@@ -99,12 +99,23 @@ namespace mtm {
     {
         vector<shared_ptr<Employee>>::iterator iterator;
         shared_ptr<Employee> current_next(last_printed);
-        for (iterator = employees.begin(); iterator != employees.end(); ++iterator)
-        {
-            if ((*last_printed) < (**iterator) && (**iterator) < (*current_next)){
-                current_next = (*iterator);
+        while (iterator != employees.end()){
+            if ((**iterator) <= *last_printed){
+                iterator++;
+                continue;
             }
-        }
+            if((**iterator) < *current_next) {
+                current_next = *iterator;
+                iterator++;
+                continue;
+            }
+            else {
+                current_next = *iterator;
+            }
+            return current_next;
+        }   
         return current_next;
     }
-}
+
+
+    

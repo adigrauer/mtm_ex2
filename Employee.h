@@ -26,6 +26,12 @@ namespace mtm {
         int score;
         set<Skill> skill_set; //print skills by id
     public:
+        /*class CompareEmployee {
+        public:
+            bool operator() (shared_ptr<Employee> employee_a, shared_ptr<Employee> employee_b){
+                return(employee_a->getId() == employee_b->getId());
+            }
+        };*/
         Employee (int id_citizen, string first_name, string last_name, int birth_year); 
         Employee (const Employee& employee) = default; 
         ~Employee () = default;

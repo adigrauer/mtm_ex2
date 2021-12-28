@@ -20,30 +20,40 @@ namespace mtm {
         return new Manager(*this);
     }
     
-    //need to think if needs to be const
-    bool Manager::cheackIfEmployeeExist (Employee employee) const
+    bool Manager::cheackIfEmployeeExist (Employee* employee) 
     {
-        if (employee == *(employees.find(employee))){
-            return true;
+        vector<shared_ptr<Employee>>::iterator ptr;
+        //shared_ptr<Employee> employee_to_check(employee);
+        for(ptr = employees.begin(); ptr != employees.end(); ++ptr){
+            if(**ptr == (*employee)){
+                return true;
+            }
         }
         return false;
     }
 
     void Manager::addEmployee (Employee* employee)
     {
-        if(cheackIfEmployeeExist(*employee) == true){
+        if((cheackIfEmployeeExist(employee)) == true){
             throw EmployeeAlreadyHired();
         }
-        employees.insert(*employee);
+        vector<shared_ptr<Employee>>::iterator it = employees.begin();
+        shared_ptr<Employee> employee_to_add(employee);
+        employees.insert(it, employee_to_add);
     }
     
     void Manager::removeEmployee (int employee_id) 
     {   
+        vector<shared_ptr<Employee>>::iterator ptr;
         Employee temp_employee(employee_id, "temp", 0, 0); 
-        if(cheackIfEmployeeExist(temp_employee) == false){
+        if((cheackIfEmployeeExist(&temp_employee)) == false){
             throw EmployeeNotHired();
         }
-        employees.erase(employees.find(temp_employee));
+        for(ptr = employees.begin(); ptr != employees.end(); ++ptr){
+            if(**ptr == temp_employee){
+                employees.erase(ptr);
+            }
+        }
     }
     
     void Manager::setSalary (int salary_to_add)
@@ -63,16 +73,68 @@ namespace mtm {
         return os;
     }
 
-    ostream& Manager::printLong (ostream& os) const
+    /*ostream& Manager::printLong (ostream& os) const
     {
-        set<Employee>::iterator print_iterator;
+        vector<shared_ptr<Employee>>::const_iterator print_iterator;
         os << getFirstName() << " " << getLastName() << endl;
         os << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl;
         os << "salary: " << salary << endl;
         os << "Employees:" << endl;
         for (print_iterator = employees.begin(); print_iterator != employees.end(); ++print_iterator) {
-            (*print_iterator).printShort(os);
+            //(*print_iterator).printShort(os);
+        }
+        return os;
+    }*/
+
+    ostream& Manager::printLong (ostream& os) const
+    {
+        shared_ptr<Employee> print_ptr;
+        os << getFirstName() << " " << getLastName() << endl;
+        os << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl;
+        os << "salary: " << salary << endl;
+        os << "Employees:" << endl;
+        int how_many_to_print = employees.size();
+        for (print_ptr = findMinimalIdEmployee(); how_many_to_print != 0; --how_many_to_print)
+        {
+            (*print_ptr).printShort(os);
+            print_ptr = findNextEmployeeToPrint(print_ptr);
         }
         return os;
     }
+
+    shared_ptr<Employee> Manager::findMinimalIdEmployee () const
+    {
+        vector<shared_ptr<Employee>>::const_iterator iterator;
+        shared_ptr<Employee> current_minimal(*(employees.begin()));
+        for (iterator = employees.begin(); iterator != employees.end(); ++iterator)
+        {
+            if ((**iterator).getId() < (*current_minimal).getId()){
+                current_minimal = *iterator;
+            }
+        }
+        return current_minimal;
+    }
+
+    shared_ptr<Employee> Manager::findNextEmployeeToPrint (shared_ptr<Employee> last_printed) const
+    {
+        vector<shared_ptr<Employee>>::const_iterator iterator;
+        shared_ptr<Employee> current_next(last_printed);
+        while (iterator != employees.end()){
+            if ((**iterator) <= *last_printed){
+                iterator++;
+                continue;
+            }
+            if((**iterator) < *current_next) {
+                current_next = *iterator;
+                iterator++;
+                continue;
+            }
+            else {
+                current_next = *iterator;
+            }
+            return current_next;
+        }   
+        return current_next;
+    }
+
 }

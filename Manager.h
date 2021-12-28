@@ -4,7 +4,7 @@
 #include <string>
 //#include <fstream>
 #include <iostream>
-#include <set>
+#include <vector>
 #include <memory>
 #include "Skill.h"
 #include "Citizen.h"
@@ -12,7 +12,7 @@
 
 //are all needed??
 using std::ostream;
-using std::set;
+using std::vector;
 using std::cout;
 using std::endl;
 using std::string;
@@ -27,7 +27,7 @@ namespace mtm {
     class Manager : public Citizen {
     private:
         int salary;
-        set<Employee> employees;
+        vector<shared_ptr<Employee>> employees;
     public:
         /* Manager C'tor */
         Manager (int id_citizen, string first_name, string last_name, int birth_year);
@@ -52,7 +52,7 @@ namespace mtm {
         return-
         True- if the employee is already hired
         False- otherwise*/
-        bool cheackIfEmployeeExist (Employee employee) const;
+        bool cheackIfEmployeeExist (Employee* employee);
 
         /* addEmployee- add new Employee the the set of employees of the Manager by pointer the the employee.
         return-
@@ -74,6 +74,9 @@ namespace mtm {
         
         /* printShort- print long information of the Manager by given format */
         ostream& printLong (ostream& os) const override;
+
+        shared_ptr<Employee> findMinimalIdEmployee () const;
+        shared_ptr<Employee> findNextEmployeeToPrint (shared_ptr<Employee> last_printed) const;
     };
 
 }

@@ -41,6 +41,23 @@ namespace mtm {
     class EmployeeIsNotHired: public Exception {
     };
     
+    class EmployeeAlreadyExists: public Exception {
+    };
+
+    class ManagerAlreadyExists: public Exception {
+    };
+
+    class FacultyAlreadyExists: public Exception {
+    };
+
+    class WorkplaceAlreadyExists: public Exception {
+    };
+
+    class EmployeeDoesNotExists: public Exception {
+    };
+
+    class FacultyDoesNotExist: public Exception {
+    };
 } 
 
 

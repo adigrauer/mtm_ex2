@@ -56,6 +56,7 @@ namespace mtm {
         void fireEmployee (int worker_id, int manager_id);
         void fireManager (int manager_id);
         friend ostream& operator<< (ostream& os, const Workplace& workplace);
+        friend bool operator== (const Workplace& workplace_a, const Workplace& workplace_b);
     };
 }
 

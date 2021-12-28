@@ -93,4 +93,9 @@ namespace mtm {
         os << "Workplace name - " << workplace.getName() << endl;
         return os;
     }
+
+    bool operator== (const Workplace& workplace_a, const Workplace& workplace_b)
+    {
+        return workplace_a.getName() == workplace_b.getName();
+    }
 }

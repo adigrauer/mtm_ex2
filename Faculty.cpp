@@ -15,7 +15,12 @@ namespace mtm {
         return skill;
     }
 
-    int Faculty::getId ()
+    int Faculty::getId () const 
+    {
+        return faculty_id;
+    }
+
+    int Faculty::getId () 
     {
         return faculty_id;
     }
@@ -36,4 +41,8 @@ namespace mtm {
         (*employee).setScore(add_points);
     }
 
+    bool operator== (const Faculty& faculty_a, const Faculty& faculty_b) 
+    {
+        return faculty_a.getId() == faculty_b.getId();
+    }
 }

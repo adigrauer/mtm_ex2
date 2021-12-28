@@ -26,17 +26,17 @@ namespace mtm {
 
     void Employee::learnSkill (const Skill& skill) {
         if (skill == *(skill_set.find(skill))){
-            //throw SkillAlreadyLearned(); 
+            throw SkillAlreadyLearned(); 
         }
         if (getScore() < skill.getRequiredPoints()){
-            //throw canNotLearnSkill();
+            throw canNotLearnSkill();
         }
         skill_set.insert(skill);
     }
 
     void Employee::forgetSkill (const int id_skill){
         if (checkIfEmployeeHasSkill(id_skill) == false){
-            //throw DidNotLearnSkill(); 
+            throw DidNotLearnSkill(); 
         }
         Skill temp_skill(id_skill, "temp", 0);
         skill_set.erase(skill_set.find(temp_skill));

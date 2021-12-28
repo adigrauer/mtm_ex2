@@ -41,8 +41,8 @@ namespace mtm {
         (*employee).setScore(add_points);
     }
 
-    bool operator== (const Faculty& faculty_a, const Faculty& faculty_b) 
+    bool operator< (const Faculty& faculty_a, const Faculty& faculty_b) 
     {
-        return faculty_a.getId() == faculty_b.getId();
+        return faculty_a.getId() < faculty_b.getId();
     }
 }

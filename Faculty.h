@@ -28,9 +28,10 @@ namespace mtm {
         ~Faculty() = default;
         Skill getSkill ();
         int getId ();
+        int getId () const;
         int getAddedPoints ();
         void teach (Employee* employee); //does teach gets pointer of employee??
-        friend bool operator== (const Faculty& faculty_a, const Faculty& faculty_b);
+        friend bool operator< (const Faculty& faculty_a, const Faculty& faculty_b);
     };
 }
 

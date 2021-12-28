@@ -23,7 +23,6 @@ namespace mtm {
     bool Manager::cheackIfEmployeeExist (Employee* employee) 
     {
         vector<shared_ptr<Employee>>::iterator ptr;
-        //shared_ptr<Employee> employee_to_check(employee);
         for(ptr = employees.begin(); ptr != employees.end(); ++ptr){
             if(**ptr == (*employee)){
                 return true;
@@ -73,19 +72,6 @@ namespace mtm {
         return os;
     }
 
-    /*ostream& Manager::printLong (ostream& os) const
-    {
-        vector<shared_ptr<Employee>>::const_iterator print_iterator;
-        os << getFirstName() << " " << getLastName() << endl;
-        os << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl;
-        os << "salary: " << salary << endl;
-        os << "Employees:" << endl;
-        for (print_iterator = employees.begin(); print_iterator != employees.end(); ++print_iterator) {
-            //(*print_iterator).printShort(os);
-        }
-        return os;
-    }*/
-
     ostream& Manager::printLong (ostream& os) const
     {
         shared_ptr<Employee> print_ptr;
@@ -94,8 +80,7 @@ namespace mtm {
         os << "salary: " << salary << endl;
         os << "Employees:" << endl;
         int how_many_to_print = employees.size();
-        for (print_ptr = findMinimalIdEmployee(); how_many_to_print != 0; --how_many_to_print)
-        {
+        for (print_ptr = findMinimalIdEmployee(); how_many_to_print != 0; --how_many_to_print){
             (*print_ptr).printShort(os);
             print_ptr = findNextEmployeeToPrint(print_ptr);
         }
@@ -117,16 +102,16 @@ namespace mtm {
 
     shared_ptr<Employee> Manager::findNextEmployeeToPrint (shared_ptr<Employee> last_printed) const
     {
-        vector<shared_ptr<Employee>>::const_iterator iterator;
+        vector<shared_ptr<Employee>>::const_iterator iterator = employees.begin();
         shared_ptr<Employee> current_next(last_printed);
         while (iterator != employees.end()){
             if ((**iterator) <= *last_printed){
-                iterator++;
+                ++iterator;
                 continue;
             }
             if((**iterator) < *current_next) {
                 current_next = *iterator;
-                iterator++;
+                ++iterator;
                 continue;
             }
             else {

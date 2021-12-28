@@ -32,10 +32,12 @@ namespace mtm {
 
     bool Workplace::checkIfManagerExist (int manager_id)
     {
-        const Manager temp_manager(manager_id, "temp", "temp", 0);
-        
-        if (temp_manager == *(managers.find(temp_manager))){
-            return true;
+        vector<shared_ptr<Manager>>::iterator ptr;
+        Manager temp_manager(manager_id, "temp", "temp", 0);
+        for(ptr = managers.begin(); ptr != managers.end(); ++ptr){
+            if(**ptr == temp_manager){
+                return true;;
+            }
         }
         return false;
     }
@@ -48,25 +50,27 @@ namespace mtm {
         //bool cheackIfManagerWorkInOtherPlace (Workplace workplace, unsigned int id_manager)-
         //meed to check if dont need to be in city and not in Worplace class!!!!!!
         //because need access to set<Workplace> workplaces
-        managers.insert(*manager);
+        vector<shared_ptr<Manager>>::iterator ptr = managers.begin();
+        shared_ptr<Manager> manager_to_add(manager);
+        managers.insert(ptr, manager_to_add);
     }
             
     void Workplace::fireEmployee (int worker_id, int manager_id)
     {
         Manager temp_manager(manager_id, "temp", "temp", 0);
+        Employee temp_employee(worker_id, "temp", 0, 0); 
         if(checkIfManagerExist((manager_id) == false)){
             throw ManagerIsNotHired();
         }
-        set<Manager>::iterator it;
-        it = managers.find(temp_manager);
-        Employee temp_employee(worker_id, "temp", 0, 0); 
-        if(((*(it)).cheackIfEmployeeExist(temp_employee)) == false){
-            throw EmployeeIsNotHired();
+        vector<shared_ptr<Manager>>::iterator ptr;
+        for(ptr = managers.begin(); ptr != managers.end(); ++ptr){
+            if(**ptr == temp_manager){
+                if((*ptr)->cheackIfEmployeeExist(&temp_employee) == false){
+                        throw EmployeeAlreadyHired();
+                }
+                (**ptr).removeEmployee(worker_id);
+            }
         }
-        Manager copy_manager = (*it);
-        copy_manager.removeEmployee(worker_id);
-        managers.erase(temp_manager);
-        managers.insert(copy_manager);
     }
 
     void Workplace::fireManager (int manager_id)
@@ -75,18 +79,29 @@ namespace mtm {
         if(checkIfManagerExist((manager_id) == false)){
             throw ManagerIsNotHired();
         }
-        managers.erase((managers.find(temp_manager)));
+        vector<shared_ptr<Manager>>::iterator ptr;
+        for(ptr = managers.begin(); ptr != managers.end(); ++ptr){
+            if(**ptr == temp_manager){
+                managers.erase(ptr);
+            }
+        }
+    }
+
+    bool operator< (const Workplace& workplace_a, const Workplace& workplace_b)
+    {
+        return workplace_a.getName() < workplace_b.getName();
     }
 
     ostream& operator<< (ostream& os, const Workplace& workplace) 
     {
-        set<Manager>::iterator print_iterator;
+        shared_ptr<Manager> print_ptr;
         if(workplace.managers.empty() == false){
             os << "Workplace name - " << workplace.getName() << " Groups:" << endl;
             os << "Manager" << " ";
-            for (print_iterator = (workplace.managers).begin(); print_iterator != (workplace.managers).end(); ++print_iterator)
-            {
-                (*print_iterator).printLong(os);
+            int how_many_to_print = workplace.managers.size();
+            for(print_ptr = findMinimalIdManager(workplace); how_many_to_print != 0; --how_many_to_print){
+                (*print_ptr).printShort(os);
+                print_ptr = findNextManagerToPrint(print_ptr, workplace);
             }
             return os;
         }
@@ -94,8 +109,38 @@ namespace mtm {
         return os;
     }
 
-    bool operator== (const Workplace& workplace_a, const Workplace& workplace_b)
+    shared_ptr<Manager> Workplace::findMinimalIdManager (const Workplace& workplace) 
     {
-        return workplace_a.getName() == workplace_b.getName();
+        vector<shared_ptr<Manager>>::const_iterator iterator;
+        shared_ptr<Manager> current_minimal(*(workplace.managers.begin()));
+        for (iterator = workplace.managers.begin(); iterator != workplace.managers.end(); ++iterator){
+            if ((**iterator).getId() < (*current_minimal).getId()){
+                current_minimal = *iterator;
+            }
+        }
+        return current_minimal;
     }
+
+    shared_ptr<Manager> Workplace::findNextManagerToPrint (shared_ptr<Manager> last_printed, const Workplace& workplace) 
+    {
+        vector<shared_ptr<Manager>>::const_iterator iterator = workplace.managers.begin();
+        shared_ptr<Manager> current_next(last_printed);
+        while (iterator != workplace.managers.end()){
+            if ((**iterator) <= *last_printed){
+                ++iterator;
+                continue;
+            }
+            if((**iterator) < *current_next) {
+                current_next = *iterator;
+                ++iterator;
+                continue;
+            }
+            else {
+                current_next = *iterator;
+            }
+            return current_next;
+        }   
+        return current_next;
+    }
+
 }

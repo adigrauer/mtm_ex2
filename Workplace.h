@@ -4,16 +4,18 @@
 #include <string>
 //#include <fstream>
 #include <iostream>
-#include <set>
+#include <vector>
+#include <memory>
 #include "Manager.h"
 #include "Citizen.h"
 
 //are all needed??
 using std::ostream;
-using std::set;
+using std::vector;
 using std::cout;
 using std::endl;
 using std::string;
+using std::shared_ptr;
 
 namespace mtm {
     class Workplace {
@@ -22,7 +24,7 @@ namespace mtm {
         int workers_salary;
         int managers_salary;
         string workplace_name;
-        set<Manager> managers;
+        vector<shared_ptr<Manager>> managers;
     public:
         template <typename condition> 
         void hireEmployee(condition condition_to_check, Employee* employee, int manager_id){
@@ -33,14 +35,17 @@ namespace mtm {
                 throw ManagerIsNotHired();
             }
             Manager temp_manager(manager_id, "temp", "temp", 0);
-            set<Manager>::iterator pointer_to_mamanger = managers.find(temp_manager);
-            if((*pointer_to_mamanger).cheackIfEmployeeExist(*employee) == true){
-                throw EmployeeAlreadyHired();
+            vector<shared_ptr<Manager>>::iterator ptr_managers;
+            for(ptr_managers = managers.begin(); ptr_managers != managers.end(); ++ptr_managers){
+                if(**ptr_managers == temp_manager){
+                    if((*ptr_managers)->cheackIfEmployeeExist(employee) == false){
+                        throw EmployeeAlreadyHired();
+                    }
+                    vector<shared_ptr<Employee>>::iterator employee_to_add = employee;
+                    (**ptr_managers).addEmployee(employee);
+                }
             }
-            Manager copy_manager = (*pointer_to_mamanger);
-            copy_manager.addEmployee(employee);
-            managers.erase(*pointer_to_mamanger);
-            managers.insert(copy_manager);
+            
         }
         Workplace (int workplace_id,string workplace_name, int workers_salary, int managers_salary);
         Workplace (const Workplace& workplace) = default;
@@ -51,12 +56,12 @@ namespace mtm {
         string getName () const;
         bool checkIfManagerExist (int manager_id);
         void hireManager (Manager* manager);
-            //bool cheackIfManagerExist (Workplace workplace, unsigned int id_manager);
-            //bool cheackIfManagerWorkInOtherPlace (Workplace workplace, unsigned int id_manager);
         void fireEmployee (int worker_id, int manager_id);
         void fireManager (int manager_id);
-        friend ostream& operator<< (ostream& os, const Workplace& workplace);
-        friend bool operator== (const Workplace& workplace_a, const Workplace& workplace_b);
+        shared_ptr<Manager> findMinimalIdManager (const Workplace& workplace) ;
+        shared_ptr<Manager> findNextManagerToPrint (shared_ptr<Manager> last_printed, const Workplace& workplace) ;
+        friend ostream& operator<< (ostream& os, const Workplace& workplace) ;
+        friend bool operator< (const Workplace& workplace_a, const Workplace& workplace_b);
     };
 }
 

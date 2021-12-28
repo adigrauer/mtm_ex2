@@ -75,7 +75,7 @@ void test_manager()
     cout << "Long Print" << endl;
     m1.printLong(cout);
 }
-/*
+
 void test_faculty()
 {
     class Condition{
@@ -97,13 +97,13 @@ void test_faculty()
     //cout << endl << "Meta after fire manager----------" << endl << endl; for us just to seperate
     cout << Meta;
 }
-*/
+
 int main()
 {
     //test_employee();
-    //test_faculty();
+    test_faculty();
     cout << endl << endl;
-    test_manager();
+    //test_manager();
     //test_our();
     //cout << endl << endl;
     //test_skill();

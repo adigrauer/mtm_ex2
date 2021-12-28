@@ -38,10 +38,10 @@ namespace mtm {
             vector<shared_ptr<Manager>>::iterator ptr_managers;
             for(ptr_managers = managers.begin(); ptr_managers != managers.end(); ++ptr_managers){
                 if(**ptr_managers == temp_manager){
-                    if((*ptr_managers)->cheackIfEmployeeExist(employee) == false){
+                    if((*ptr_managers)->cheackIfEmployeeExist(employee) == true){
                         throw EmployeeAlreadyHired();
                     }
-                    vector<shared_ptr<Employee>>::iterator employee_to_add = employee;
+                    //(*employee).setSalary(getWorkersSalary());
                     (**ptr_managers).addEmployee(employee);
                 }
             }

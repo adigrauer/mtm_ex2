@@ -23,6 +23,10 @@ namespace mtm {
     bool Manager::cheackIfEmployeeExist (Employee* employee) 
     {
         vector<shared_ptr<Employee>>::iterator ptr;
+        if (employees.empty() == true) 
+        {
+            return false;
+        }
         for(ptr = employees.begin(); ptr != employees.end(); ++ptr){
             if(**ptr == (*employee)){
                 return true;
@@ -121,5 +125,6 @@ namespace mtm {
         }   
         return current_next;
     }
+
 
 }

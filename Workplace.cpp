@@ -50,6 +50,7 @@ namespace mtm {
         //bool cheackIfManagerWorkInOtherPlace (Workplace workplace, unsigned int id_manager)-
         //meed to check if dont need to be in city and not in Worplace class!!!!!!
         //because need access to set<Workplace> workplaces
+        manager->setSalary(getManagersSalary());
         vector<shared_ptr<Manager>>::iterator ptr = managers.begin();
         shared_ptr<Manager> manager_to_add(manager);
         managers.insert(ptr, manager_to_add);
@@ -66,8 +67,9 @@ namespace mtm {
         for(ptr = managers.begin(); ptr != managers.end(); ++ptr){
             if(**ptr == temp_manager){
                 if((*ptr)->cheackIfEmployeeExist(&temp_employee) == false){
-                        throw EmployeeAlreadyHired();
+                        throw EmployeeIsNotHired();
                 }
+                vector<shared_ptr<Employee>>::iterator ptr_to_employee;
                 (**ptr).removeEmployee(worker_id);
             }
         }
@@ -82,6 +84,7 @@ namespace mtm {
         vector<shared_ptr<Manager>>::iterator ptr;
         for(ptr = managers.begin(); ptr != managers.end(); ++ptr){
             if(**ptr == temp_manager){
+                (**ptr).setSalary(-getManagersSalary());
                 managers.erase(ptr);
             }
         }
@@ -140,7 +143,7 @@ namespace mtm {
             os << "Manager" << " ";
             int how_many_to_print = managers.size();
             for(print_ptr = findMinimalIdManager(); how_many_to_print != 0; --how_many_to_print){
-                (*print_ptr).printShort(os);
+                (*print_ptr).printLong(os);
                 print_ptr = findNextManagerToPrint(print_ptr);
             }
             return os;

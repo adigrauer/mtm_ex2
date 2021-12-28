@@ -94,26 +94,15 @@ namespace mtm {
 
     ostream& operator<< (ostream& os, const Workplace& workplace) 
     {
-        shared_ptr<Manager> print_ptr;
-        if(workplace.managers.empty() == false){
-            os << "Workplace name - " << workplace.getName() << " Groups:" << endl;
-            os << "Manager" << " ";
-            int how_many_to_print = workplace.managers.size();
-            for(print_ptr = findMinimalIdManager(workplace); how_many_to_print != 0; --how_many_to_print){
-                (*print_ptr).printShort(os);
-                print_ptr = findNextManagerToPrint(print_ptr, workplace);
-            }
-            return os;
-        }
-        os << "Workplace name - " << workplace.getName() << endl;
+        workplace.printLong(os);
         return os;
     }
 
-    shared_ptr<Manager> Workplace::findMinimalIdManager (const Workplace& workplace) 
+    shared_ptr<Manager> Workplace::findMinimalIdManager () const
     {
         vector<shared_ptr<Manager>>::const_iterator iterator;
-        shared_ptr<Manager> current_minimal(*(workplace.managers.begin()));
-        for (iterator = workplace.managers.begin(); iterator != workplace.managers.end(); ++iterator){
+        shared_ptr<Manager> current_minimal(*(managers.begin()));
+        for (iterator = managers.begin(); iterator != managers.end(); ++iterator){
             if ((**iterator).getId() < (*current_minimal).getId()){
                 current_minimal = *iterator;
             }
@@ -121,11 +110,11 @@ namespace mtm {
         return current_minimal;
     }
 
-    shared_ptr<Manager> Workplace::findNextManagerToPrint (shared_ptr<Manager> last_printed, const Workplace& workplace) 
+    shared_ptr<Manager> Workplace::findNextManagerToPrint (shared_ptr<Manager> last_printed) const
     {
-        vector<shared_ptr<Manager>>::const_iterator iterator = workplace.managers.begin();
+        vector<shared_ptr<Manager>>::const_iterator iterator = managers.begin();
         shared_ptr<Manager> current_next(last_printed);
-        while (iterator != workplace.managers.end()){
+        while (iterator != managers.end()){
             if ((**iterator) <= *last_printed){
                 ++iterator;
                 continue;
@@ -141,6 +130,23 @@ namespace mtm {
             return current_next;
         }   
         return current_next;
+    }
+
+    ostream& Workplace::printLong (ostream& os) const
+    {
+        shared_ptr<Manager> print_ptr;
+        if(managers.empty() == false){
+            os << "Workplace name - " <<getName() << " Groups:" << endl;
+            os << "Manager" << " ";
+            int how_many_to_print = managers.size();
+            for(print_ptr = findMinimalIdManager(); how_many_to_print != 0; --how_many_to_print){
+                (*print_ptr).printShort(os);
+                print_ptr = findNextManagerToPrint(print_ptr);
+            }
+            return os;
+        }
+        os << "Workplace name - " << getName() << endl;
+        return os;
     }
 
 }

@@ -58,8 +58,9 @@ namespace mtm {
         void hireManager (Manager* manager);
         void fireEmployee (int worker_id, int manager_id);
         void fireManager (int manager_id);
-        shared_ptr<Manager> findMinimalIdManager (const Workplace& workplace) ;
-        shared_ptr<Manager> findNextManagerToPrint (shared_ptr<Manager> last_printed, const Workplace& workplace) ;
+        shared_ptr<Manager> findMinimalIdManager () const;
+        shared_ptr<Manager> findNextManagerToPrint (shared_ptr<Manager> last_printed) const;
+        ostream& printLong (ostream& os) const;
         friend ostream& operator<< (ostream& os, const Workplace& workplace) ;
         friend bool operator< (const Workplace& workplace_a, const Workplace& workplace_b);
     };

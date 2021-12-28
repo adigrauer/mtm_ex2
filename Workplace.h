@@ -26,6 +26,12 @@ namespace mtm {
         string workplace_name;
         vector<shared_ptr<Manager>> managers;
     public:
+        /*class CompareManager{
+        public:
+            bool operator() (shared_ptr<Manager> manager_a, int manager_b){
+                return(manager_a->getId() == manager_b);
+            }
+        };*/
         template <typename condition> 
         void hireEmployee(condition condition_to_check, Employee* employee, int manager_id){
             if(condition_to_check(employee) == false){
@@ -41,7 +47,7 @@ namespace mtm {
                     if((*ptr_managers)->cheackIfEmployeeExist(employee) == true){
                         throw EmployeeAlreadyHired();
                     }
-                    //(*employee).setSalary(getWorkersSalary());
+                    (*employee).setSalary(workers_salary);
                     (**ptr_managers).addEmployee(employee);
                 }
             }
@@ -63,6 +69,7 @@ namespace mtm {
         ostream& printLong (ostream& os) const;
         friend ostream& operator<< (ostream& os, const Workplace& workplace) ;
         friend bool operator< (const Workplace& workplace_a, const Workplace& workplace_b);
+        friend bool operator== (const Workplace& workplace_a, const Workplace& workplace_b);
     };
 }
 

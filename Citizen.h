@@ -23,12 +23,6 @@ namespace mtm {
     protected:
         int id_citizen;
     public:
-        /*class Compare {
-        public:
-            bool operator() (shared_ptr<Citizen> citizen_a, shared_ptr<Citizen> citizen_b){
-                return(citizen_a->getId() == citizen_b->getId());
-            }
-        };*/
         /* Citizen C'tor */
         Citizen (int id_citizen, string first_name, string last_name, int birth_year);
         
@@ -36,7 +30,7 @@ namespace mtm {
         Citizen (const Citizen& citizen) = default;
         
         /* Manager virtual D'tor */
-        ~Citizen () = default;
+        virtual ~Citizen () = default;
 
         /* clone: return copy of existing Citizen.
         return-

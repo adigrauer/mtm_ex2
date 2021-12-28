@@ -96,6 +96,9 @@ void test_faculty()
     Meta.fireManager(m1->getId());
     //cout << endl << "Meta after fire manager----------" << endl << endl; for us just to seperate
     cout << Meta;
+    delete e1;
+    delete e2;
+    delete m1;
 }
 
 int main()
@@ -103,9 +106,9 @@ int main()
     //test_employee();
     test_faculty();
     cout << endl << endl;
-    //test_manager();
-    //test_our();
-    //cout << endl << endl;
-    //test_skill();
+    test_manager();
+    test_our();
+    cout << endl << endl;
+    test_skill();
     return 0;
 }

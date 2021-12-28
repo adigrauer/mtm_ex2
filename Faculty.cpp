@@ -3,10 +3,10 @@
 
 namespace mtm {
     Faculty::Faculty (compareFunction compare_function, Skill skill, int point_to_add, int faculty_id):
-        compare_function(compare_function),
         skill(skill),
+        faculty_id(faculty_id),
         add_points(point_to_add),
-        faculty_id(faculty_id)
+        compare_function(compare_function)
     {
     }
 
@@ -45,4 +45,10 @@ namespace mtm {
     {
         return faculty_a.getId() < faculty_b.getId();
     }
+
+    bool operator== (const Faculty& faculty_a, const Faculty& faculty_b)
+    {
+        return faculty_a.getId() == faculty_b.getId();
+    }
+    
 }

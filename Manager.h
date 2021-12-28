@@ -29,14 +29,20 @@ namespace mtm {
         int salary;
         vector<shared_ptr<Employee>> employees;
     public:
+        class Compare{
+        public:
+            bool operator() (shared_ptr<Manager> citizen_a, shared_ptr<Manager> citizen_b){
+                return(citizen_a->getId() == citizen_b->getId());
+            }
+        };
         /* Manager C'tor */
         Manager (int id_citizen, string first_name, string last_name, int birth_year);
         
         /* Manager copy C'tor */
-        Manager (const Manager& manager) = default;
+        //Manager (const Manager& manager) = default;
         
         /* Manager D'tor */
-        ~Manager () = default;
+        ~Manager () override = default;
 
         /* getSalary: return copy of Manager's salary.
         return-

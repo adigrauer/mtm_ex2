@@ -4,8 +4,8 @@ namespace mtm {
 
     Skill::Skill (int id_skill, string name, int required_points): 
         id_skill(id_skill),
-        required_points(required_points),
-        name(name)
+        name(name),
+        required_points(required_points)
     {
     }
 

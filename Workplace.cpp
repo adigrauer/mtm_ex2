@@ -53,7 +53,7 @@ namespace mtm {
         manager->setSalary(getManagersSalary());
         vector<shared_ptr<Manager>>::iterator ptr = managers.begin();
         shared_ptr<Manager> manager_to_add(manager);
-        managers.insert(ptr, manager_to_add);
+        managers.push_back(manager_to_add);
     }
             
     void Workplace::fireEmployee (int worker_id, int manager_id)
@@ -70,6 +70,7 @@ namespace mtm {
                         throw EmployeeIsNotHired();
                 }
                 vector<shared_ptr<Employee>>::iterator ptr_to_employee;
+                (**ptr).setSalary(-workers_salary);
                 (**ptr).removeEmployee(worker_id);
             }
         }
@@ -83,9 +84,9 @@ namespace mtm {
         }
         vector<shared_ptr<Manager>>::iterator ptr;
         for(ptr = managers.begin(); ptr != managers.end(); ++ptr){
-            if(**ptr == temp_manager){
-                (**ptr).setSalary(-getManagersSalary());
-                managers.erase(ptr);
+            if((**ptr) == temp_manager){
+                (**ptr).setSalary(-managers_salary);
+                ptr = managers.erase(ptr);
             }
         }
     }
@@ -94,6 +95,12 @@ namespace mtm {
     {
         return workplace_a.getName() < workplace_b.getName();
     }
+
+    bool operator== (const Workplace& workplace_a, const Workplace& workplace_b)
+    {
+        return workplace_a.getName() == workplace_b.getName();
+    }
+
 
     ostream& operator<< (ostream& os, const Workplace& workplace) 
     {

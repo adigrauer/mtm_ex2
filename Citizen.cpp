@@ -3,10 +3,10 @@
 namespace mtm {
 
     Citizen::Citizen (int id_citizen, string first_name, string last_name, int birth_year) :
-        id_citizen(id_citizen),
         first_name(first_name), 
-        last_name(last_name), 
-        birth_year(birth_year)
+        last_name(last_name),
+        birth_year(birth_year),
+        id_citizen(id_citizen)
     {
     }
 

@@ -1,7 +1,7 @@
-#include "Workplace.h"
+#include "WorkPlace.h"
 
 namespace mtm {
-    Workplace::Workplace (int workplace_id, string workplace_name, int workers_salary, int managers_salary):
+    WorkPlace::WorkPlace (int workplace_id, string workplace_name, int workers_salary, int managers_salary):
         workplace_id(workplace_id),
         workers_salary(workers_salary),
         managers_salary(managers_salary),
@@ -10,27 +10,27 @@ namespace mtm {
     {
     }
 
-    int Workplace::getID () const
+    int WorkPlace::getID () const
     {
         return workplace_id;
     }
 
-    int Workplace::gerWorkersSalary() const
+    int WorkPlace::gerWorkersSalary() const
     {
         return workers_salary;
     }
 
-    int Workplace::getManagersSalary() const
+    int WorkPlace::getManagersSalary() const
     {
         return managers_salary;
     } 
 
-    string Workplace::getName () const
+    string WorkPlace::getName () const
     {
         return workplace_name;
     }
 
-    bool Workplace::checkIfManagerExist (int manager_id)
+    bool WorkPlace::checkIfManagerExist (int manager_id)
     {
         vector<shared_ptr<Manager>>::iterator ptr;
         Manager temp_manager(manager_id, "temp", "temp", 0);
@@ -42,7 +42,7 @@ namespace mtm {
         return false;
     }
 
-    void Workplace::hireManager (Manager* manager)
+    void WorkPlace::hireManager (Manager* manager)
     {
         if(checkIfManagerExist((*manager).getId()) == true){
             throw ManagerAlreadyHired();
@@ -56,7 +56,7 @@ namespace mtm {
         managers.push_back(manager_to_add);
     }
             
-    void Workplace::fireEmployee (int worker_id, int manager_id)
+    void WorkPlace::fireEmployee (int worker_id, int manager_id)
     {
         Manager temp_manager(manager_id, "temp", "temp", 0);
         Employee temp_employee(worker_id, "temp", 0, 0); 
@@ -77,7 +77,7 @@ namespace mtm {
         }
     }
 
-    void Workplace::fireManager (int manager_id)
+    void WorkPlace::fireManager (int manager_id)
     {
         Manager temp_manager(manager_id, "temp", "temp", 0);
         if(checkIfManagerExist((manager_id) == false)){
@@ -93,24 +93,24 @@ namespace mtm {
         }
     }
 
-    bool operator< (const Workplace& workplace_a, const Workplace& workplace_b)
+    bool operator< (const WorkPlace& workplace_a, const WorkPlace& workplace_b)
     {
         return workplace_a.getName() < workplace_b.getName();
     }
 
-    bool operator== (const Workplace& workplace_a, const Workplace& workplace_b)
+    bool operator== (const WorkPlace& workplace_a, const WorkPlace& workplace_b)
     {
         return workplace_a.getName() == workplace_b.getName();
     }
 
 
-    ostream& operator<< (ostream& os, const Workplace& workplace) 
+    ostream& operator<< (ostream& os, const WorkPlace& workplace) 
     {
         workplace.printLong(os);
         return os;
     }
 
-    shared_ptr<Manager> Workplace::findMinimalIdManager () const
+    shared_ptr<Manager> WorkPlace::findMinimalIdManager () const
     {
         vector<shared_ptr<Manager>>::const_iterator iterator;
         shared_ptr<Manager> current_minimal(*(managers.begin()));
@@ -122,7 +122,7 @@ namespace mtm {
         return current_minimal;
     }
 
-    shared_ptr<Manager> Workplace::findNextManagerToPrint (shared_ptr<Manager> last_printed) const
+    shared_ptr<Manager> WorkPlace::findNextManagerToPrint (shared_ptr<Manager> last_printed) const
     {
         vector<shared_ptr<Manager>>::const_iterator iterator = managers.begin();
         shared_ptr<Manager> current_next(last_printed);
@@ -144,7 +144,7 @@ namespace mtm {
         return current_next;
     }
 
-    ostream& Workplace::printLong (ostream& os) const
+    ostream& WorkPlace::printLong (ostream& os) const
     {
         shared_ptr<Manager> print_ptr;
         if(managers.empty() == false){

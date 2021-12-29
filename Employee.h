@@ -6,7 +6,7 @@
 #include <set>
 #include "Skill.h"
 #include "Citizen.h"
-#include "exception.h"
+#include "exceptions.h"
 
 //are all needed??
 using std::ostream;
@@ -26,21 +26,16 @@ namespace mtm {
         int score;
         set<Skill> skill_set; //print skills by id
     public:
-        /*class CompareEmployee {
-        public:
-            bool operator() (shared_ptr<Employee> employee_a, shared_ptr<Employee> employee_b){
-                return(employee_a->getId() == employee_b->getId());
-            }
-        };*/
         Employee (int id_citizen, string first_name, string last_name, int birth_year); 
         Employee (const Employee& employee); 
         ~Employee () override = default;
         virtual Citizen* clone () const;
+        bool hasSkill (int skill_id);
         int getSalary () const;
         int getScore () const;
         void learnSkill (const Skill& skill);
         void forgetSkill (const int id_skill);
-        bool checkIfEmployeeHasSkill (const int id_skill);
+        //bool checkIfEmployeeHasSkill (const int id_skill);
         void setSalary (int salary_to_add);
         void setScore (int score_to_add);
         ostream& printShort (ostream& os) const override;

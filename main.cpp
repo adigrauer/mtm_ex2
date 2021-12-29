@@ -2,11 +2,11 @@
 #include <fstream>
 #include <iostream>
 #include "Skill.h"
-#include "exception.h"
+#include "exceptions.h"
 #include "Employee.h"
 #include "Citizen.h"
 #include "Manager.h"
-#include "Workplace.h"
+#include "WorkPlace.h"
 #include "Faculty.h"
 
 using std::ostream;
@@ -84,7 +84,7 @@ void test_faculty()
             return emp->getId()>0;
         }
     };
-    Workplace Meta(1,"Meta", 10000, 20000);
+    WorkPlace Meta(1,"Meta", 10000, 20000);
     Employee* e1 = new Employee(1, "John", "Williams", 2002);
     Employee* e2 = new Employee(2, "Alex", "Martinez", 2000);
     Manager* m1 = new Manager(1,"Robert", "stark", 1980);

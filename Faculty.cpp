@@ -34,7 +34,7 @@ namespace mtm {
     void Faculty::teach (Employee* employee)
     {
         if(compare_function((*employee)) == false){
-            //throw EmployeeNotAccepted();
+            throw EmployeeNotAccepted();
         }
         (*employee).learnSkill(skill); 
         /////////if learnSkill passed than we will add score, doest this implementation right?

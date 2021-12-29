@@ -1,6 +1,6 @@
 #include "Manager.h"
 #include "Employee.h"
-#include "exception.h"
+#include "exceptions.h"
 namespace mtm {
     
     Manager::Manager (int id_citizen, string first_name, string last_name, int birth_year) :
@@ -41,20 +41,6 @@ namespace mtm {
             }
         }
         return false;
-        
-        /*
-        vector<shared_ptr<Employee>>::iterator ptr;
-        if (employees.empty() == true) 
-        {
-            return false;
-        }
-        for(ptr = employees.begin(); ptr != employees.end(); ++ptr){
-            if(**ptr == (*employee)){
-                return true;
-            }
-        }
-        return false;
-        */
     }
 
     void Manager::addEmployee (Employee* employee)
@@ -63,16 +49,6 @@ namespace mtm {
         if((cheackIfEmployeeExist(id)) == true){
             throw EmployeeAlreadyHired();
         }
-        //workd_1
-        //vector<shared_ptr<Employee>>::iterator it = employees.begin();
-        //employees.insert(it, employee_to_add);
-        
-        ///worked_2_last- dont print the employees
-        /*
-        Employee employee_to_add(*employee);
-        shared_ptr<Employee> employee_to_add_ptr(&employee_to_add); 
-        employees.push_back(employee_to_add_ptr);
-        */
         Employee* employee1 = new Employee(*employee);
         shared_ptr<Employee> employee_to_add(employee1);
         employees.push_back(employee_to_add);

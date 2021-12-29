@@ -18,7 +18,7 @@ using std::string;
 using std::shared_ptr;
 
 namespace mtm {
-    class Workplace {
+    class WorkPlace {
     private:
         int workplace_id;
         int workers_salary;
@@ -26,12 +26,6 @@ namespace mtm {
         string workplace_name;
         vector<shared_ptr<Manager>> managers;
     public:
-        /*class CompareManager{
-        public:
-            bool operator() (shared_ptr<Manager> manager_a, int manager_b){
-                return(manager_a->getId() == manager_b);
-            }
-        };*/
         template <typename condition> 
         void hireEmployee(condition condition_to_check, Employee* employee, int manager_id){
             if(condition_to_check(employee) == false){
@@ -54,9 +48,9 @@ namespace mtm {
             }
             
         }
-        Workplace (int workplace_id,string workplace_name, int workers_salary, int managers_salary);
-        Workplace (const Workplace& workplace) = default;
-        ~Workplace () = default;
+        WorkPlace (int workPlace_id,string workplace_name, int workers_salary, int managers_salary);
+        WorkPlace (const WorkPlace& workplace) = default;
+        ~WorkPlace () = default;
         int getID () const;
         int gerWorkersSalary() const;
         int getManagersSalary() const; 
@@ -68,9 +62,9 @@ namespace mtm {
         shared_ptr<Manager> findMinimalIdManager () const;
         shared_ptr<Manager> findNextManagerToPrint (shared_ptr<Manager> last_printed) const;
         ostream& printLong (ostream& os) const;
-        friend ostream& operator<< (ostream& os, const Workplace& workplace) ;
-        friend bool operator< (const Workplace& workplace_a, const Workplace& workplace_b);
-        friend bool operator== (const Workplace& workplace_a, const Workplace& workplace_b);
+        friend ostream& operator<< (ostream& os, const WorkPlace& workplace) ;
+        friend bool operator< (const WorkPlace& workplace_a, const WorkPlace& workplace_b);
+        friend bool operator== (const WorkPlace& workplace_a, const WorkPlace& workplace_b);
     };
 }
 

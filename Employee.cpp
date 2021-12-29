@@ -1,5 +1,5 @@
 #include "Employee.h"
-#include "exception.h"
+#include "exceptions.h"
 //#include "Faculty.h"
 
 namespace mtm {
@@ -19,7 +19,7 @@ namespace mtm {
         skill_set = employee.skill_set;
     }
 
-    Citizen* Employee::clone () const //בדוק שלא אותם שדות ולא אותה כתובת אבל אותו תוכן
+    Citizen* Employee::clone () const 
     {
         return new Employee(*this);
     }
@@ -30,6 +30,15 @@ namespace mtm {
 
     int Employee::getScore()const{
         return score;
+    }
+
+    bool Employee::hasSkill (int skill_id)
+    {
+        Skill temp_skill(skill_id, "temp", 0);
+        if (temp_skill == *(skill_set.find(temp_skill))){
+            return true;
+        }
+        return false;
     }
 
     void Employee::learnSkill (const Skill& skill) {
@@ -43,20 +52,21 @@ namespace mtm {
     }
 
     void Employee::forgetSkill (const int id_skill){
-        if (checkIfEmployeeHasSkill(id_skill) == false){
+        if (hasSkill(id_skill) == false){
             throw DidNotLearnSkill(); 
         }
         Skill temp_skill(id_skill, "temp", 0);
         skill_set.erase(skill_set.find(temp_skill));
     }
 
-    bool Employee::checkIfEmployeeHasSkill (const int id_skill){
+    //no need- we had asked for a function like that
+    /*bool Employee::checkIfEmployeeHasSkill (const int id_skill){
         Skill temp_skill(id_skill, "temp", 0);
         if (temp_skill == *(skill_set.find(temp_skill))){
             return true;
         }
         return false;
-    }
+    }*/
 
     void Employee::setSalary (int salary_to_add){
         if ((salary+salary_to_add) <= STARTING_SALARY){

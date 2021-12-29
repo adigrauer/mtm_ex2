@@ -10,6 +10,18 @@ namespace mtm {
     {
     }
     
+    Manager::Manager (const Manager& manager):
+        Citizen(manager),
+        salary(manager.getSalary())
+    {
+        employees = manager.employees;
+    }
+
+    Manager::~Manager ()
+    {
+        employees.clear();
+    }
+
     int Manager::getSalary () const
     {
         return salary;
@@ -20,8 +32,22 @@ namespace mtm {
         return new Manager(*this);
     }
     
-    bool Manager::cheackIfEmployeeExist (Employee* employee) 
+    bool Manager::cheackIfEmployeeExist (int employee_id) 
     {
+        if (employees.empty() == true) 
+        {
+            return false;
+        }
+        vector<shared_ptr<Employee>>::iterator ptr;
+        Employee temp_employee(employee_id, "temp", "temp", 0);
+        for(ptr = employees.begin(); ptr != employees.end(); ++ptr){
+            if(**ptr == temp_employee){
+                return true;;
+            }
+        }
+        return false;
+        
+        /*
         vector<shared_ptr<Employee>>::iterator ptr;
         if (employees.empty() == true) 
         {
@@ -33,24 +59,34 @@ namespace mtm {
             }
         }
         return false;
+        */
     }
 
     void Manager::addEmployee (Employee* employee)
     {
-        if((cheackIfEmployeeExist(employee)) == true){
+        int id =(*employee).getId();
+        if((cheackIfEmployeeExist(id)) == true){
             throw EmployeeAlreadyHired();
         }
+        //workd_1
         //vector<shared_ptr<Employee>>::iterator it = employees.begin();
+        //employees.insert(it, employee_to_add);
+        
+        ///worked_2_last- dont print the employees
+        /*
+        Employee employee_to_add(*employee);
+        shared_ptr<Employee> employee_to_add_ptr(&employee_to_add); 
+        employees.push_back(employee_to_add_ptr);
+        */
         shared_ptr<Employee> employee_to_add(employee);
         employees.push_back(employee_to_add);
-        //employees.insert(it, employee_to_add);
     }
     
     void Manager::removeEmployee (int employee_id) 
     {   
         vector<shared_ptr<Employee>>::iterator ptr;
         Employee temp_employee(employee_id, "temp", 0, 0); 
-        if((cheackIfEmployeeExist(&temp_employee)) == false){
+        if((cheackIfEmployeeExist(employee_id)) == false){
             throw EmployeeNotHired();
         }
         for(ptr = employees.begin(); ptr != employees.end(); ++ptr){

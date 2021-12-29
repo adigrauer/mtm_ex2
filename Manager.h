@@ -39,10 +39,10 @@ namespace mtm {
         Manager (int id_citizen, string first_name, string last_name, int birth_year);
         
         /* Manager copy C'tor */
-        Manager (const Manager& manager) = default;
+        Manager (const Manager& manager);
         
         /* Manager D'tor */
-        ~Manager () override = default;
+        ~Manager () override;
 
         /* getSalary: return copy of Manager's salary.
         return-
@@ -58,7 +58,7 @@ namespace mtm {
         return-
         True- if the employee is already hired
         False- otherwise*/
-        bool cheackIfEmployeeExist (Employee* employee);
+        bool cheackIfEmployeeExist (int employee_id);
 
         /* addEmployee- add new Employee the the set of employees of the Manager by pointer the the employee.
         return-

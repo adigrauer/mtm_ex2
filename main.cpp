@@ -66,10 +66,10 @@ void test_employee()
 void test_manager()
 {
     Employee e1(1, "John", "Williams", 2002);
-    //Employee e2(2, "Alex", "Martinez", 2000);
+    Employee e2(2, "Alex", "Martinez", 2000);
     Manager m1(1,"Robert", "stark", 1980);
     m1.addEmployee(&e1);
-    //m1.addEmployee(&e2);
+    m1.addEmployee(&e2);
     cout << "Short_Print" << endl;
     m1.printShort(cout);
     cout << "Long Print" << endl;
@@ -94,18 +94,18 @@ void test_faculty()
     Meta.hireEmployee(condition,e2,m1->getId());
     cout << Meta;
     Meta.fireManager(m1->getId());
-    //cout << endl << "Meta after fire manager----------" << endl << endl; for us just to seperate
     cout << Meta;
 }
 
 int main()
 {
-    //test_employee();
-    //test_faculty();
+    test_employee();
+    cout << endl << endl;
+    test_faculty();
     cout << endl << endl;
     test_manager();
-    //test_our();
+    test_our();
     cout << endl << endl;
-    //test_skill();
+    test_skill();
     return 0;
 }

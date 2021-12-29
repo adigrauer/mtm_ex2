@@ -44,7 +44,8 @@ namespace mtm {
             vector<shared_ptr<Manager>>::iterator ptr_managers;
             for(ptr_managers = managers.begin(); ptr_managers != managers.end(); ++ptr_managers){
                 if(**ptr_managers == temp_manager){
-                    if((*ptr_managers)->cheackIfEmployeeExist(employee) == true){
+                    int id = (*employee).getId();
+                    if(((**ptr_managers).cheackIfEmployeeExist(id)) == true){
                         throw EmployeeAlreadyHired();
                     }
                     (*employee).setSalary(workers_salary);

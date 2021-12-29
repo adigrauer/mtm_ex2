@@ -51,7 +51,6 @@ namespace mtm {
         //meed to check if dont need to be in city and not in Worplace class!!!!!!
         //because need access to set<Workplace> workplaces
         manager->setSalary(getManagersSalary());
-        vector<shared_ptr<Manager>>::iterator ptr = managers.begin();
         shared_ptr<Manager> manager_to_add(manager);
         managers.push_back(manager_to_add);
     }
@@ -66,7 +65,7 @@ namespace mtm {
         vector<shared_ptr<Manager>>::iterator ptr;
         for(ptr = managers.begin(); ptr != managers.end(); ++ptr){
             if(**ptr == temp_manager){
-                if((*ptr)->cheackIfEmployeeExist(&temp_employee) == false){
+                if((*ptr)->cheackIfEmployeeExist(worker_id) == false){
                         throw EmployeeIsNotHired();
                 }
                 vector<shared_ptr<Employee>>::iterator ptr_to_employee;

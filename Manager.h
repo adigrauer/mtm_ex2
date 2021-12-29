@@ -42,7 +42,7 @@ namespace mtm {
         Manager (const Manager& manager);
         
         /* Manager D'tor */
-        ~Manager () override;
+        ~Manager () override = default;
 
         /* getSalary: return copy of Manager's salary.
         return-

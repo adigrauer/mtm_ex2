@@ -51,7 +51,8 @@ namespace mtm {
         //meed to check if dont need to be in city and not in Worplace class!!!!!!
         //because need access to set<Workplace> workplaces
         manager->setSalary(getManagersSalary());
-        shared_ptr<Manager> manager_to_add(manager);
+        Manager* manager1 = new Manager(*manager);
+        shared_ptr<Manager> manager_to_add(manager1);
         managers.push_back(manager_to_add);
     }
             

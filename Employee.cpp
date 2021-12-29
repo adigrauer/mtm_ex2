@@ -19,11 +19,6 @@ namespace mtm {
         skill_set = employee.skill_set;
     }
 
-    Employee::~Employee()
-    {
-        skill_set.clear();
-    }
-
     Citizen* Employee::clone () const //בדוק שלא אותם שדות ולא אותה כתובת אבל אותו תוכן
     {
         return new Employee(*this);

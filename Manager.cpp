@@ -17,11 +17,6 @@ namespace mtm {
         employees = manager.employees;
     }
 
-    Manager::~Manager ()
-    {
-        employees.clear();
-    }
-
     int Manager::getSalary () const
     {
         return salary;
@@ -78,7 +73,8 @@ namespace mtm {
         shared_ptr<Employee> employee_to_add_ptr(&employee_to_add); 
         employees.push_back(employee_to_add_ptr);
         */
-        shared_ptr<Employee> employee_to_add(employee);
+        Employee* employee1 = new Employee(*employee);
+        shared_ptr<Employee> employee_to_add(employee1);
         employees.push_back(employee_to_add);
     }
     

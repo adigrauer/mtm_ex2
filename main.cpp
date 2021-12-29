@@ -65,9 +65,9 @@ void test_employee()
 
 void test_manager()
 {
+    Manager m1(1,"Robert", "stark", 1980);
     Employee e1(1, "John", "Williams", 2002);
     Employee e2(2, "Alex", "Martinez", 2000);
-    Manager m1(1,"Robert", "stark", 1980);
     m1.addEmployee(&e1);
     m1.addEmployee(&e2);
     cout << "Short_Print" << endl;
@@ -95,6 +95,9 @@ void test_faculty()
     cout << Meta;
     Meta.fireManager(m1->getId());
     cout << Meta;
+    delete e1;
+    delete e2;
+    delete m1;
 }
 
 int main()

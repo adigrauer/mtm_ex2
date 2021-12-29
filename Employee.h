@@ -34,7 +34,7 @@ namespace mtm {
         };*/
         Employee (int id_citizen, string first_name, string last_name, int birth_year); 
         Employee (const Employee& employee); 
-        ~Employee () override;
+        ~Employee () override = default;
         virtual Citizen* clone () const;
         int getSalary () const;
         int getScore () const;

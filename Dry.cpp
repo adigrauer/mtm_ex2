@@ -23,7 +23,7 @@ vector<T> slice(std::vector<T> vec, int start, int step, int stop)
     }
     return new_vector;
 }
-
+/*
 //q5 part 5.2
 class A {
 public:
@@ -55,5 +55,15 @@ int main() {
     *(sliced.values[0]) = 800;
     std::cout << *(a.values[1]) << std::endl;
     return 0;
+}
+
+*/
+int main(){
+    // this syntax initializes a vector with values a,b,c,d,e
+    vector<char> vec1 {'a', 'b', 'c', 'd', 'e'};
+    // returns vector with values a,c
+    vector<char> vec_sliced = slice(vec1, 0, 2, 4);
+    // returns vector with values b,c,d,e
+    vector<char> vec_sliced_2 = slice(vec1, 1, 1, 5);
 }
 

@@ -40,9 +40,10 @@ namespace mtm {
         if((cheackIfEmployeeExist(employee)) == true){
             throw EmployeeAlreadyHired();
         }
-        vector<shared_ptr<Employee>>::iterator it = employees.begin();
+        //vector<shared_ptr<Employee>>::iterator it = employees.begin();
         shared_ptr<Employee> employee_to_add(employee);
-        employees.insert(it, employee_to_add);
+        employees.push_back(employee_to_add);
+        //employees.insert(it, employee_to_add);
     }
     
     void Manager::removeEmployee (int employee_id) 
@@ -55,6 +56,7 @@ namespace mtm {
         for(ptr = employees.begin(); ptr != employees.end(); ++ptr){
             if(**ptr == temp_employee){
                 employees.erase(ptr);
+                return;
             }
         }
     }
@@ -82,11 +84,14 @@ namespace mtm {
         os << getFirstName() << " " << getLastName() << endl;
         os << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl;
         os << "salary: " << salary << endl;
-        os << "Employees:" << endl;
-        int how_many_to_print = employees.size();
-        for (print_ptr = findMinimalIdEmployee(); how_many_to_print != 0; --how_many_to_print){
-            (*print_ptr).printShort(os);
-            print_ptr = findNextEmployeeToPrint(print_ptr);
+        if(employees.empty() == false){
+            os << "Employees:" << endl;
+            int how_many_to_print = employees.size();
+            for (print_ptr = findMinimalIdEmployee(); how_many_to_print != 0; --how_many_to_print){
+                (*print_ptr).printShort(os);
+                print_ptr = findNextEmployeeToPrint(print_ptr);
+            }
+            return os;
         }
         return os;
     }

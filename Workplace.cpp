@@ -72,6 +72,7 @@ namespace mtm {
                 vector<shared_ptr<Employee>>::iterator ptr_to_employee;
                 (**ptr).setSalary(-workers_salary);
                 (**ptr).removeEmployee(worker_id);
+                return;
             }
         }
     }
@@ -86,7 +87,7 @@ namespace mtm {
         for(ptr = managers.begin(); ptr != managers.end(); ++ptr){
             if((**ptr) == temp_manager){
                 (**ptr).setSalary(-managers_salary);
-                ptr = managers.erase(ptr);
+                managers.erase(ptr);
                 return;
             }
         }

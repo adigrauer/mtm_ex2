@@ -39,7 +39,7 @@ namespace mtm {
         Manager (int id_citizen, string first_name, string last_name, int birth_year);
         
         /* Manager copy C'tor */
-        //Manager (const Manager& manager) = default;
+        Manager (const Manager& manager) = default;
         
         /* Manager D'tor */
         ~Manager () override = default;

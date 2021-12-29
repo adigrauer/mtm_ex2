@@ -87,6 +87,7 @@ namespace mtm {
             if((**ptr) == temp_manager){
                 (**ptr).setSalary(-managers_salary);
                 ptr = managers.erase(ptr);
+                return;
             }
         }
     }

@@ -33,7 +33,7 @@ namespace mtm {
         {
             return false;
         }
-        vector<shared_ptr<Employee>>::iterator ptr;
+        vector<Employee*>::iterator ptr;
         Employee temp_employee(employee_id, "temp", "temp", 0);
         for(ptr = employees.begin(); ptr != employees.end(); ++ptr){
             if(**ptr == temp_employee){
@@ -49,20 +49,17 @@ namespace mtm {
         if((cheackIfEmployeeExist(id)) == true){
             throw EmployeeAlreadyHired();
         }
-        Employee* employee1 = new Employee(*employee);
-        shared_ptr<Employee> employee_to_add(employee1);
-        employees.push_back(employee_to_add);
+        employees.push_back(employee);
     }
     
     void Manager::removeEmployee (int employee_id) 
     {   
-        vector<shared_ptr<Employee>>::iterator ptr;
-        Employee temp_employee(employee_id, "temp", 0, 0); 
+        vector<Employee*>::iterator ptr; 
         if((cheackIfEmployeeExist(employee_id)) == false){
             throw EmployeeNotHired();
         }
         for(ptr = employees.begin(); ptr != employees.end(); ++ptr){
-            if(**ptr == temp_employee){
+            if((**ptr).getId() == employee_id){
                 employees.erase(ptr);
                 return;
             }
@@ -88,7 +85,7 @@ namespace mtm {
 
     ostream& Manager::printLong (ostream& os) const
     {
-        shared_ptr<Employee> print_ptr;
+        Employee* print_ptr;
         os << getFirstName() << " " << getLastName() << endl;
         os << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl;
         os << "salary: " << salary << endl;
@@ -104,10 +101,10 @@ namespace mtm {
         return os;
     }
 
-    shared_ptr<Employee> Manager::findMinimalIdEmployee () const
+    Employee* Manager::findMinimalIdEmployee () const
     {
-        vector<shared_ptr<Employee>>::const_iterator iterator;
-        shared_ptr<Employee> current_minimal(*(employees.begin()));
+        vector<Employee*>::const_iterator iterator;
+        Employee* current_minimal(*(employees.begin()));
         for (iterator = employees.begin(); iterator != employees.end(); ++iterator)
         {
             if ((**iterator).getId() < (*current_minimal).getId()){
@@ -117,10 +114,10 @@ namespace mtm {
         return current_minimal;
     }
 
-    shared_ptr<Employee> Manager::findNextEmployeeToPrint (shared_ptr<Employee> last_printed) const
+    Employee* Manager::findNextEmployeeToPrint (Employee* last_printed) const
     {
-        vector<shared_ptr<Employee>>::const_iterator iterator = employees.begin();
-        shared_ptr<Employee> current_next(last_printed);
+        vector<Employee*>::const_iterator iterator = employees.begin();
+        Employee* current_next(last_printed);
         while (iterator != employees.end()){
             if ((**iterator) <= *last_printed){
                 ++iterator;

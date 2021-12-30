@@ -27,7 +27,7 @@ namespace mtm {
     class Manager : public Citizen {
     private:
         int salary;
-        vector<shared_ptr<Employee>> employees;
+        vector<Employee*> employees;
     public:
         class Compare{
         public:
@@ -81,8 +81,8 @@ namespace mtm {
         /* printShort- print long information of the Manager by given format */
         ostream& printLong (ostream& os) const override;
 
-        shared_ptr<Employee> findMinimalIdEmployee () const;
-        shared_ptr<Employee> findNextEmployeeToPrint (shared_ptr<Employee> last_printed) const;
+        Employee* findMinimalIdEmployee () const;
+        Employee* findNextEmployeeToPrint (Employee* last_printed) const;
     };
 
 }

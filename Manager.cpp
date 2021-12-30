@@ -73,6 +73,18 @@ namespace mtm {
             (*ptr_employee)->setSalary(employee_salary_to_decraese);
         }
     }
+
+    
+    void Manager::ChangeEmployeeSalary (int employee_id, int salary_to_decrese)
+    { 
+        vector<Employee*>::iterator ptr_employee;
+        for(ptr_employee = employees.begin(); ptr_employee != employees.end(); ++ptr_employee){
+            if (((*ptr_employee)->getId()) == employee_id){
+            (*ptr_employee)->setSalary(salary_to_decrese);
+            return;
+            }
+        }
+    }
     
     void Manager::setSalary (int salary_to_add)
     {

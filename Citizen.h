@@ -52,6 +52,7 @@ namespace mtm {
         int id */
         int getId ();
 
+        virtual int getSalary() const = 0 ;
         /* getFirstName: return copy of Citizen's first name.
         return-
         string first name */

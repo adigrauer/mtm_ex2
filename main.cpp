@@ -102,13 +102,13 @@ void test_faculty()
 
 int main()
 {
-    test_employee();
+    //test_employee();
     cout << endl << endl;
-    test_faculty();
+    //test_faculty();
     cout << endl << endl;
     test_manager();
-    test_our();
+    //test_our();
     cout << endl << endl;
-    test_skill();
+    //test_skill();
     return 0;
 }

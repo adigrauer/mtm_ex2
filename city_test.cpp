@@ -52,15 +52,15 @@ int main() {
     
     city.fireEmployeeAtWorkplace(12,104,10001);
     
-    //cout << "printAllAboveSalary output: " << endl;
-    //city.printAllAboveSalary(cout,1000);
+    cout << "printAllAboveSalary output1: " << endl;
+    city.printAllAboveSalary(cout,1000);
     cout << endl << "printAllEmployeesWithSkill output1" << endl;
     city.printAllEmployeesWithSkill(cout, 1);
     
     city.fireManagerAtWorkplace(104,10001);
     
-    //cout << "printAllAboveSalary output: " << endl;
-    //city.printAllAboveSalary(cout,1000);
+    cout << "printAllAboveSalary output2: " << endl;
+    city.printAllAboveSalary(cout,1000);
     cout << endl << "printAllEmployeesWithSkill output2" << endl;
     city.printAllEmployeesWithSkill(cout, 1);
     

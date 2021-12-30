@@ -69,7 +69,7 @@ namespace mtm {
         bool isWorkingInTheSameWorkplace (int worker_a_id, int worker_b_id);
         const Citizen* findMinimalIdCitizenWithSalary (int salary) const;
         const Citizen* findNextCitizenWithSalary (const Citizen* last_printed, int salary) const;
-        ostream& getAllAboveSalary (ostream& os, int salary_to_print);
+        ostream& printAllAboveSalary (ostream& os, int salary_to_print);
         const Employee* findMinimalIdEmployeeWithSkill (int skill_id) const;
         const Employee* findNextEmployeeWithSkill (const Employee* last_printed, int skill_id) const;
         ostream& printAllEmployeesWithSkill (ostream& os, int skill_id) const;

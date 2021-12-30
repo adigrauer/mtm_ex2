@@ -68,7 +68,7 @@ namespace mtm {
                         throw EmployeeIsNotHired();
                 }
                 vector<shared_ptr<Employee>>::iterator ptr_to_employee;
-                (**ptr).setSalary(-workers_salary);
+                (**ptr).ChangeEmployeeSalary(worker_id, -workers_salary);
                 (**ptr).removeEmployee(worker_id);
                 return;
             }

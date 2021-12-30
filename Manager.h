@@ -47,7 +47,7 @@ namespace mtm {
         /* getSalary: return copy of Manager's salary.
         return-
         int salary */
-        int getSalary () const;
+        int getSalary () const override;
 
         /* clone: return copy of existing Manager.
         return-
@@ -72,6 +72,7 @@ namespace mtm {
         
         void ChangeAllEmployeesSalary (int employee_salary_to_decraese);
 
+        void ChangeEmployeeSalary (int employee_id, int salary_to_decrese);
         /* setSalary- raise the salary of the Manager by given amount
         return-
         void function*/

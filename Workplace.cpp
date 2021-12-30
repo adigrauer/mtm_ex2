@@ -32,7 +32,7 @@ namespace mtm {
 
     bool WorkPlace::checkIfManagerExist (int manager_id)
     {
-        vector<shared_ptr<Manager>>::iterator ptr;
+        vector<Manager*>::iterator ptr;
         Manager temp_manager(manager_id, "temp", "temp", 0);
         for(ptr = managers.begin(); ptr != managers.end(); ++ptr){
             if(**ptr == temp_manager){
@@ -47,13 +47,11 @@ namespace mtm {
         if(checkIfManagerExist((*manager).getId()) == true){
             throw ManagerAlreadyHired();
         }
-        //bool cheackIfManagerWorkInOtherPlace (Workplace workplace, unsigned int id_manager)-
-        //meed to check if dont need to be in city and not in Worplace class!!!!!!
-        //because need access to set<Workplace> workplaces
         manager->setSalary(getManagersSalary());
-        Manager* manager1 = new Manager(*manager);
-        shared_ptr<Manager> manager_to_add(manager1);
-        managers.push_back(manager_to_add);
+        //Manager* manager1 = new Manager(*manager);
+        //shared_ptr<Manager> manager_to_add(manager);
+        //managers.push_back(manager_to_add);
+        managers.push_back(manager);
     }
             
     void WorkPlace::fireEmployee (int worker_id, int manager_id)
@@ -63,7 +61,7 @@ namespace mtm {
         if(checkIfManagerExist((manager_id) == false)){
             throw ManagerIsNotHired();
         }
-        vector<shared_ptr<Manager>>::iterator ptr;
+        vector<Manager*>::iterator ptr;
         for(ptr = managers.begin(); ptr != managers.end(); ++ptr){
             if(**ptr == temp_manager){
                 if((*ptr)->cheackIfEmployeeExist(worker_id) == false){
@@ -83,7 +81,7 @@ namespace mtm {
         if(checkIfManagerExist((manager_id) == false)){
             throw ManagerIsNotHired();
         }
-        vector<shared_ptr<Manager>>::iterator ptr;
+        vector<Manager*>::iterator ptr;
         for(ptr = managers.begin(); ptr != managers.end(); ++ptr){
             if((**ptr) == temp_manager){
                 (**ptr).setSalary(-managers_salary);
@@ -95,7 +93,7 @@ namespace mtm {
 
     bool WorkPlace::checkIfTwoEmployeesWorkTogther (int worker_a_id, int worker_b_id)
     {
-        vector<shared_ptr<Manager>>::iterator ptr_manager;
+        vector<Manager*>::iterator ptr_manager;
         for(ptr_manager = managers.begin(); ptr_manager != managers.end(); ++ptr_manager){
             if((**ptr_manager).cheackIfEmployeeExist(worker_a_id) == true){
                 if((**ptr_manager).cheackIfEmployeeExist(worker_b_id) == true){
@@ -123,10 +121,10 @@ namespace mtm {
         return os;
     }
 
-    shared_ptr<Manager> WorkPlace::findMinimalIdManager () const
+    Manager* WorkPlace::findMinimalIdManager () const
     {
-        vector<shared_ptr<Manager>>::const_iterator iterator;
-        shared_ptr<Manager> current_minimal(*(managers.begin()));
+        vector<Manager*>::const_iterator iterator;
+        Manager* current_minimal(*(managers.begin()));
         for (iterator = managers.begin(); iterator != managers.end(); ++iterator){
             if ((**iterator).getId() < (*current_minimal).getId()){
                 current_minimal = *iterator;
@@ -135,10 +133,10 @@ namespace mtm {
         return current_minimal;
     }
 
-    shared_ptr<Manager> WorkPlace::findNextManagerToPrint (shared_ptr<Manager> last_printed) const
+    Manager* WorkPlace::findNextManagerToPrint (Manager* last_printed) const
     {
-        vector<shared_ptr<Manager>>::const_iterator iterator = managers.begin();
-        shared_ptr<Manager> current_next(last_printed);
+        vector<Manager*>::const_iterator iterator = managers.begin();
+        Manager* current_next(last_printed);
         while (iterator != managers.end()){
             if ((**iterator) <= *last_printed){
                 ++iterator;
@@ -159,7 +157,7 @@ namespace mtm {
 
     ostream& WorkPlace::printLong (ostream& os) const
     {
-        shared_ptr<Manager> print_ptr;
+        Manager* print_ptr;
         if(managers.empty() == false){
             os << "Workplace name - " <<getName() << " Groups:" << endl;
             os << "Manager" << " ";

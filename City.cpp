@@ -224,7 +224,7 @@ namespace mtm {
         }
         return false;
     }
-    
+    /*
     
     shared_ptr<Citizen> City::findMinimalIdCitizenWithSalary (int salary) const
     {
@@ -335,5 +335,5 @@ namespace mtm {
         }
         return os;
     }
-
+    */
 }   

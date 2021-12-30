@@ -24,7 +24,7 @@ namespace mtm {
         int workers_salary;
         int managers_salary;
         string workplace_name;
-        vector<shared_ptr<Manager>> managers;
+        vector<Manager*> managers;
     public:
         template <typename condition> 
         void hireEmployee(condition condition_to_check, Employee* employee, int manager_id){
@@ -35,9 +35,9 @@ namespace mtm {
                 throw ManagerIsNotHired();
             }
             Manager temp_manager(manager_id, "temp", "temp", 0);
-            vector<shared_ptr<Manager>>::iterator ptr_managers;
+            vector<Manager*>::iterator ptr_managers;
             for(ptr_managers = managers.begin(); ptr_managers != managers.end(); ++ptr_managers){
-                if(**ptr_managers == temp_manager){
+                if((**ptr_managers) == temp_manager){
                     int id = (*employee).getId();
                     if(((**ptr_managers).cheackIfEmployeeExist(id)) == true){
                         throw EmployeeAlreadyHired();
@@ -60,8 +60,8 @@ namespace mtm {
         void fireEmployee (int worker_id, int manager_id);
         void fireManager (int manager_id);
         bool checkIfTwoEmployeesWorkTogther (int worker_a_id, int worker_b_id);
-        shared_ptr<Manager> findMinimalIdManager () const;
-        shared_ptr<Manager> findNextManagerToPrint (shared_ptr<Manager> last_printed) const;
+        Manager* findMinimalIdManager () const;
+        Manager* findNextManagerToPrint (Manager* last_printed) const;
         ostream& printLong (ostream& os) const;
         friend ostream& operator<< (ostream& os, const WorkPlace& workplace) ;
         friend bool operator< (const WorkPlace& workplace_a, const WorkPlace& workplace_b);

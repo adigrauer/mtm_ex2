@@ -33,7 +33,8 @@ namespace mtm {
     /////does faculty gerts referance or pointer???????
     void Faculty::teach (Employee* employee)
     {
-        if(compare_function((*employee)) == false){
+        //if(compare_function((*employee)) == false){
+        if(compare_function((employee)) == false){
             throw EmployeeNotAccepted();
         }
         (*employee).learnSkill(skill); 

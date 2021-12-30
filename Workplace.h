@@ -59,6 +59,7 @@ namespace mtm {
         void hireManager (Manager* manager);
         void fireEmployee (int worker_id, int manager_id);
         void fireManager (int manager_id);
+        bool checkIfTwoEmployeesWorkTogther (int worker_a_id, int worker_b_id);
         shared_ptr<Manager> findMinimalIdManager () const;
         shared_ptr<Manager> findNextManagerToPrint (shared_ptr<Manager> last_printed) const;
         ostream& printLong (ostream& os) const;

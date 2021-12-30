@@ -93,6 +93,19 @@ namespace mtm {
         }
     }
 
+    bool WorkPlace::checkIfTwoEmployeesWorkTogther (int worker_a_id, int worker_b_id)
+    {
+        vector<shared_ptr<Manager>>::iterator ptr_manager;
+        for(ptr_manager = managers.begin(); ptr_manager != managers.end(); ++ptr_manager){
+            if((**ptr_manager).cheackIfEmployeeExist(worker_a_id) == true){
+                if((**ptr_manager).cheackIfEmployeeExist(worker_b_id) == true){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     bool operator< (const WorkPlace& workplace_a, const WorkPlace& workplace_b)
     {
         return workplace_a.getName() < workplace_b.getName();

@@ -15,7 +15,8 @@ using std::endl;
 using std::string;
 
 namespace mtm {
-    typedef bool (*compareFunction)(Employee);
+    //typedef bool (*compareFunction)(Employee);
+    typedef bool (*compareFunction)(Employee*);
     class Faculty {
     private:
         Skill skill;

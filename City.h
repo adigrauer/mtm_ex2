@@ -67,12 +67,12 @@ namespace mtm {
         void fireEmployeeAtWorkplace (int employee_id, int manager_id, int workplace_id);
         void fireManagerAtWorkplace (int manager_id, int workplace_id);
         bool isWorkingInTheSameWorkplace (int worker_a_id, int worker_b_id);
-        shared_ptr<Citizen> findMinimalIdCitizenWithSalary (int salary) const;
-        shared_ptr<Citizen>findNextCitizenWithSalary (shared_ptr<Employee> last_printed, int salary) const;
-        ostream& getAllAboveSalary (ostream&, int salary_to_print);
-        shared_ptr<Employee> findMinimalIdEmployeeWithSkill (Skill skill) const;
-        shared_ptr<const Employee> findNextEmployeeWithSkill (shared_ptr<const Employee> last_printed, Skill skill) const;
-        ostream& printAllEmployeesWithSkill (ostream& os, Skill skill) const;
+        const Citizen* findMinimalIdCitizenWithSalary (int salary) const;
+        const Citizen* findNextCitizenWithSalary (const Citizen* last_printed, int salary) const;
+        ostream& getAllAboveSalary (ostream& os, int salary_to_print);
+        const Employee* findMinimalIdEmployeeWithSkill (int skill_id) const;
+        const Employee* findNextEmployeeWithSkill (const Employee* last_printed, int skill_id) const;
+        ostream& printAllEmployeesWithSkill (ostream& os, int skill_id) const;
     };
 }
 

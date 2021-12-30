@@ -38,12 +38,12 @@ namespace mtm {
             vector<Manager*>::iterator ptr_managers;
             for(ptr_managers = managers.begin(); ptr_managers != managers.end(); ++ptr_managers){
                 if((**ptr_managers) == temp_manager){
-                    int id = (*employee).getId();
-                    if(((**ptr_managers).cheackIfEmployeeExist(id)) == true){
+                    int employee_id = (*employee).getId();
+                    if(((*ptr_managers)->cheackIfEmployeeExist(employee_id)) == true){
                         throw EmployeeAlreadyHired();
                     }
                     (*employee).setSalary(workers_salary);
-                    (**ptr_managers).addEmployee(employee);
+                    (*ptr_managers)->addEmployee(employee);
                 }
             }
             

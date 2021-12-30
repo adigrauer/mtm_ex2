@@ -30,7 +30,7 @@ namespace mtm {
         Employee (const Employee& employee); 
         ~Employee () override = default;
         virtual Citizen* clone () const;
-        bool hasSkill (int skill_id);
+        bool hasSkill (int skill_id) const;
         int getSalary () const;
         int getScore () const;
         void learnSkill (const Skill& skill);

@@ -57,7 +57,7 @@ namespace mtm {
     void WorkPlace::fireEmployee (int worker_id, int manager_id)
     {
         Manager temp_manager(manager_id, "temp", "temp", 0);
-        Employee temp_employee(worker_id, "temp", 0, 0); 
+        Employee temp_employee(worker_id, "temp", "temp", 0); 
         if(checkIfManagerExist((manager_id) == false)){
             throw ManagerIsNotHired();
         }
@@ -81,11 +81,12 @@ namespace mtm {
         if(checkIfManagerExist((manager_id) == false)){
             throw ManagerIsNotHired();
         }
-        vector<Manager*>::iterator ptr;
-        for(ptr = managers.begin(); ptr != managers.end(); ++ptr){
-            if((**ptr) == temp_manager){
-                (**ptr).setSalary(-managers_salary);
-                managers.erase(ptr);
+        vector<Manager*>::iterator ptr_manager;
+        for(ptr_manager = managers.begin(); ptr_manager != managers.end(); ++ptr_manager){
+            if((**ptr_manager) == temp_manager){
+                (**ptr_manager).setSalary(-managers_salary);
+                (**ptr_manager).ChangeAllEmployeesSalary(-workers_salary);
+                managers.erase(ptr_manager);
                 return;
             }
         }

@@ -32,7 +32,7 @@ namespace mtm {
         return score;
     }
 
-    bool Employee::hasSkill (int skill_id)
+    bool Employee::hasSkill (int skill_id) const
     {
         Skill temp_skill(skill_id, "temp", 0);
         if (temp_skill == *(skill_set.find(temp_skill))){

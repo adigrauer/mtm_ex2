@@ -70,6 +70,8 @@ namespace mtm {
         EmployeeNotHired- in case that the employee does not a worker of the given manager.*/
         void removeEmployee (int employee_id);
         
+        void ChangeAllEmployeesSalary (int employee_salary_to_decraese);
+
         /* setSalary- raise the salary of the Manager by given amount
         return-
         void function*/

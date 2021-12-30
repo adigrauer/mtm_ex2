@@ -30,9 +30,11 @@ int main() {
     city.addEmployee(11, "John", "Williams", 2002);
     city.addEmployee(12, "Alex", "Martinez", 2000);
     city.addEmployee(13, "Lionel", "Smith", 2000);
+    
     city.addManager(104,"Mohamad","Masarwa",1998);
+    
     city.addFaculty(1001, skill1, 10, facultyCond1);
-    city.addFaculty(1002, skill2, 15, facultyCond2)();
+    city.addFaculty(1002, skill2, 15, facultyCond2);
     
     city.teachAtFaculty(11,1001);
     city.teachAtFaculty(11,1002);
@@ -40,23 +42,26 @@ int main() {
     city.teachAtFaculty(13,1001);
     
     city.createWorkPlace(10001, "Meta", 10000, 20000);
+    
     city.hireManagerAtWorkplace(104,10001);
     
     HiringCondition hiringCondition;
     city.hireEmployeeAtWorkplace(hiringCondition, 11, 104, 10001);
     city.hireEmployeeAtWorkplace(hiringCondition, 12, 104, 10001);
     city.hireEmployeeAtWorkplace(hiringCondition, 13, 104, 10001);
+    
     city.fireEmployeeAtWorkplace(12,104,10001);
-    cout << "printAllAboveSalary output: " << endl;
-    city.printAllAboveSalary(cout,1000);
-    cout << endl << "printAllEmployeesWithSkill output" << endl;
+    
+    //cout << "printAllAboveSalary output: " << endl;
+    //city.printAllAboveSalary(cout,1000);
+    cout << endl << "printAllEmployeesWithSkill output1" << endl;
     city.printAllEmployeesWithSkill(cout, 1);
     
     city.fireManagerAtWorkplace(104,10001);
     
-    cout << "printAllAboveSalary output: " << endl;
-    city.printAllAboveSalary(cout,1000);
-    cout << endl << "printAllEmployeesWithSkill output" << endl;
+    //cout << "printAllAboveSalary output: " << endl;
+    //city.printAllAboveSalary(cout,1000);
+    cout << endl << "printAllEmployeesWithSkill output2" << endl;
     city.printAllEmployeesWithSkill(cout, 1);
     
     return 0;

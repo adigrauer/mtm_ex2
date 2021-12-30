@@ -65,6 +65,14 @@ namespace mtm {
             }
         }
     }
+
+    void Manager::ChangeAllEmployeesSalary (int employee_salary_to_decraese)
+    { 
+        vector<Employee*>::iterator ptr_employee;
+        for(ptr_employee = employees.begin(); ptr_employee != employees.end(); ++ptr_employee){
+            (*ptr_employee)->setSalary(employee_salary_to_decraese);
+        }
+    }
     
     void Manager::setSalary (int salary_to_add)
     {

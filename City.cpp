@@ -16,7 +16,7 @@ namespace mtm {
         faculties = city.faculties;
         workplaces = city.workplaces;
     }
-
+    
     string City::getName () const
     {
         return city_name;
@@ -81,10 +81,10 @@ namespace mtm {
         vector<Faculty>::iterator ptr;
         for(ptr = faculties.begin(); ptr != faculties.end(); ++ptr){
             if(*ptr == faculty_to_add){
-                faculties.push_back(faculty_to_add);
+                throw FacultyAlreadyExists();
             }
         }
-        throw FacultyAlreadyExists();
+        faculties.push_back(faculty_to_add);
     }
 
     bool City::checkIfWorkplaceExistInCity (int workplace_id)
@@ -107,6 +107,7 @@ namespace mtm {
         }
         workplaces.push_back(workplace_to_add); 
     }
+    
 
     Faculty& City::findFacultybById (int faculty_id) 
     {
@@ -179,9 +180,8 @@ namespace mtm {
         if(checkIfWorkplaceExistInCity(workplace_id) == false){
             throw WorkplaceDoesNotExist();
         }
-        WorkPlace workplace_to_add_manager = findWorkplaceById(workplace_id);
-        Manager* manager_to_hire = findManagerByIdInCity(manager_id); 
-        workplace_to_add_manager.hireManager(manager_to_hire);
+        Manager* manager_to_hire  = findManagerByIdInCity(manager_id); 
+        findWorkplaceById(workplace_id).hireManager(manager_to_hire);
     }
 
     void City::fireManagerAtWorkplace (int manager_id, int workplace_id)
@@ -192,8 +192,7 @@ namespace mtm {
         if(checkIfWorkplaceExistInCity(workplace_id) == false){
             throw WorkplaceDoesNotExist();
         }
-        WorkPlace workplace_to_fire_manager = findWorkplaceById(workplace_id);
-        workplace_to_fire_manager.fireManager(manager_id);
+        findWorkplaceById(workplace_id).fireManager(manager_id);
         ////////////////////will all his workers be deletet by this function?????///////////
     }
 
@@ -208,8 +207,7 @@ namespace mtm {
         if(checkIfWorkplaceExistInCity(workplace_id) == false){
             throw WorkplaceDoesNotExist();
         }
-        WorkPlace workplace_to_fire_manager = findWorkplaceById(workplace_id);
-        workplace_to_fire_manager.fireEmployee(employee_id, manager_id);
+        findWorkplaceById(workplace_id).fireEmployee(employee_id, manager_id);
     }
   
     bool City::isWorkingInTheSameWorkplace (int worker_a_id, int worker_b_id)
@@ -225,19 +223,18 @@ namespace mtm {
         return false;
     }
     /*
-    
-    shared_ptr<Citizen> City::findMinimalIdCitizenWithSalary (int salary) const
+    const Citizen* City::findMinimalIdCitizenWithSalary (int salary) const
     {
-        Citizen* citizen_to_cheack = NULL;
+        const Citizen* citizen_to_cheack = NULL;
         vector<shared_ptr<Citizen>>::const_iterator iterator;
-        shared_ptr<const Citizen> current_minimal = *citizens.begin();
+        const Citizen* current_minimal = (*(citizens.begin())).get();
         for (iterator = citizens.begin(); iterator != citizens.end(); ++iterator)
         {
             if ((**iterator).getId() < (*current_minimal).getId()){
                 //how to know if citizen is employee or manager?????????
-                employee_to_cheack = dynamic_cast<Employee*>((*iterator).get());
-                if(employee_to_cheack->getSalary() >= salary){
-                    current_minimal = dynamic_pointer_cast<Employee>(*iterator);
+                citizen_to_cheack = (*iterator).get();
+                if(citizen_to_cheack->getSalary() >= salary){
+                    current_minimal = (*iterator);
                 }
                 
             }
@@ -245,95 +242,104 @@ namespace mtm {
         return current_minimal;
     }
 
-    shared_ptr<Citizen> City::findNextCitizenWithSalary (shared_ptr<Employee> last_printed, int salary) const
+    const Citizen* City::findNextCitizenWithSalary (const Citizen* last_printed, int salary) const
     {
-        Employee* employee_to_cheack = NULL;
+        const Citizen* citizen_to_cheack = NULL;
         vector<shared_ptr<Citizen>>::const_iterator iterator = citizens.begin();
-        shared_ptr<Employee> current_next(last_printed);
+        const Citizen* current_next(last_printed);
         while (iterator != citizens.end()){
-            if ((**iterator) <= *last_printed){
+            if ((**iterator) <= (*last_printed)){
                 ++iterator;
                 continue;
             }
             if((**iterator) < *current_next) {
-                employee_to_cheack = dynamic_cast<Employee*>((*iterator).get());
-                if(employee_to_cheack->getSalary() >= salary){
-                    current_next = dynamic_pointer_cast<Employee>(*iterator);
+                if(citizen_to_cheack->getSalary() >= salary){
+                    current_next = (*iterator);
                 }
                 ++iterator;
                 continue;
             }
             else {
-                current_next = dynamic_pointer_cast<Employee>(*iterator);
+                current_next = (*iterator);
             }
             return current_next;
         }   
         return current_next;
     }
     
-    ostream& City::getAllAboveSalary (ostream&, int salary_to_print)
-    {
-
-    }
-    
-    
-    shared_ptr<Employee> City::findMinimalIdEmployeeWithSkill (Skill skill) const
-    {
-        Employee* employee_to_cheack = NULL;
-        vector<shared_ptr<Citizen>>::const_iterator iterator;
-        shared_ptr<Employee> current_minimal = dynamic_pointer_cast<Employee>(*(citizens.begin()));
-        for (iterator = citizens.begin(); iterator != citizens.end(); ++iterator)
-        {
-            if ((**iterator).getId() < (*current_minimal).getId()){
-                employee_to_cheack = dynamic_cast<Employee*>((*iterator).get());
-                if(employee_to_cheack->hasSkill(skill.getId()) == true){
-                    current_minimal = dynamic_pointer_cast<Employee>(*iterator);
-                }
-                
-            }
-        }
-        return current_minimal;
-    }
-
-    shared_ptr<const Employee> City::findNextEmployeeWithSkill (shared_ptr<const Employee> last_printed, Skill skill) const
-    {
-        Employee* employee_to_cheack = NULL;
-        vector<shared_ptr<Citizen>>::const_iterator iterator = citizens.begin();
-        shared_ptr<const Employee> current_next(last_printed);
-        while (iterator != citizens.end()){
-            if ((**iterator) <= *last_printed){
-                ++iterator;
-                continue;
-            }
-            if((**iterator) < *current_next) {
-                employee_to_cheack = dynamic_cast<Employee*>((*iterator).get());
-                if(employee_to_cheack->hasSkill(skill.getId()) == true){
-                    current_next = dynamic_pointer_cast<Employee>(*iterator);
-                }
-                ++iterator;
-                continue;
-            }
-            else {
-                current_next = dynamic_pointer_cast<Employee>(*iterator);
-            }
-            return current_next;
-        }   
-        return current_next;
-    }
-
-    ostream& City::printAllEmployeesWithSkill (ostream& os, Skill skill) const
+    ostream& City::getAllAboveSalary (ostream& os, int salary_to_print)
     {
         vector<shared_ptr<Citizen>>::const_iterator ptr = citizens.end();
-        shared_ptr<const Employee> print_ptr = NULL;
+        const Citizen* print_ptr = NULL;
         if(citizens.empty() == false){
             while(print_ptr != (*ptr)){ //cheack if const defenition rigth??????
-                print_ptr = findMinimalIdEmployeeWithSkill(skill);
+                print_ptr = findMinimalIdCitizenWithSalary(salary_to_print);
                 (*print_ptr).printShort(os);
-                print_ptr = findNextEmployeeWithSkill(print_ptr, skill);
+                print_ptr = findNextCitizenWithSalary(print_ptr, salary_to_print);
             }
             return os;
         }
         return os;
     }
     */
+    
+    const Employee* City::findMinimalIdEmployeeWithSkill (int skill_id) const
+    {
+        const Employee* employee_to_cheack = NULL;
+        vector<shared_ptr<Citizen>>::const_iterator iterator;
+        const Employee* current_minimal = dynamic_cast<const Employee*>((*(citizens.begin())).get());
+        for (iterator = citizens.begin(); iterator != citizens.end(); ++iterator)
+        {
+            if ((**iterator).getId() < (*current_minimal).getId()){
+                employee_to_cheack = dynamic_cast<const Employee*>((*iterator).get());
+                if(employee_to_cheack->hasSkill(skill_id) == true){
+                    current_minimal = employee_to_cheack;
+                }
+            }
+        }
+        return current_minimal;
+    }
+
+    const Employee* City::findNextEmployeeWithSkill (const Employee* last_printed, int skill_id) const
+    {
+        const Employee* employee_to_cheack = NULL;
+        vector<shared_ptr<Citizen>>::const_iterator iterator = citizens.begin();
+        const Employee* current_next(last_printed);
+        while (iterator != citizens.end()){
+            if ((**iterator) <= *last_printed){
+                ++iterator;
+                continue;
+            }
+            if((**iterator) < *current_next) {
+                employee_to_cheack = dynamic_cast<Employee*>((*iterator).get());
+                if(employee_to_cheack->hasSkill(skill_id) == true){
+                    current_next = employee_to_cheack;
+                }
+                ++iterator;
+                continue;
+            }
+            else {
+                current_next = dynamic_cast<Employee*>((*iterator).get());
+            }
+            return current_next;
+        }   
+        return current_next;
+    }
+
+    ostream& City::printAllEmployeesWithSkill (ostream& os, int skill_id) const
+    {
+        const Employee* print_ptr;
+        if(citizens.empty() == false){
+            print_ptr = findMinimalIdEmployeeWithSkill(skill_id);
+            while((*print_ptr) != (*findNextEmployeeWithSkill(print_ptr, skill_id))){ //cheack if const defenition rigth??????
+                (*print_ptr).printShort(os);
+                print_ptr = findNextEmployeeWithSkill(print_ptr, skill_id);
+            }
+            (*print_ptr).printShort(os);
+            return os;
+        }
+        return os;
+    }
+    
+    
 }   

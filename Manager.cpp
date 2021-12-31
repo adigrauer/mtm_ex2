@@ -148,8 +148,10 @@ namespace mtm {
                 ++iterator;
                 continue;
             }
-            else {
+            if((*last_printed) == *current_next) {
                 current_next = *iterator;
+                ++iterator;
+                continue;
             }
             return current_next;
         }   

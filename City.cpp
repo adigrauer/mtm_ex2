@@ -225,6 +225,7 @@ namespace mtm {
     
     const Citizen* City::findMinimalIdCitizenWithSalary (int salary) const
     {
+
         vector<shared_ptr<Citizen>>::const_iterator iterator;
         const Citizen* current_minimal = (*(citizens.begin())).get();
         for (iterator = citizens.begin(); iterator != citizens.end(); ++iterator)
@@ -250,8 +251,10 @@ namespace mtm {
                 ++iterator;
                 continue;
             }
-            else {
-                current_next = (*iterator).get();
+            if((*last_printed) == *current_next) {
+                current_next = ((*iterator).get());
+                ++iterator;
+                continue;
             }
             return current_next;
         }   
@@ -298,7 +301,6 @@ namespace mtm {
 
     const Employee* City::findNextEmployeeWithSkill (const Employee* last_printed, int skill_id) const
     {
-        const Employee* employee_to_cheack = NULL;
         vector<shared_ptr<Citizen>>::const_iterator iterator = citizens.begin();
         const Employee* current_next(last_printed);
         while (iterator != citizens.end()){
@@ -306,20 +308,19 @@ namespace mtm {
                 ++iterator;
                 continue;
             }
-            if ((**iterator) <= *last_printed){
+            if ((**iterator) <= (*last_printed)){
                 ++iterator;
                 continue;
             }
-            if((**iterator) < (*current_next)) {
-                employee_to_cheack = dynamic_cast<const Employee*>((*iterator).get());
-                if(employee_to_cheack->hasSkill(skill_id) == true){
-                    current_next = employee_to_cheack;
-                }
-                ++iterator;
-                continue;
-            }
-            else {
+            if((**iterator) < *current_next) {
                 current_next = dynamic_cast<const Employee*>((*iterator).get());
+                ++iterator;
+                continue;
+            }
+            if((*last_printed) == *current_next) {
+                current_next = dynamic_cast<const Employee*>((*iterator).get());
+                ++iterator;
+                continue;
             }
             return current_next;
         }   
@@ -333,7 +334,9 @@ namespace mtm {
         if(citizens.empty() == false){
             print_ptr = findMinimalIdEmployeeWithSkill(skill_id);
             while((*print_ptr) != *findNextEmployeeWithSkill(print_ptr, skill_id)){ //cheack if const defenition rigth??????
+                if (print_ptr->hasSkill(skill_id)==true) {
                 (*print_ptr).printShort(os);
+                }
                 print_ptr = findNextEmployeeWithSkill(print_ptr, skill_id);
             }
             (*print_ptr).printShort(os);

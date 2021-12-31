@@ -68,6 +68,8 @@ namespace mtm {
     class WorkplaceDoesNotExist: public Exception {
     };
     
+    class CanNotHireManager: public Exception {
+    };
 } 
 
 

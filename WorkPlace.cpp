@@ -47,6 +47,9 @@ namespace mtm {
         if(checkIfManagerExist((*manager).getId()) == true){
             throw ManagerAlreadyHired();
         }
+        if (manager->getSalary() != 0) {
+            throw CanNotHireManager();
+        }
         manager->setSalary(getManagersSalary());
         //Manager* manager1 = new Manager(*manager);
         //shared_ptr<Manager> manager_to_add(manager);

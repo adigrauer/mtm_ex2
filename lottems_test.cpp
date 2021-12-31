@@ -23,7 +23,7 @@ bool facultyCond3(Employee* emp){
 class HiringCondition {
 public:
     bool operator()(Employee *emp) {
-        return emp->getScore() > 10;
+        return emp->getId()>0;
     }
 };
 
@@ -55,8 +55,57 @@ int main() {
     city.teachAtFaculty(4, 100);
     city.teachAtFaculty(3, 100);
 
-    cout << endl << "printAllEmployeesWithSkill output1" << endl;
+    cout << endl << "printAllEmployeesWithSkill output1:" << endl;
     city.printAllEmployeesWithSkill(cout, 1);
+    //suppose to print lorelie,harry, lottem
 
+    try {
+        city.teachAtFaculty(2,300);
+    }catch(EmployeeNotAccepted) {};
+
+    city.createWorkPlace(1000, "Fun Workplace", 9999, 10000);
+    city.createWorkPlace(2000, "not a Fun Workplace", 9, 10);
+
+    city.hireManagerAtWorkplace(12, 1000);
+    city.hireManagerAtWorkplace(11, 1000);
+    city.hireManagerAtWorkplace(10, 2000);
+
+    try {
+        city.hireManagerAtWorkplace(10, 1000);
+    }catch(CanNotHireManager){};
+
+    HiringCondition hiringCondition;
+    city.hireEmployeeAtWorkplace(hiringCondition, 5, 12, 1000);
+    city.hireEmployeeAtWorkplace(hiringCondition, 4, 12, 1000);
+    city.hireEmployeeAtWorkplace(hiringCondition, 4, 10, 2000);
+    city.hireEmployeeAtWorkplace(hiringCondition, 3, 11, 1000);
+
+    cout << endl << "printAllAboveSalary output1:" << endl;
+    city.printAllAboveSalary(cout,0);
+    //should print all the managers and all the employees
+    //by order: rory, lorelie, harry, lottem, paris, jess, luke
+
+    if (city.isWorkingInTheSameWorkplace(5,2) == true){
+        cout << endl << "supposed to be false 1" << endl;
+    }
+
+    if (city.isWorkingInTheSameWorkplace(5,4) == false){
+        cout << endl << "supposed to be true 2" << endl;
+    }
+
+    city.fireEmployeeAtWorkplace(4, 12, 1000);
+    if (city.isWorkingInTheSameWorkplace(5,4) == true){
+        cout << endl << "supposed to be false 3" << endl;
+    }
+
+    city.fireManagerAtWorkplace(12,1000); 
+    if (city.isWorkingInTheSameWorkplace(5,3) == true){
+        cout << endl << "supposed to be false 4" << endl;
+    }
+
+    cout << endl << "printAllAboveSalary output2:" << endl;
+    city.printAllAboveSalary(cout,0);
+    //should print all the managers and all the employees
+    //by order: rory, lorelie, harry, lottem, paris, jess, luke
 
 }

@@ -36,15 +36,15 @@ namespace mtm {
 
     ostream& operator<< (ostream& os, const Skill& skill)
     {
-        os << skill.name << /*" level: " << skill.strong <<*/ endl;
+        os << skill.name << endl;
         return os;
     }
 
     Skill& Skill::operator+= (int point_to_add)
     {
-        /*if(point_to_add < 0){
-            throw ()
-        }*/
+        if(point_to_add < ZERO){
+            throw NegativePoints();
+        }
         required_points += point_to_add;
         return *this;
     }
@@ -54,7 +54,25 @@ namespace mtm {
         this->required_points ++;
         return *this;
     }
-    
+
+    Skill& Skill::operator+ (int point_to_add)
+    {
+        if(point_to_add < ZERO){
+            throw NegativePoints();
+        }
+        this->required_points += point_to_add;
+        return *this;
+    }
+
+    /////symetric + doesnt wotk for case of number + skill
+    /*Skill& operator+ (Skill& skill)
+    {
+        if((*this) < ZERO){
+            throw NegativePoints();
+        }
+        return skill += *this;
+    }*/
+
     //////////
     
     bool operator!= (const Skill& skill_a, const Skill& skill_b)
@@ -75,16 +93,6 @@ namespace mtm {
     bool operator> (const Skill& skill_a, const Skill& skill_b)
     {
         return skill_b < skill_a;
-    }
-
-    Skill operator+ (const Skill& skill, int points)
-    {
-        return Skill(skill) += points;
-    }
-
-    Skill operator+ (int points, const Skill& skill)
-    {
-         return Skill(skill) += points;
     }
 
 }

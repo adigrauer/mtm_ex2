@@ -48,7 +48,9 @@ int main() {
     city.addFaculty(300,dancing_skill, 10, facultyCond2);
     try{
         city.addFaculty(200, special_skill, 100, facultyCond2);
-    }catch(FacultyAlreadyExists) {};
+    }catch(FacultyAlreadyExists) {
+        cout << endl << "catch 1 passed" << endl;
+    };
     city.addFaculty(400, special_skill, 100, facultyCond2);
 
     city.teachAtFaculty(5, 100);
@@ -61,7 +63,9 @@ int main() {
 
     try {
         city.teachAtFaculty(2,300);
-    }catch(EmployeeNotAccepted) {};
+    }catch(EmployeeNotAccepted) {
+        cout << endl << "catch 2 passed" << endl;
+    };
 
     city.createWorkPlace(1000, "Fun Workplace", 9999, 10000);
     city.createWorkPlace(2000, "not a Fun Workplace", 9, 10);
@@ -72,7 +76,9 @@ int main() {
 
     try {
         city.hireManagerAtWorkplace(10, 1000);
-    }catch(CanNotHireManager){};
+    }catch(CanNotHireManager){
+        cout << endl << "catch 3 passed" << endl;
+    };
 
     HiringCondition hiringCondition;
     city.hireEmployeeAtWorkplace(hiringCondition, 5, 12, 1000);
@@ -92,8 +98,9 @@ int main() {
     if (city.isWorkingInTheSameWorkplace(5,4) == false){
         cout << endl << "supposed to be true 2" << endl;
     }
-
+    
     city.fireEmployeeAtWorkplace(4, 12, 1000);
+
     if (city.isWorkingInTheSameWorkplace(5,4) == true){
         cout << endl << "supposed to be false 3" << endl;
     }
@@ -107,5 +114,5 @@ int main() {
     city.printAllAboveSalary(cout,0);
     //should print all the managers and all the employees
     //by order: rory, lorelie, harry, lottem, paris, jess, luke
-
+    
 }

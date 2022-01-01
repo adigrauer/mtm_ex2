@@ -35,14 +35,16 @@ namespace mtm {
     bool Employee::hasSkill (int skill_id) const
     {
         Skill temp_skill(skill_id, "temp", 0);
-        if (temp_skill == *(skill_set.find(temp_skill))){
-            return true;
+        set<Skill>::iterator ptr;
+        for(ptr = skill_set.begin(); ptr != skill_set.end(); ++ ptr){
+            if(temp_skill == *(ptr))
+                return true;
         }
         return false;
     }
 
     void Employee::learnSkill (const Skill& skill) {
-        if (skill == *(skill_set.find(skill))){
+        if(hasSkill(skill.getId()) == true){
             throw SkillAlreadyLearned(); 
         }
         if (getScore() < skill.getRequiredPoints()){
@@ -58,15 +60,6 @@ namespace mtm {
         Skill temp_skill(id_skill, "temp", 0);
         skill_set.erase(skill_set.find(temp_skill));
     }
-
-    //no need- we had asked for a function like that
-    /*bool Employee::checkIfEmployeeHasSkill (const int id_skill){
-        Skill temp_skill(id_skill, "temp", 0);
-        if (temp_skill == *(skill_set.find(temp_skill))){
-            return true;
-        }
-        return false;
-    }*/
 
     void Employee::setSalary (int salary_to_add){
         if ((salary+salary_to_add) <= STARTING_SALARY){
@@ -104,6 +97,7 @@ namespace mtm {
             }
             return os;
         }
+        os << endl;
         return os;
     }
 

@@ -7,7 +7,9 @@ namespace mtm {
     class Exception: public std::exception {
     };
 
-    // IllegalEmployee - in case the user sends illegal argument to function
+    class NegativePoints: public Exception {
+    };
+
     class IllegalEmployee: public Exception {
     };
 

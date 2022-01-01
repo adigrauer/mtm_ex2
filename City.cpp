@@ -217,8 +217,9 @@ namespace mtm {
         }
         vector<WorkPlace>::iterator ptr_workplace;
         for(ptr_workplace = workplaces.begin(); ptr_workplace != workplaces.end(); ++ptr_workplace){
-            if((*ptr_workplace).checkIfTwoEmployeesWorkTogther(worker_a_id, worker_b_id) == true);
+            if(((*ptr_workplace).checkIfTwoEmployeesWorkTogther(worker_a_id, worker_b_id)) == true){
                 return true;
+            }
         }
         return false;
     }

@@ -116,7 +116,7 @@ namespace mtm {
         void hireEmployeeAtWorkplace (condition condition_to_hire, int employee_id, int manager_id, int workplace_id)
         {
             if(checkIfEmployeeExistInCity(employee_id) == false){
-                throw EmployeeDoesNotExist();
+                throw EmployeeDoesNotExists();
             }
             if(checkIfManagerExistInCity(manager_id) == false){
                 throw ManagerDoesNotExist();

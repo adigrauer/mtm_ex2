@@ -199,7 +199,7 @@ namespace mtm {
     void City::fireEmployeeAtWorkplace (int employee_id, int manager_id, int workplace_id)
     {
         if(checkIfEmployeeExistInCity(employee_id) == false){
-                throw EmployeeDoesNotExist();
+                throw EmployeeDoesNotExists();
         }
         if(checkIfManagerExistInCity(manager_id) == false){
             throw ManagerDoesNotExist();
@@ -213,7 +213,7 @@ namespace mtm {
     bool City::isWorkingInTheSameWorkplace (int worker_a_id, int worker_b_id)
     {
         if(checkIfEmployeeExistInCity(worker_a_id) == false || checkIfEmployeeExistInCity(worker_b_id) == false){
-            throw EmployeeDoesNotExist();
+            throw EmployeeDoesNotExists();
         }
         vector<WorkPlace>::iterator ptr_workplace;
         for(ptr_workplace = workplaces.begin(); ptr_workplace != workplaces.end(); ++ptr_workplace){

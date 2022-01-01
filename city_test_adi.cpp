@@ -9,44 +9,6 @@
 using namespace mtm;
 using std::cout;
 using std::endl;
-/*
-///bool function for faculty learm skill condition
-bool facultyCond1(Employee* emp){
-    return emp->getId() > 5;
-}
-
-bool facultyCond2(Employee* emp){
-    return emp->hasSkill(1);
-}
-
-bool facultyCond3(Employee* emp){
-    return emp->hasSkill(4);
-}
-
-bool facultyCond4(Employee* emp){
-    return emp->hasSkill(1);
-}
-
-bool facultyCond5(Employee* emp){
-    return emp->getSalary() > 40;
-}
-
-bool facultyCond6(Employee* emp){
-    return emp->getScore() > 20;
-}
-
-bool facultyCond7(Employee* emp){
-    return emp->getLastName() > "dor";
-}
-
-bool facultyCond8(Employee* emp){
-    return emp->getLastName() < "roni";
-}
-
-bool facultyCond9(Employee* emp){
-    return emp->getBirthYear() > 2000;
-}
-*/
 
 //conditions for hire employee
 class HiringCondition1 {
@@ -343,92 +305,100 @@ void test_workplace()
     cout << "workplace test passed" << endl;
 }
 
-/*
-void test_city()
+///bool function for faculty learm skill condition
+bool facultyCond1(Employee* emp){
+    return emp->getId() > 5;
+}
+
+bool facultyCond2(Employee* emp){
+    return emp->hasSkill(1);
+}
+
+bool facultyCond3(Employee* emp){
+    return emp->hasSkill(4);
+}
+
+bool facultyCond4(Employee* emp){
+    return emp->hasSkill(1);
+}
+
+bool facultyCond5(Employee* emp){
+    return emp->getSalary() > 40;
+}
+
+bool facultyCond6(Employee* emp){
+    return emp->getScore() > 20;
+}
+
+bool facultyCond7(Employee* emp){
+    return emp->getLastName() > "dor";
+}
+
+bool facultyCond8(Employee* emp){
+    return emp->getLastName() < "roni";
+}
+
+bool facultyCond9(Employee* emp){
+    return emp->getBirthYear() > 2000;
+}
+
+void test_faculty()
 {
-    City city ("Haifa");
     Skill skill1(1,"baking",2);
     Skill skill2(2,"dancing",5);
     Skill skill3(4,"eating",10);
     Skill skill4(12,"drawing",7);
     Skill skill5(8,"writing",1);
-    Skill skill6(13,"traveling",3);
-    Skill skill7(5,"playing",11);
-    Skill skill8(7,"cleaninig",4);
-    Skill skill9(6,"learning",8);
-    Skill skill10(9,"cooking",6);
-
-    city.addEmployee(2, "adi", "grauer", 2004);
-    city.addEmployee(8, "lottem", "arave", 1980);
-    city.addEmployee(12, "dana", "gotlib", 2015);  
-    city.addEmployee(4,"inbar","simons",1998);
-    city.addEmployee(3,"gili","grauer",1998);
-    city.addEmployee(15,"yoval","shalem",2021);
-    city.addEmployee(7,"maayan","berger",2000);
-    city.addManager(11,"amit","gutmacher",2005);
-    city.addManager(9,"ofir","yona",2012);
-    city.addManager(20,"rotem","lapidot",2017);
-
-    city.addFaculty(1001, skill1, 10, facultyCond1);
-    city.addFaculty(1002, skill2, 15, facultyCond2);
-    city.addFaculty(1003, skill3, 10, facultyCond3);
-    city.addFaculty(1004, skill4, 15, facultyCond4);
-    city.addFaculty(1005, skill5, 10, facultyCond5);
-    city.addFaculty(1006, skill6, 15, facultyCond6);
-    city.addFaculty(1007, skill7, 10, facultyCond7);
-    city.addFaculty(1008, skill8, 15, facultyCond8);
-    city.addFaculty(1009, skill9, 15, facultyCond9);
-    city.addFaculty(1010, skill10, 15, facultyCond1);
-    city.addFaculty(1011, skill8, 15, facultyCond2);
-
-    
-    city.teachAtFaculty(2,1001);
-    city.teachAtFaculty(8,1002);
-    city.teachAtFaculty(12,1003);
-    city.teachAtFaculty(4,1004);
-    city.teachAtFaculty(3,1005);
-    city.teachAtFaculty(15,1006);
-    city.teachAtFaculty(7,1007);
-    city.teachAtFaculty(11,1008);
-    city.teachAtFaculty(9,1001);
-    city.teachAtFaculty(20,1002);
-    city.teachAtFaculty(2,1009);
-    city.teachAtFaculty(8,1010);
-    city.teachAtFaculty(12,1011);
-    city.teachAtFaculty(4,1006);
-    city.teachAtFaculty(3,1007);
-    city.teachAtFaculty(15,1008);
-
-    city.createWorkPlace(10001, "technion", 5, 10);
-    city.createWorkPlace(10002, "hinw", 3, 7);
-
-    city.hireManagerAtWorkplace(11,10001);
-    city.hireManagerAtWorkplace(9,10001);
-    city.hireManagerAtWorkplace(20,10002);
-    
-    //need to catch
-    city.hireManagerAtWorkplace(20,10001);
-    city.hireManagerAtWorkplace(9,10002);
-    city.hireManagerAtWorkplace(11,10002);
-
-    HiringCondition1 hiringCondition1;
-    HiringCondition2 hiringCondition2;
-    HiringCondition3 hiringCondition3;
-    HiringCondition4 hiringCondition4;
-    HiringCondition5 hiringCondition5;
-    HiringCondition6 hiringCondition6;
-
-    city.hireEmployeeAtWorkplace(hiringCondition1, 11, 9, 10001);
-    city.hireEmployeeAtWorkplace(hiringCondition2, 12, 20, 10001);
-    city.hireEmployeeAtWorkplace(hiringCondition3, 13, 114, 10001);
-    
+    Faculty bake(facultyCond1, skill1, 5, 1);
+    Faculty dance(facultyCond2, skill2, 10, 2);
+    Faculty eat(facultyCond7, skill3, 3, 5);
+    Faculty draw(facultyCond9, skill1, 7, 3);
+    Faculty write(facultyCond6, skill1, 6, 9);
+    Employee employee1(2, "adi", "grauer", 10);
+    Employee employee2(4, "lottem", "arave", 2020);
+    Employee employee3(1, "nadav", "ru", 4);
+    Employee employee4(7, "gili", "grauer", 7);
+    Employee employee5(7, "einat", "grauer", 2000);
+    Employee employee6(8, "ofer", "grauer", 1996);
+    try {
+        bake.teach(&employee6);
+    }catch(canNotLearnSkill) {
+        cout << "catch 1- passed" << endl;
+    };
+    employee6.setScore(7);
+    employee1.setScore(50);
+    employee2.setScore(50);
+    employee3.setScore(50);
+    employee4.setScore(50);
+    employee5.setScore(50);
+    bake.teach(&employee6);
+    dance.teach(&employee6);
+    try {
+        dance.teach(&employee2);
+    }catch(EmployeeNotAccepted) {
+        cout << "catch 1- passed" << endl;
+    };
+    write.teach(&employee1);
+    draw.teach(&employee2);
+    try {
+        draw.teach(&employee3);
+    }catch(EmployeeNotAccepted) {
+        cout << "catch 2- passed" << endl;
+    };
+    eat.teach(&employee4);
+    try {
+        eat.teach(&employee2);
+    }catch(EmployeeNotAccepted) {
+        cout << "catch 3- passed" << endl;
+    };
+    cout << "faculty test passed" << endl;
 }
-*/
 
 int main(){
-    //test_skill();
-    //test_employee();
-    //test_manager();
+    test_skill();
+    test_employee();
+    test_manager();
     test_workplace();
+    test_faculty();
     return 0;
 }

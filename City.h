@@ -31,22 +31,87 @@ namespace mtm {
         vector<Faculty> faculties;
         vector<WorkPlace> workplaces;
     public:
+        /* City C'tor */
         City (const string city_name);
+
+        /* City copy C'tor */
         City (const City& city);
+
+        /* City virtual D'tor */
         ~City () = default;
+
+        /* getName: return copy of City's name.
+        return-
+        string name */
         string getName () const;
+
+        /* checkIfEmployeeExistInCity: cheack if employee exist by id
+        return-
+        true if exist, otherewise false */
         bool checkIfEmployeeExistInCity (int id_citizen);
+
+        /* addEmployee: add employee to the city
+        return-
+        EmployeeAlreadyExists- in case that employee already exist in given city */
         void addEmployee (int id_citizen, string first_name, string last_name, int birth_year);
+        
+        /* checkIfManagerExistInCity: cheack if manager exist by id
+        return-
+        true if exist, otherewise false */
         bool checkIfManagerExistInCity (int id_citizen);
+        
+        /* addManager: add manager to the city
+        return-
+        ManagerAlreadyExists- in case that manager already exist in given city */
         void addManager (int id_citizen, string first_name, string last_name, int birth_year);
+        
+        /* addFaculty: add faculty to the city
+        return-
+        FacultyAlreadyExists- in case that faculty already exist in given city */
         void addFaculty (int faculty_id, Skill skill, int point_to_add, compareFunction compare_function);       
+        
+        /* checkIfWorkplaceExistInCity: cheack if workplace exist by id
+        return-
+        true if exist, otherewise false */
         bool checkIfWorkplaceExistInCity (int workplace_id);
+        
+        /* createWorkPlace: add workplace to the city
+        return-
+        WorkplaceAlreadyExists- in case that workplace already exist in given city */
         void createWorkPlace (int workplace_id, string workplace_name, int workers_salary, int managers_salary);
+        
+        /* findFacultybById: find specific faculty by id
+        return-
+        referance to specific faculty */
         Faculty& findFacultybById (int faculty_id);
+        
+        /* teachAtFaculty: teach employee skiil that learned in the faculty if stans the consition to learn,
+        and has enougth points to gain the skill
+        return-
+        EmployeeDoesNotExist- in case that employee does not exist in given city
+        FacultyDoesNotExist- in case that faculty does not exist in given city */
         void teachAtFaculty (int employee_id, int faculty_id);
+        
+        /* findWorkplaceById: find specific workplace by id
+        return-
+        referance to specific workplace */
         WorkPlace& findWorkplaceById (int workplace_id);
+        
+        /* findManagerByIdInCity: find specific manager by id
+        return-
+        referance to specific manager */
         Manager* findManagerByIdInCity (int manager_id);
+        
+        /* findEmployeeByIdInCity: find specific employee by id
+        return-
+        referance to specific employee */
         Employee* findEmployeeByIdInCity (int employee_id);
+        
+        /* generic function hireEmployeeAtWorkplace: hire employee to given workplace under specific manager 
+        return-
+        EmployeeDoesNotExist- in case that employee does not exist in given city
+        ManagerDoesNotExist- in case that manager does not exist in given city 
+        WorkplaceDoesNotExist- in case that workplace does not exist in given city */
         template <typename condition> 
         void hireEmployeeAtWorkplace (condition condition_to_hire, int employee_id, int manager_id, int workplace_id)
         {
@@ -63,15 +128,45 @@ namespace mtm {
             Employee* employee_to_hire = findEmployeeByIdInCity(employee_id);
             workplace_to_add_employee.hireEmployee(condition_to_hire, employee_to_hire, manager_id);
         }
+        
+        /* hireManagerAtWorkplace: hire manager to given workplace.
+        return-
+        ManagerDoesNotExist- in case that manager does not exist in given city 
+        WorkplaceDoesNotExist- in case that workplace does not exist in given city */
         void hireManagerAtWorkplace (int manager_id, int workplace_id);
+        
+        /* fireEmployeeAtWorkplace: fire employee from given workplace under specific manager 
+        return-
+        EmployeeDoesNotExist- in case that employee does not exist in given city
+        ManagerDoesNotExist- in case that manager does not exist in given city 
+        WorkplaceDoesNotExist- in case that workplace does not exist in given city */
         void fireEmployeeAtWorkplace (int employee_id, int manager_id, int workplace_id);
+        
+        /* fireManagerAtWorkplace: fire manager from given workplace.
+        return-
+        ManagerDoesNotExist- in case that manager does not exist in given city 
+        WorkplaceDoesNotExist- in case that workplace does not exist in given city */
         void fireManagerAtWorkplace (int manager_id, int workplace_id);
+        
+        /* isWorkingInTheSameWorkplace: cheacking if two employees working together in the same workplace
+        return-
+        true if working together, otherewise false */
         bool isWorkingInTheSameWorkplace (int worker_a_id, int worker_b_id);
+        
+        /* helping function to find the minimal and next citizen to print, arranged by id */
         const Citizen* findMinimalIdCitizenWithSalary (int salary) const;
         const Citizen* findNextCitizenWithSalary (const Citizen* last_printed, int salary) const;
+        
+        /* printAllAboveSalary: print all the citizens with salary equal or above given salary
+        return- ostream& */
         ostream& printAllAboveSalary (ostream& os, int salary_to_print);
+        
+        /* helping function to find the minimal and next citizen to print, arranged by id */
         const Employee* findMinimalIdEmployeeWithSkill (int skill_id) const;
         const Employee* findNextEmployeeWithSkill (const Employee* last_printed, int skill_id) const;
+        
+        /* printAllEmployeesWithSkill: print all the employees with given skill
+        return- ostream& */
         ostream& printAllEmployeesWithSkill (ostream& os, int skill_id) const;
     };
 }

@@ -29,7 +29,7 @@ namespace mtm {
         /* Citizen copy C'tor */
         Citizen (const Citizen& citizen) = default;
         
-        /* Manager virtual D'tor */
+        /* Citizen virtual D'tor */
         virtual ~Citizen () = default;
 
         /* clone: return copy of existing Citizen.
@@ -42,7 +42,7 @@ namespace mtm {
         int birthday year */
         int getBirthYear () const;
 
-        /* getId: return copy of Citizen's id from const citizen.
+        /* getId: return Citizen's id from const citizen.
         return-
         int id */
         int getId () const;

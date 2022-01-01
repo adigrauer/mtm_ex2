@@ -44,7 +44,7 @@ namespace mtm {
         /* Manager D'tor */
         ~Manager () override = default;
 
-        /* getSalary: return copy of Manager's salary.
+        /* getSalary: return Manager's salary.
         return-
         int salary */
         int getSalary () const override;
@@ -70,9 +70,16 @@ namespace mtm {
         EmployeeNotHired- in case that the employee does not a worker of the given manager.*/
         void removeEmployee (int employee_id);
         
+        /* ChangeAllEmployeesSalary: change the salary of all employees under given manager
+        return-
+        void function.*/
         void ChangeAllEmployeesSalary (int employee_salary_to_decraese);
 
+        /* ChangeEmployeeSalary: change the salary of given employees
+        return-
+        void function.*/
         void ChangeEmployeeSalary (int employee_id, int salary_to_decrese);
+        
         /* setSalary- raise the salary of the Manager by given amount
         return-
         void function*/
@@ -84,6 +91,7 @@ namespace mtm {
         /* printShort- print long information of the Manager by given format */
         ostream& printLong (ostream& os) const override;
 
+        /* helping function to find the minimal and next citizen to print, arranged by id */
         Employee* findMinimalIdEmployee () const;
         Employee* findNextEmployeeToPrint (Employee* last_printed) const;
     };

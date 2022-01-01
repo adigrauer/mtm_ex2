@@ -2,7 +2,6 @@
 #define WORKPLACE_H
 
 #include <string>
-//#include <fstream>
 #include <iostream>
 #include <vector>
 #include <memory>

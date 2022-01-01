@@ -199,7 +199,7 @@ void test_manager()
     manager2.removeEmployee(1);
     try {
         manager2.removeEmployee(7);
-    }catch(EmployeeNotHired) {
+    }catch(EmployeeIsNotHired) {
         cout << "catch 3- passed" << endl;
     };
     manager1.removeEmployee(7);

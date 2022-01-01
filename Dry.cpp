@@ -19,7 +19,8 @@ vector<T> slice(std::vector<T> vec, int start, int step, int stop)
     }
     vector<T> new_vector;
     for(int it = start; it < stop; it+=step){
-        new_vector.push_back(vec[it]);
+        T to_add = vec[it];
+        new_vector.push_back(to_add);
     }
     return new_vector;
 }
@@ -66,7 +67,9 @@ class A {
 public:
     std::vector<int*> values;
     A ();
+    A (const A& a);
     ~A ();
+    A& operator= (const A& a);
     void add(int x);
 };
 
@@ -76,6 +79,13 @@ A::A():
 {
 }
 
+A::A (const A& a)
+{
+    for(unsigned int it = 0; it < (a.values).size(); ++it){
+        values[it] = new int(*((a.values)[it]));
+    }
+}
+
 A::~A()
 {
     //change to unsigned int from int cause vector.size return unsigned int
@@ -83,6 +93,12 @@ A::~A()
         int* temp = values[it];
         delete temp;
     }
+}
+
+A& A::operator= (const A& a)
+{
+    values = a.values;
+    return *this;
 }
 
 //cant do new in initialization list

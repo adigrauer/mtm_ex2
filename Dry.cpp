@@ -1,6 +1,7 @@
 #include "Dry.h"
 //q5 part 5.1
 
+
 template <class T>
 vector<T> slice(std::vector<T> vec, int start, int step, int stop)
 {
@@ -24,6 +25,26 @@ vector<T> slice(std::vector<T> vec, int start, int step, int stop)
     }
     return new_vector;
 }
+
+class A {
+public:
+    vector<shared_ptr<int>> values;
+    void add(int x){ 
+        shared_ptr<int> to_add(new int(x));
+        values.push_back(to_add); 
+    }
+};
+int main() {
+    A a, sliced;
+    a.add(0); a.add(1); a.add(2); a.add(3); a.add(4); a.add(5);
+    sliced.values = slice(a.values, 1, 1, 4);
+    *(sliced.values[0]) = 800;
+    std::cout << *(a.values[1]) << std::endl;
+    return 0;
+}
+
+
+
 
 /*
 void test_dry_1()
@@ -60,22 +81,25 @@ void test_dry_1()
     }
     cout << endl;
 }
+
+int main () {
+    test_dry_1();
+}
 */
 
 //q5 part 5.2
-class A {
+/*class A {
 public:
     std::vector<int*> values;
     A ();
     A (const A& a);
     ~A ();
-    A& operator= (const A& a);
+    A& operator=(const A& a);
     void add(int x);
 };
 
 //A class methods
-A::A():
-    values()
+A::A()
 {
 }
 
@@ -93,31 +117,26 @@ A::~A()
         int* temp = values[it];
         delete temp;
     }
+    for (vector<int*>::iterator i = values.begin(); i != values.end(); ++i) {
+        delete *i;
+    }
+    values.clear();
 }
 
 A& A::operator= (const A& a)
-{
-    values = a.values;
+{   
+    if (this == &a){
+        return *this;
+    }
+    for (vector<int*>::const_iterator i = a.values.begin(); i != a.values.end(); ++i) {
+        add(**i);
+    }
     return *this;
 }
 
 //cant do new in initialization list
 void A::add(int x)
 {
-    int* to_add = new int(x);
-    values.push_back(to_add); 
+    values.push_back(new int(x)); 
 }
-
-int main() {
-    A a, sliced;
-    a.add(0); a.add(1); a.add(2); a.add(3); a.add(4); a.add(5);
-    sliced.values = slice(a.values, 1, 1, 4);
-    *(sliced.values[0]) = 800;
-    std::cout << *(a.values[1]) << std::endl;
-    return 0;
-}
-
-
-
-
-
+*/

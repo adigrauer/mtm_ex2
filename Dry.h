@@ -6,9 +6,12 @@
 #include <exception>
 #include <vector>
 #include <iostream>
+#include <algorithm>
+#include <memory>
 using std::cout;
 using std::endl;
 using std::vector;
+using std::shared_ptr;
 
 const int MIN  = 0;
 const int BadInput = -1;

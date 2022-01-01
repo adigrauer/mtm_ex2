@@ -33,10 +33,6 @@ namespace mtm {
     class EmployeeAlreadyHired: public Exception {
     };
 
-    /* in case we try to remove employee that had not hired by given manager */
-    class EmployeeNotHired: public Exception {
-    };
-
     /*-----Workplace eceptions----- */
 
     /* employee dont exist the condition, therefore cant be hired by given workplace */
@@ -55,7 +51,7 @@ namespace mtm {
     class CanNotHireManager: public Exception {
     };
 
-    /* in case we try to fire employye that is not hired by given manager */ 
+    /* in case we try to fire employee that is not hired by given manager */ 
     class EmployeeIsNotHired: public Exception {
     };
     

@@ -56,7 +56,7 @@ namespace mtm {
     {   
         vector<Employee*>::iterator ptr; 
         if((cheackIfEmployeeExist(employee_id)) == false){
-            throw EmployeeNotHired();
+            throw EmployeeIsNotHired();
         }
         for(ptr = employees.begin(); ptr != employees.end(); ++ptr){
             if((**ptr).getId() == employee_id){

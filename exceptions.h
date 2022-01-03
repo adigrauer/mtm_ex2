@@ -64,13 +64,17 @@ namespace mtm {
     /*-----City eceptions----- */
 
     /* employee already exist in given city */ 
-    class EmployeeAlreadyExists: public Exception {
-    };
+    /*class EmployeeAlreadyExists: public Exception {
+    };*/
 
     /* manager already exist in given city */ 
-    class ManagerAlreadyExists: public Exception {
+    /*class ManagerAlreadyExists: public Exception {
+    };*/
+    
+    /* manager or employee already exist in given city */
+    class CitizenAlreadyExists: public Exception {
     };
-
+    
     /* faculty already exist in given city */ 
     class FacultyAlreadyExists: public Exception {
     };

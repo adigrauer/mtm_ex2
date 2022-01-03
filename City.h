@@ -78,7 +78,7 @@ namespace mtm {
         /* createWorkPlace: add workplace to the city
         return-
         WorkplaceAlreadyExists- in case that workplace already exist in given city */
-        void createWorkPlace (int workplace_id, string workplace_name, int workers_salary, int managers_salary);
+        void createWorkplace (int workplace_id, string workplace_name, int workers_salary, int managers_salary);
         
         /* findFacultybById: find specific faculty by id
         return-
@@ -159,7 +159,7 @@ namespace mtm {
         
         /* printAllAboveSalary: print all the citizens with salary equal or above given salary
         return- ostream& */
-        ostream& printAllAboveSalary (ostream& os, int salary_to_print);
+        ostream& getAllAboveSalary (ostream& os, int salary_to_print);
         
         /* helping function to find the minimal and next citizen to print, arranged by id */
         const Employee* findMinimalIdEmployeeWithSkill (int skill_id) const;

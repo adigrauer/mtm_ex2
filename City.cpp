@@ -40,7 +40,7 @@ namespace mtm {
     void City::addEmployee (int id_citizen, string first_name, string last_name, int birth_year) 
     {
         if(checkIfEmployeeExistInCity(id_citizen) == true){
-             throw EmployeeAlreadyExists();
+             throw CitizenAlreadyExists();
         }
         //Employee* employee = new Employee(id_citizen, first_name, last_name, birth_year);
         //shared_ptr<Employee> employee_to_add(employee);
@@ -68,7 +68,7 @@ namespace mtm {
     void City::addManager (int id_citizen, string first_name, string last_name, int birth_year) 
     {
         if(checkIfManagerExistInCity(id_citizen) == true){
-            throw ManagerAlreadyExists();
+            throw CitizenAlreadyExists();
         }
         //Manager* manager = new Manager(id_citizen, first_name, last_name, birth_year);
         shared_ptr<Manager> manager_to_add(new Manager(id_citizen, first_name, last_name, birth_year));
@@ -99,7 +99,7 @@ namespace mtm {
     }
 
     //workplace cant have negative salary, witch error to return
-    void City::createWorkPlace (int workplace_id, string workplace_name, int workers_salary, int managers_salary)
+    void City::createWorkplace (int workplace_id, string workplace_name, int workers_salary, int managers_salary)
     {
         WorkPlace workplace_to_add(workplace_id, workplace_name, workers_salary, managers_salary);
         if(checkIfWorkplaceExistInCity (workplace_id) == true){
@@ -262,7 +262,7 @@ namespace mtm {
         return current_next;
     }
     
-    ostream& City::printAllAboveSalary (ostream& os, int salary_to_print)
+    ostream& City::getAllAboveSalary (ostream& os, int salary_to_print)
     {
         vector<shared_ptr<Citizen>>::const_iterator ptr = citizens.end();
         const Citizen* print_ptr = NULL; 

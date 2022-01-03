@@ -21,7 +21,8 @@ namespace mtm {
     };
     
     //typedef bool (*compareFunction)(Employee);
-    typedef bool (*compareFunction)(Employee*);
+    //typedef bool (*compareFunction)(Employee*);
+    template<typename T>
     class Faculty {
     private:
         Skill skill;
@@ -29,9 +30,9 @@ namespace mtm {
         int add_points;
         //compareFunction compare_function;
     public:
-
+        T comapre_function;
         /* Faculty C'tor */
-        Faculty (compareFunction compare_function, Skill skill, int point_to_add, int faculty_id);
+        Faculty (T compare_function, Skill skill, int point_to_add, int faculty_id);
         
         /* Faculty copy C'tor */
         Faculty (const Faculty& faculty) = default;

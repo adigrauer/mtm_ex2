@@ -100,15 +100,49 @@ void test_faculty()
     delete m1;
 }
 
+void test_operators()
+{
+    Employee employee1(1, "adi", "grauer", 1998);
+    Employee employee2(2, "nadav", "ru", 1998);
+    Manager manager1(3, "gili", "gal", 1998);
+    Skill s1(1, "C++", 0);
+    employee1.learnSkill(s1);
+    manager1.addEmployee(&employee1);
+    manager1.addEmployee(&employee2);
+    Manager copy = manager1;
+    //manager1.printLong(cout);
+    //copy.printLong(cout);
+    Citizen* clone1 = employee1.clone();
+    Citizen* clone2 = manager1.clone();
+    //cout << "clone1" << endl << endl;
+    clone1->printLong(cout);
+    //cout << "clone2" << endl << endl;
+    clone2->printLong(cout);
+    class FacultyCondition1: public Condition{
+    bool operator()(Employee* employee) override{
+        return employee->getId() > 0;
+        }
+    };
+    FacultyCondition1 fc1;
+    Faculty<Condition> faculty(1, s1, 5, &fc1);
+    Faculty<Condition> copy_faculty = faculty;
+    
+    
+    //city.addFaculty(1001, skill1, 10, &fc1);
+    
+
+}
+
 int main()
 {
     //test_employee();
-    cout << endl << endl;
+    //cout << endl << endl;
     //test_faculty();
-    cout << endl << endl;
-    test_manager();
+    //cout << endl << endl;
+    //test_manager();
     //test_our();
-    cout << endl << endl;
+    //cout << endl << endl;
     //test_skill();
+    test_operators();
     return 0;
 }

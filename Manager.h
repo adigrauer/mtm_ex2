@@ -60,12 +60,12 @@ namespace mtm {
         False- otherwise*/
         bool cheackIfEmployeeExist (int employee_id);
 
-        /* addEmployee- add new Employee the the set of employees of the Manager by pointer the the employee.
+        /* addEmployee- add new Employee to the vector of employees of the Manager by pointer to the employee.
         return-
         EmployeeAlreadyHired- in case that the employee already exist in the Manager employees.*/
         void addEmployee (Employee* employee);
 
-        /* removeEmployee- remove employee fron the employees of given manager by employee's id
+        /* removeEmployee- remove employee from the employees of given manager by employee's id
         return-
         EmployeeNotHired- in case that the employee does not a worker of the given manager.*/
         void removeEmployee (int employee_id);

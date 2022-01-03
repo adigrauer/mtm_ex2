@@ -14,6 +14,12 @@ using std::endl;
 using std::string;
 
 namespace mtm {
+    template<typename Condition>
+    class Condtion{
+    public:
+        virtual bool operator()(Employee* employee) = 0;
+    };
+    
     //typedef bool (*compareFunction)(Employee);
     typedef bool (*compareFunction)(Employee*);
     class Faculty {
@@ -21,8 +27,9 @@ namespace mtm {
         Skill skill;
         int faculty_id; 
         int add_points;
-        compareFunction compare_function;
+        //compareFunction compare_function;
     public:
+
         /* Faculty C'tor */
         Faculty (compareFunction compare_function, Skill skill, int point_to_add, int faculty_id);
         

@@ -10,7 +10,7 @@ namespace mtm {
     {
     }
 
-    int WorkPlace::getID () const
+    int WorkPlace::getId () const
     {
         return workplace_id;
     }

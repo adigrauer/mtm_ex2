@@ -50,7 +50,7 @@ namespace mtm {
         WorkPlace (int workPlace_id,string workplace_name, int workers_salary, int managers_salary);
         WorkPlace (const WorkPlace& workplace) = default;
         ~WorkPlace () = default;
-        int getID () const;
+        int getId () const;
         int gerWorkersSalary() const;
         int getManagersSalary() const; 
         string getName () const;

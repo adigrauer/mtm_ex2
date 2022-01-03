@@ -91,7 +91,7 @@ namespace mtm {
     {
         vector<WorkPlace>::iterator ptr;
         for(ptr = workplaces.begin(); ptr != workplaces.end(); ++ptr){
-            if((*ptr).getID() == workplace_id){
+            if((*ptr).getId() == workplace_id){
                 return true;
             }
         }
@@ -136,7 +136,7 @@ namespace mtm {
     {
         vector<WorkPlace>::iterator ptr;
         for(ptr = workplaces.begin(); ptr != workplaces.end(); ++ptr){
-            if((*ptr).getID() == workplace_id){
+            if((*ptr).getId() == workplace_id){
                 return *ptr;
             }
         }

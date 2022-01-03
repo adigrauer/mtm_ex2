@@ -1,0 +1,31 @@
+ManagerAlreadyHired
+CanNotHireManager
+EmployeeNotSelected
+ManagerIsNotHired
+EmployeeAlreadyHired
+EmployeeIsNotHired
+ManagerIsNotHired
+
+Workplace name - In Bankruptcy Groups:
+Manager Manager number_2
+id - 7 birth_year - 1990
+Salary: 150
+Employees:
+Employee number_4
+Salary: 7600 Score: 0
+
+Workplace name - WorkPlace Groups:
+Manager Manager number_1
+id - 6 birth_year - 1990
+Salary: 15000
+Employees:
+Employee number_2
+Salary: 7500 Score: 0
+Employee number_3
+Salary: 7500 Score: 0
+Employee number_4
+Salary: 7500 Score: 0
+
+ManagerIsNotHired
+
+Workplace name - In Bankruptcy

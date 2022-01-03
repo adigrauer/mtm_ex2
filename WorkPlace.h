@@ -51,7 +51,7 @@ namespace mtm {
         WorkPlace (const WorkPlace& workplace) = default;
         ~WorkPlace () = default;
         int getId () const;
-        int gerWorkersSalary() const;
+        int getWorkersSalary() const;
         int getManagersSalary() const; 
         string getName () const;
         bool checkIfManagerExist (int manager_id);

@@ -1,0 +1,21 @@
+printShort:
+name 1
+Salary: 0 Score: 0
+printLong:
+name 1
+id - 1 birth_year - 2000
+Salary: 0 Score: 0 Skills:
+
+CanNotLearnSkill
+SkillAlreadyLearned
+name 1
+id - 1 birth_year - 2000
+Salary: 100 Score: 5 Skills:
+skill 2
+skill 3
+skill 4
+
+name 1
+id - 1 birth_year - 2000
+Salary: 100 Score: 5 Skills:
+

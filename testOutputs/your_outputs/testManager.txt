@@ -1,0 +1,23 @@
+printShort:
+Big Boss
+Salary: 0
+
+printLong:
+Big Boss
+id - 1 birth_year - 2000
+Salary: 0
+Employees:
+
+EmployeeIsNotHired
+EmployeeAlreadyHired
+
+Big Boss
+id - 1 birth_year - 2000
+Salary: 500
+Employees:
+name 2
+Salary: 200 Score: 0
+name 3
+Salary: 300 Score: 0
+name 4
+Salary: 400 Score: 0

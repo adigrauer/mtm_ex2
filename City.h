@@ -24,11 +24,13 @@ using std::cout;
 using std::endl;
 
 namespace mtm {
+    //template<typename T> //is it true???
     class City {
     private:
         string city_name;
         vector<shared_ptr<Citizen>> citizens;
-        vector<Faculty> faculties;
+        //vector<Faculty<T>> faculties;
+        vector<Faculty<Condition>> faculties;
         vector<WorkPlace> workplaces;
     public:
         /* City C'tor */
@@ -68,7 +70,7 @@ namespace mtm {
         /* addFaculty: add faculty to the city
         return-
         FacultyAlreadyExists- in case that faculty already exist in given city */
-        void addFaculty (int faculty_id, Skill skill, int point_to_add, compareFunction compare_function);       
+        void addFaculty (int faculty_id, Skill skill, int point_to_add, Condition* compare_function);       
         
         /* checkIfWorkplaceExistInCity: cheack if workplace exist by id
         return-
@@ -83,7 +85,7 @@ namespace mtm {
         /* findFacultybById: find specific faculty by id
         return-
         referance to specific faculty */
-        Faculty& findFacultybById (int faculty_id);
+        Faculty<Condition>& findFacultybById (int faculty_id);
         
         /* teachAtFaculty: teach employee skiil that learned in the faculty if stans the consition to learn,
         and has enougth points to gain the skill
@@ -169,6 +171,7 @@ namespace mtm {
         return- ostream& */
         ostream& printAllEmployeesWithSkill (ostream& os, int skill_id) const;
     };
+
 }
 
 #endif /* CITY_H */

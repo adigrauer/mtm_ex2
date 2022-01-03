@@ -15,7 +15,7 @@ namespace mtm {
         return workplace_id;
     }
 
-    int WorkPlace::gerWorkersSalary() const
+    int WorkPlace::getWorkersSalary() const
     {
         return workers_salary;
     }

@@ -75,10 +75,10 @@ namespace mtm {
         citizens.push_back(manager_to_add);
     }
 
-    void City::addFaculty (int faculty_id, Skill skill, int point_to_add, compareFunction compare_function)
+    void City::addFaculty (int faculty_id, Skill skill, int point_to_add, Condition* compare_function)
     {
-        Faculty faculty_to_add(compare_function, skill, point_to_add, faculty_id);
-        vector<Faculty>::iterator ptr;
+        Faculty<Condition> faculty_to_add(faculty_id, skill, point_to_add, compare_function);
+        vector<Faculty<Condition>>::iterator ptr;
         for(ptr = faculties.begin(); ptr != faculties.end(); ++ptr){
             if(*ptr == faculty_to_add){
                 throw FacultyAlreadyExists();
@@ -109,9 +109,9 @@ namespace mtm {
     }
     
 
-    Faculty& City::findFacultybById (int faculty_id) 
+    Faculty<Condition>& City::findFacultybById (int faculty_id) 
     {
-        vector<Faculty>::iterator ptr;
+        vector<Faculty<Condition>>::iterator ptr;
         for(ptr = faculties.begin(); ptr != faculties.end(); ++ptr){
             if((*ptr).getId() == faculty_id){
                 return *ptr;
@@ -123,7 +123,7 @@ namespace mtm {
     void City::teachAtFaculty (int employee_id, int faculty_id) 
     {
         vector<shared_ptr<Citizen>>::iterator ptr;
-        Faculty faculty = findFacultybById(faculty_id);
+        Faculty<Condition> faculty = findFacultybById(faculty_id);
         Employee temp_employee (employee_id, "temp", "temp", 0);
         if(checkIfEmployeeExistInCity(employee_id) == false){
             throw EmployeeDoesNotExists();

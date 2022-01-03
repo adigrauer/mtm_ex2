@@ -55,28 +55,6 @@ namespace mtm {
         return *this;
     }
 
-    
-    //try to change operator +
-    /*Skill& Skill::operator+ (int point_to_add)
-    {
-        if(point_to_add < ZERO){
-            throw NegativePoints();
-        }
-        this->required_points += point_to_add;
-        return *this;
-    }
-*/
-    /////symetric + doesnt wotk for case of number + skill
-    /*Skill& operator+ (Skill& skill)
-    {
-        if((*this) < ZERO){
-            throw NegativePoints();
-        }
-        return skill += *this;
-    }*/
-
-    //////////
-    
     bool operator!= (const Skill& skill_a, const Skill& skill_b)
     {
         return !(skill_a == skill_b);

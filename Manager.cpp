@@ -99,7 +99,7 @@ namespace mtm {
     ostream& Manager::printShort (ostream& os) const 
     {
         os << getFirstName() << " " << getLastName() << endl
-        << "salary: " << salary << endl;
+        << "Salary: " << getSalary() << endl;
         return os;
     }
 
@@ -108,7 +108,7 @@ namespace mtm {
         Employee* print_ptr;
         os << getFirstName() << " " << getLastName() << endl;
         os << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl;
-        os << "salary: " << salary << endl;
+        os << "Salary: " << getSalary() << endl;
         if(employees.empty() == false){
             os << "Employees:" << endl;
             int how_many_to_print = employees.size();

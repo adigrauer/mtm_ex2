@@ -31,7 +31,7 @@ namespace mtm {
         vector<shared_ptr<Citizen>> citizens;
         //vector<Faculty<T>> faculties;
         vector<Faculty<Condition>> faculties;
-        vector<WorkPlace> workplaces;
+        vector<Workplace> workplaces;
     public:
         /* City C'tor */
         City (const string city_name);
@@ -97,7 +97,7 @@ namespace mtm {
         /* findWorkplaceById: find specific workplace by id
         return-
         referance to specific workplace */
-        WorkPlace& findWorkplaceById (int workplace_id);
+        Workplace& findWorkplaceById (int workplace_id);
         
         /* findManagerByIdInCity: find specific manager by id
         return-
@@ -118,7 +118,7 @@ namespace mtm {
         void hireEmployeeAtWorkplace (condition condition_to_hire, int employee_id, int manager_id, int workplace_id)
         {
             if(checkIfEmployeeExistInCity(employee_id) == false){
-                throw EmployeeDoesNotExists();
+                throw EmployeeDoesNotExist();
             }
             if(checkIfManagerExistInCity(manager_id) == false){
                 throw ManagerDoesNotExist();
@@ -126,7 +126,7 @@ namespace mtm {
             if(checkIfWorkplaceExistInCity(workplace_id) == false){
                 throw WorkplaceDoesNotExist();
             }
-            WorkPlace workplace_to_add_employee = findWorkplaceById(workplace_id);
+            Workplace workplace_to_add_employee = findWorkplaceById(workplace_id);
             Employee* employee_to_hire = findEmployeeByIdInCity(employee_id);
             workplace_to_add_employee.hireEmployee(condition_to_hire, employee_to_hire, manager_id);
         }
@@ -161,7 +161,7 @@ namespace mtm {
         
         /* printAllAboveSalary: print all the citizens with salary equal or above given salary
         return- ostream& */
-        ostream& getAllAboveSalary (ostream& os, int salary_to_print);
+        int getAllAboveSalary (ostream& os, int salary_to_print);
         
         /* helping function to find the minimal and next citizen to print, arranged by id */
         const Employee* findMinimalIdEmployeeWithSkill (int skill_id) const;

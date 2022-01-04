@@ -84,7 +84,7 @@ namespace mtm {
     };
 
     /* employee does not exist in given city */
-    class EmployeeDoesNotExists: public Exception {
+    class EmployeeDoesNotExist: public Exception {
     };
 
     /* faculty does not exist in given city */

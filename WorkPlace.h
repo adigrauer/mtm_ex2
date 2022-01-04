@@ -18,7 +18,7 @@ using std::shared_ptr;
 
 namespace mtm {
     /* WorkPlace class declaration */
-    class WorkPlace {
+    class Workplace {
     private:
         int workplace_id;
         int workers_salary;
@@ -55,13 +55,13 @@ namespace mtm {
         }
         
         /* WorkPlace C'tor */
-        WorkPlace (int workPlace_id,string workplace_name, int workers_salary, int managers_salary);
+        Workplace (int workplace_id,string workplace_name, int workers_salary, int managers_salary);
         
         /* WorkPlace copy C'tor */
-        WorkPlace (const WorkPlace& workplace) = default;
+        Workplace (const Workplace& workplace) = default;
         
         /* WorkPlace D'tor */
-        ~WorkPlace () = default;
+        ~Workplace () = default;
         
         /* getId: return WorkPlace's id.
         return-
@@ -120,11 +120,11 @@ namespace mtm {
         ostream& printLong (ostream& os) const;
         
         /* friens unary operators, overload operator << */
-        friend ostream& operator<< (ostream& os, const WorkPlace& workplace) ;
+        friend ostream& operator<< (ostream& os, const Workplace& workplace) ;
         
         /* friens bool operators */
-        friend bool operator< (const WorkPlace& workplace_a, const WorkPlace& workplace_b);
-        friend bool operator== (const WorkPlace& workplace_a, const WorkPlace& workplace_b);
+        friend bool operator< (const Workplace& workplace_a, const Workplace& workplace_b);
+        friend bool operator== (const Workplace& workplace_a, const Workplace& workplace_b);
     };
 }
 

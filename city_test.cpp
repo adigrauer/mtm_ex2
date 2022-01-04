@@ -68,19 +68,21 @@ int main() {
     delete clone1;
     delete clone2;
     //cout << "clone1" << endl << endl;
-    clone1->printLong(cout);
+    //clone1->printLong(cout);
     //cout << "clone2" << endl << endl;
-    clone2->printLong(cout);
+    //clone2->printLong(cout);
     Faculty<Condition> faculty(1, s1, 5, &fc1);
     Faculty<Condition> copy_faculty = faculty;
     city.fireEmployeeAtWorkplace(12,104,10001);
     cout << "getAllAboveSalary output: " << endl;
-    city.getAllAboveSalary(cout,1000);
+    int count1 = city.getAllAboveSalary(cout,1000);
+    cout << endl << count1 << endl;
     cout << endl << "printAllEmployeesWithSkill output" << endl;
     city.printAllEmployeesWithSkill(cout, 1);
     city.fireManagerAtWorkplace(104,10001);
     cout << "getAllAboveSalary output: " << endl;
-    city.getAllAboveSalary(cout,1000);
+    int count = city.getAllAboveSalary(cout,1000);
+    cout << endl << count << endl;
     cout << endl << "printAllEmployeesWithSkill output" << endl;
     city.printAllEmployeesWithSkill(cout, 1);
     

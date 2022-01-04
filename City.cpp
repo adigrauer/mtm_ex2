@@ -89,7 +89,7 @@ namespace mtm {
 
     bool City::checkIfWorkplaceExistInCity (int workplace_id)
     {
-        vector<WorkPlace>::iterator ptr;
+        vector<Workplace>::iterator ptr;
         for(ptr = workplaces.begin(); ptr != workplaces.end(); ++ptr){
             if((*ptr).getId() == workplace_id){
                 return true;
@@ -101,7 +101,7 @@ namespace mtm {
     //workplace cant have negative salary, witch error to return
     void City::createWorkplace (int workplace_id, string workplace_name, int workers_salary, int managers_salary)
     {
-        WorkPlace workplace_to_add(workplace_id, workplace_name, workers_salary, managers_salary);
+        Workplace workplace_to_add(workplace_id, workplace_name, workers_salary, managers_salary);
         if(checkIfWorkplaceExistInCity (workplace_id) == true){
             throw WorkplaceAlreadyExists();
         }
@@ -126,15 +126,15 @@ namespace mtm {
         Faculty<Condition> faculty = findFacultybById(faculty_id);
         Employee temp_employee (employee_id, "temp", "temp", 0);
         if(checkIfEmployeeExistInCity(employee_id) == false){
-            throw EmployeeDoesNotExists();
+            throw EmployeeDoesNotExist();
         }
         Employee* employee_to_teach = findEmployeeByIdInCity(employee_id);
         faculty.teach(employee_to_teach); 
     }
 
-    WorkPlace& City::findWorkplaceById (int workplace_id) 
+    Workplace& City::findWorkplaceById (int workplace_id) 
     {
-        vector<WorkPlace>::iterator ptr;
+        vector<Workplace>::iterator ptr;
         for(ptr = workplaces.begin(); ptr != workplaces.end(); ++ptr){
             if((*ptr).getId() == workplace_id){
                 return *ptr;
@@ -199,7 +199,7 @@ namespace mtm {
     void City::fireEmployeeAtWorkplace (int employee_id, int manager_id, int workplace_id)
     {
         if(checkIfEmployeeExistInCity(employee_id) == false){
-                throw EmployeeDoesNotExists();
+                throw EmployeeDoesNotExist();
         }
         if(checkIfManagerExistInCity(manager_id) == false){
             throw ManagerDoesNotExist();
@@ -213,9 +213,9 @@ namespace mtm {
     bool City::isWorkingInTheSameWorkplace (int worker_a_id, int worker_b_id)
     {
         if(checkIfEmployeeExistInCity(worker_a_id) == false || checkIfEmployeeExistInCity(worker_b_id) == false){
-            throw EmployeeDoesNotExists();
+            throw EmployeeDoesNotExist();
         }
-        vector<WorkPlace>::iterator ptr_workplace;
+        vector<Workplace>::iterator ptr_workplace;
         for(ptr_workplace = workplaces.begin(); ptr_workplace != workplaces.end(); ++ptr_workplace){
             if(((*ptr_workplace).checkIfTwoEmployeesWorkTogther(worker_a_id, worker_b_id)) == true){
                 return true;
@@ -262,24 +262,27 @@ namespace mtm {
         return current_next;
     }
     
-    ostream& City::getAllAboveSalary (ostream& os, int salary_to_print)
+    int City::getAllAboveSalary (ostream& os, int salary_to_print)
     {
         vector<shared_ptr<Citizen>>::const_iterator ptr = citizens.end();
         const Citizen* print_ptr = NULL; 
+        int counter = 0;
         if(citizens.empty() == false){
             print_ptr = findMinimalIdCitizenWithSalary(salary_to_print);
             while(*print_ptr != *findNextCitizenWithSalary(print_ptr, salary_to_print)){ 
                 if (print_ptr->getSalary() >= salary_to_print){
                     (*print_ptr).printShort(os);
+                    counter++;
                 }
                 print_ptr = findNextCitizenWithSalary(print_ptr, salary_to_print);
             }
             if (print_ptr->getSalary() >= salary_to_print){
                     (*print_ptr).printShort(os);
+                    counter++;
             }
-            return os;
+            return counter;
         }
-        return os;
+        return counter;
     }
 
     

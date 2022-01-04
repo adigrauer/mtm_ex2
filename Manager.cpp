@@ -22,7 +22,7 @@ namespace mtm {
         return salary;
     }
 
-    Citizen* Manager::clone () const
+    Manager* Manager::clone () const
     {
         return new Manager(*this);
     }

@@ -52,7 +52,7 @@ namespace mtm {
         /* clone: return copy of existing Manager.
         return-
         Citizen pointer to copy of an existing Manager */
-        virtual Citizen* clone () const;
+        virtual Manager* clone () const;
 
         /* cheackIfEmployeeExist- check if employee is already work under given manager
         return-

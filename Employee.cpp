@@ -89,15 +89,13 @@ namespace mtm {
         set<Skill>::iterator print_iterator;
         os << getFirstName() << " " << getLastName() << endl
         << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl
-        << "Salary: " << getSalary() << " Score: " << getScore();
+        << "Salary: " << getSalary() << " Score: " << getScore() << " Skills:" << endl;;
         if(skill_set.empty() == false){ 
-            os  << " Skills:" << endl;
             for (print_iterator = skill_set.begin(); print_iterator != skill_set.end(); ++print_iterator) {
                 os << ((*print_iterator).getName()) << endl;
             }
             return os;
         }
-        os << endl;
         return os;
     }
 

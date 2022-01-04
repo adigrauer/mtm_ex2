@@ -4,7 +4,6 @@
 #include "City.h"
 #include "exceptions.h"
 #include <iostream>
-#include <memory>
 #include <fstream>
 #include <vector>
 #include "Skill.h"
@@ -22,12 +21,12 @@ using std::ofstream;
 using mtm::Exception;
 using namespace mtm;
 
-const std::string FILE_PATH = "../testOutputsBiadsy";
+const std::string FILE_PATH = "testOutputsBiadsy";
+
 
 /*************************************************************************/
 /*************************************************************************/
 /*************************************************************************/
-
 /**
  * Evaluates expr and continues if expr is true.
  * If expr is false, ends the test by returning false and prints a detailed
@@ -35,39 +34,46 @@ const std::string FILE_PATH = "../testOutputsBiadsy";
  */
 #define ASSERT_TEST(expr)                                                         \
      do {                                                                          \
-         if (!(expr)) {   red();                                                         \
-             printf("\nAssertion failed at %s:%d %s ", __FILE__, __LINE__, #expr);\
-             red();\
+         if (!(expr)) {                                                            \
+             printf("\nAssertion failed at %s:%d %s ", __FILE__, __LINE__, #expr); \
             return false;                                                         \
         }                                                                         \
      } while (0)
 
 
+/*************************************************************************/
+/*************************************************************************/
+/*************************************************************************/
 
 static long NumTestsPassed = 0;
 
-static void red() {
-    system("Color C");
+static void red () {
+    printf("\033[1;91m");
+    fflush(stdout);
 }
 
 static void green() {
-    system("Color A");
+    printf("\033[0;92m");
+    fflush(stdout);
 }
 
 static void purple() {
-    system("Color D");
+    printf("\033[0;95m");
+}
+
+static void yellow() {
+    printf("\033[0;93m");
+    fflush(stdout);
 }
 
 static void blue() {
-    system("Color B");
+    printf("\033[0;94m");
+    fflush(stdout);
 }
 
-static void yellow () {
-    system("Color E");
-}
-
-static void reset () {
-    system("Color E");
+static void reset() {
+    printf("\033[0m");
+    fflush(stdout);
 }
 
 static void printIfSuccess(long num_tests)
@@ -84,38 +90,29 @@ static void printIfSuccess(long num_tests)
     {
         yellow();
     }
-    cout<< "####  Summary: Passed " << NumTestsPassed << " out of " << num_tests << " ####\n" << endl;
-    if (0 == NumTestsPassed)
-    {
-        red();
-    }
-    if (num_tests == NumTestsPassed)
-    {
-        green();
-    }
-    else
-    {
-        yellow();
-    }
+
+    printf("####  Summary: Passed %ld out of %ld ####\n" ,NumTestsPassed, num_tests);
+    reset();
 }
 
 
 #define RUN_COLORFULL_TEST(test, name, id)                  \
 do {                                 \
-if (test()) {                                               purple();\
-cout << "Running test# " << id+1  << " " << name << "..." << " [OK]\n"; \
-purple();\
+purple();      printf("Running test# %ld %s ... ", id + 1, name);  reset(); \
+fflush(stdout); \
+if (test()) {                    \
+green();\
+printf("[OK]\n");            \
+reset();\
 ++NumTestsPassed;   \
-} else {                                                    red();\
-cout << "Running test# " << id+1  << " " << name << "..." << " [Failed]\n"; \
+} else {    \
 red();\
+printf("[Failed]\n");        \
+reset();\
 }                                \
 } while (0)
 
 /*************************************************************************/
-/*************************************************************************/
-/*************************************************************************/
-
 
 class FileFailed {
 public:
@@ -156,9 +153,11 @@ template <class T> void print(const T& x, ofstream& stream) { stream << x << end
 #define ASSERT(expr) ASSERT_TEST(expr)
 
 
+
 /////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////*HERE START THE TESTS*//////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
+
 
 bool testSkill() {
     OPEN_FILE(out, FILE_PATH + std::string("/printed/testSkill.txt"));
@@ -580,7 +579,7 @@ bool testWorkplace() {
     out.close();
     delete e1;
     delete e2;
-    delete e3;
+	delete e3;
     delete m1;
     delete m2;
     ASSERT(matchFiles(fileName, FILE_PATH + std::string("/expected/testWorkplace.txt")));
@@ -658,7 +657,7 @@ bool testFaculty()
     faculty3.teach(&e3);
     print("Print_Long_after_skill_teach" , out);
     e3.printLong(out);
-    Skill skill9(800,"TEST_FACULTY_WITHOUT_CLASS_Condition",5);
+    Skill skill9(800,"TEST_FACULTY_WITHOUT_CLASS_Condition",80);
     Condition3 condition3;
     Faculty<Condition3> faculty5(3,skill9,80,&condition3);
     e3.setSalary(9);
@@ -934,6 +933,7 @@ bool testCity()
     return true;
 }
 
+
 /*The functions for the tests should be added here*/
 bool (*tests[]) (void) = {
         testSkill,
@@ -941,7 +941,7 @@ bool (*tests[]) (void) = {
         testManager,
         testWorkplace,
         testFaculty,
-        testCity,
+		testCity,
 };
 
 #define NUMBER_TESTS ((long)(sizeof(tests)/sizeof(*tests)))
@@ -953,14 +953,13 @@ const char* testNames[NUMBER_TESTS] = {
         "testManager",
         "testWorkplace",
         "testFaculty",
-        "testCity",
+		"testCity",
 };
 
 int main(int argc, char *argv[])
 {
-    blue();
-    cout << "Running Tests C++ ..." << endl;
-    blue();
+	blue();
+	cout << "Running Tests C++ ..." << endl; 
     long number_tests = NUMBER_TESTS;
     if (argc == 1)
     {
@@ -986,8 +985,9 @@ int main(int argc, char *argv[])
         number_tests = 1;
         RUN_COLORFULL_TEST(tests[test_idx - 1], testNames[test_idx - 1], test_idx - 1);
     }
-    blue();
-    cout << "@@@@ by Muhammad Biadsy GOOD LUCK @@@@" << endl;
-    blue();
+	printf("\033[1;36m");
+    fflush(stdout);
+	cout << "@@@@ by Muhammad Biadsy GOOD LUCK @@@@" << endl;
+	reset();
     return 0;
 }

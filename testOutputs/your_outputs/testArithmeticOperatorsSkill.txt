@@ -1,4 +1,0 @@
-skill 1 level: 4
-skill 2 level: 4
-skill 3 level: 4
-skill 4 level: 4

@@ -177,9 +177,9 @@ namespace mtm {
         Manager* print_ptr;
         if(managers.empty() == false){
             os << "Workplace name - " <<getName() << " Groups:" << endl;
-            os << "Manager" << " ";
             int how_many_to_print = managers.size();
             for(print_ptr = findMinimalIdManager(); how_many_to_print != 0; --how_many_to_print){
+                os << "Manager" << " ";
                 (*print_ptr).printLong(os);
                 print_ptr = findNextManagerToPrint(print_ptr);
             }

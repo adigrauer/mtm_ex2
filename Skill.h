@@ -51,11 +51,7 @@ namespace mtm {
         
         /* unary operators */
         Skill& operator+= (int point_to_add);
-        Skill& operator++ (int);
-    //Skill& operator+ (int point_to_add); 
-        //need to write rhw symetric +
-        //Skill& operator+ (Skill& skill);
-        
+        Skill operator++ (int);
         
     };
     /* binary operators, compare by id */

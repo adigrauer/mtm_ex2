@@ -49,10 +49,11 @@ namespace mtm {
         return *this;
     }
 
-    Skill& Skill::operator++ (int) 
+    Skill Skill::operator++ (int) 
     {
-        this->required_points ++;
-        return *this;
+        Skill copy = *this;
+        (*this)+=1;
+        return copy;
     }
 
     bool operator!= (const Skill& skill_a, const Skill& skill_b)

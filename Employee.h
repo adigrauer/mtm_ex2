@@ -38,7 +38,7 @@ namespace mtm {
         /* clone: return copy of existing EmployeeEmployee.
         return-
         Citizen pointer to copy of an existing Employee */
-        virtual Citizen* clone () const;
+        virtual Employee* clone () const;
         
         /* hasSkill- check if employee has given skill
         return-

@@ -19,7 +19,7 @@ namespace mtm {
         skill_set = employee.skill_set;
     }
 
-    Citizen* Employee::clone () const 
+    Employee* Employee::clone () const 
     {
         return new Employee(*this);
     }

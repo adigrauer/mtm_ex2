@@ -48,7 +48,7 @@ namespace mtm {
             throw SkillAlreadyLearned(); 
         }
         if (getScore() < skill.getRequiredPoints()){
-            throw canNotLearnSkill();
+            throw CanNotLearnSkill();
         }
         skill_set.insert(skill);
     }

@@ -24,7 +24,7 @@ namespace mtm {
     };
 
     /* in case that given emmployee cant learn skill due to lower points than needed togain the skill */
-    class canNotLearnSkill: public Exception {
+    class CanNotLearnSkill: public Exception {
     };
     
     /*-----Manager eceptions----- */

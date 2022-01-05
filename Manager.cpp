@@ -36,14 +36,14 @@ namespace mtm {
         }
 	    return *this;
     }
-
-    /*Manager::~Manager () {
+/*
+    Manager::~Manager () {
         unsigned int size = employees.size();
         for (unsigned int i = 0; i < size ; ++i){
             delete employees[i];
         }
-    }*/
-
+    }
+*/
     int Manager::getSalary () const
     {
         return salary;

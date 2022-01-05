@@ -8,21 +8,25 @@ namespace mtm {
         workplaces()
     {
     }
-/*
+
     City::City (const City& city):
          city_name(city.getName())
     {
         unsigned int size = city.workplaces.size();
-        for (unsigned int i = size; i > 0 ; --i){
-            Workplace work_to_add = city.workplaces[i-1];
+        for (unsigned int i = 0; i < size ; ++i){
+            Workplace work_to_add = city.workplaces[i];
             workplaces.push_back(work_to_add);
         }
         size = city.faculties.size();
-        for (unsigned int i = size; i > 0 ; --i){
-            Faculty<Condition> faculty_to_add = city.faculties[i-1];
+        for (unsigned int i = 0; i < size ; ++i){
+            Faculty<Condition> faculty_to_add = city.faculties[i];
             faculties.push_back(faculty_to_add);
         }
-        citizens = city.citizens;
+        size = city.citizens.size();
+        for (unsigned int i = 0; i < size ; ++i){
+            shared_ptr<Citizen> citizen_to_add((*city.citizens[i]).clone());
+            citizens.push_back(citizen_to_add);
+        }
     }
 
     City& City::operator=(const City& city) 
@@ -34,20 +38,24 @@ namespace mtm {
         citizens.clear();
         faculties.clear();
         unsigned int size = city.workplaces.size();
-        for (unsigned int i = size; i > 0 ; --i){
-            Workplace work_to_add = city.workplaces[i-1];
+        for (unsigned int i = 0; i < size ; ++i){
+            Workplace work_to_add = city.workplaces[i];
             workplaces.push_back(work_to_add);
         }
         size = city.faculties.size();
-        for (unsigned int i = size; i > 0 ; --i){
-            Faculty<Condition> faculty_to_add = city.faculties[i-1];
+        for (unsigned int i = 0; i < size ; ++i){
+            Faculty<Condition> faculty_to_add = city.faculties[i];
             faculties.push_back(faculty_to_add);
         }
-        citizens = city.citizens;
+        size = city.citizens.size();
+        for (unsigned int i = 0; i < size ; ++i){
+            shared_ptr<Citizen> citizen_to_add((*city.citizens[i]).clone());
+            citizens.push_back(citizen_to_add);
+        }
 	    return *this;
     }
-*/
-    
+
+    /*
     City::City (const City& city):
         city_name(city.getName())
     {
@@ -55,7 +63,7 @@ namespace mtm {
         faculties = city.faculties;
         workplaces = city.workplaces;
     }
-    
+    */
     string City::getName () const
     {
         return city_name;
@@ -382,7 +390,9 @@ namespace mtm {
                 }
                 print_ptr = findNextEmployeeWithSkill(print_ptr, skill_id);
             }
-            (*print_ptr).printShort(os);
+            if (print_ptr->hasSkill(skill_id)==true) {
+                (*print_ptr).printShort(os);
+            }
             return os;
         }
         return os;

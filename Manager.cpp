@@ -6,44 +6,56 @@ namespace mtm {
     Manager::Manager (int id_citizen, string first_name, string last_name, int birth_year) :
         Citizen(id_citizen, first_name, last_name, birth_year),
         salary(STARTING_SALARY_MANAGER),
-        employees()
+        employees(),
+        need_to_delete(false)
     {
     }
     
     Manager::Manager (const Manager& manager):
         Citizen(manager),
-        salary(manager.getSalary())
+        salary(manager.getSalary()),
+        need_to_delete(true)
     {
         unsigned int size = manager.employees.size();
         for (unsigned int i = 0; i < size ; ++i){
-            employees.push_back(new Employee(*manager.employees[i]));
+            employees.push_back(new Employee(*(manager.employees[i])));
         }
+        
     }
 
     
-    Manager& Manager::operator=(const Manager& manager) 
+    Manager& Manager::operator= (const Manager& manager) 
     {
         if (this == &manager) {
 		return *this;
 	    }
         unsigned int size = employees.size();
         for (unsigned int i = 0; i < size ; ++i){
-            delete employees[i];
+            if(employees[i]->need_to_delete){
+                delete employees[i];
+            }
         }
-        size = manager.employees.size();
-        for (unsigned int i = 0; i < size ; ++i){
-            employees.push_back(new Employee(*manager.employees[i]));
+        if(employees.empty() == false){
+            size = manager.employees.size();
+            for (unsigned int i = 0; i < size ; ++i){
+                employees.push_back(new Employee(*manager.employees[i]));
+            }
         }
+        need_to_delete = true;
 	    return *this;
     }
-/*
+
     Manager::~Manager () {
-        unsigned int size = employees.size();
-        for (unsigned int i = 0; i < size ; ++i){
-            delete employees[i];
+        if(employees.empty() == false){
+            unsigned int size = employees.size();
+            for (unsigned int i = 0; i < size ; ++i){
+                if(employees[i]->need_to_delete){
+                    delete employees[i];
+                }
+            }
         }
     }
-*/
+
     int Manager::getSalary () const
     {
         return salary;
@@ -51,7 +63,19 @@ namespace mtm {
 
     Manager* Manager::clone () const
     {
-        return new Manager(*this);
+        Manager* clone = new Manager(*this);
+        //clone->need_to_delete = true;
+        return clone;
+        /*
+        (*clone).need_to_delete = true;
+        unsigned int size = employees.size();
+        (*clone).employees.clear();
+        for (unsigned int i = 0; i < size ; ++i){
+            //Employee* employee_to_add((*employees[i]).clone());
+            ((*clone).employees).push_back((*employees[i]).clone());
+        }
+        */
+        //return new Manager(*this);
     }
     
     bool Manager::cheackIfEmployeeExist (int employee_id) 

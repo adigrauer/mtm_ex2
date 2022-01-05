@@ -27,16 +27,32 @@ namespace mtm {
         if (this == &workplace) {
 		return *this;
 	    }
-        unsigned int size = managers.size();
-        for (unsigned int i = 0; i < size ; ++i){
-            delete managers[i];
+        if(managers.empty() == false){
+            unsigned int size = managers.size();
+            for (unsigned int i = 0; i < size ; ++i){
+                if(managers[i]->need_to_delete){
+                    delete managers[i];
+                }
+            }
         }
-        size = workplace.managers.size();
-        for (unsigned int i = 0; i < size ; ++i){
+        managers.clear();
+        unsigned int size_temp = workplace.managers.size();
+        for (unsigned int i = 0; i < size_temp ; ++i){
             managers.push_back(new Manager(*workplace.managers[i]));
         }
+        //need_to_delete = true;
 	    return *this;
     }
+    /*
+    Workplace::~Workplace () 
+    {
+        unsigned int size = managers.size();
+        for (unsigned int i = 0; i < size ; ++i){
+            if(managers[i]->need_to_delete){
+                delete managers[i];
+            }
+        }
+    }*/
 
     int Workplace::getId () const
     {

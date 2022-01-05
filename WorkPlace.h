@@ -60,6 +60,7 @@ namespace mtm {
         /* WorkPlace copy C'tor */
         Workplace (const Workplace& workplace);
         Workplace& operator=(const Workplace& workplace);
+        
         /* WorkPlace D'tor */
         ~Workplace () = default;
         

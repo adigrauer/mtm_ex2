@@ -951,7 +951,7 @@ bool (*tests[]) (void) = {
         testManager,
         testWorkplace,
         testFaculty,
-        testCity,
+        //testCity,
 };
 
 #define NUMBER_TESTS ((long)(sizeof(tests)/sizeof(*tests)))
@@ -963,7 +963,7 @@ const char* testNames[NUMBER_TESTS] = {
         "testManager",
         "testWorkplace",
         "testFaculty",
-        "testCity",
+        //"testCity",
 };
 
 int main(int argc, char *argv[])

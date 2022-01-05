@@ -28,13 +28,10 @@ namespace mtm {
     private:
         int salary;
         vector<Employee*> employees;
+        
     public:
-        class Compare{
-        public:
-            bool operator() (shared_ptr<Manager> citizen_a, shared_ptr<Manager> citizen_b){
-                return(citizen_a->getId() == citizen_b->getId());
-            }
-        };
+        bool need_to_delete;
+        
         /* Manager C'tor */
         Manager (int id_citizen, string first_name, string last_name, int birth_year);
         
@@ -44,7 +41,8 @@ namespace mtm {
         Manager& operator=(const Manager& manager);
 
         /* Manager D'tor */
-        ~Manager () override = default;
+        //~Manager () override = default;
+        ~Manager () override ;
 
         /* getSalary: return Manager's salary.
         return-

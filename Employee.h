@@ -24,8 +24,9 @@ namespace mtm {
     private:
         int salary;
         int score;
-        set<Skill> skill_set; //print skills by id
+        set<Skill> skill_set; 
     public:
+        bool need_to_delete;
         /* Employee C'tor */
         Employee (int id_citizen, string first_name, string last_name, int birth_year); 
         

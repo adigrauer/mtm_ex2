@@ -10,6 +10,34 @@ namespace mtm {
     {
     }
 
+     Workplace::Workplace (const Workplace& workplace):
+        workplace_id(workplace.workplace_id),
+        workers_salary(workplace.workers_salary),
+        managers_salary(workplace.managers_salary),
+        workplace_name(workplace.workplace_name)
+    {
+        unsigned int size = workplace.managers.size();
+        for (unsigned int i = 0; i < size ; ++i){
+            managers.push_back(new Manager(*workplace.managers[i]));
+        }
+    }
+
+    Workplace& Workplace::operator=(const Workplace& workplace) 
+    {
+        if (this == &workplace) {
+		return *this;
+	    }
+        unsigned int size = managers.size();
+        for (unsigned int i = 0; i < size ; ++i){
+            delete managers[i];
+        }
+        size = workplace.managers.size();
+        for (unsigned int i = 0; i < size ; ++i){
+            managers.push_back(new Manager(*workplace.managers[i]));
+        }
+	    return *this;
+    }
+
     int Workplace::getId () const
     {
         return workplace_id;
@@ -103,17 +131,12 @@ namespace mtm {
         bool cheack_if_employee_a_is_hired = false;
         bool cheack_if_employee_b_is_hired = false;
         vector<Manager*>::iterator ptr_manager_a;
-        vector<Manager*>::iterator ptr_manager_b;
         for(ptr_manager_a = managers.begin(); ptr_manager_a != managers.end(); ++ptr_manager_a){
-            if((**ptr_manager_a).cheackIfEmployeeExist(worker_a_id) == true){
+            if(((**ptr_manager_a).cheackIfEmployeeExist)(worker_a_id) == true){
                 cheack_if_employee_a_is_hired = true;
-                break;
             }
-        }
-        for(ptr_manager_b = managers.begin(); ptr_manager_b != managers.end(); ++ptr_manager_b){
-            if((**ptr_manager_b).cheackIfEmployeeExist(worker_b_id) == true){
+            if(((**ptr_manager_a).cheackIfEmployeeExist)(worker_b_id) == true){
                 cheack_if_employee_b_is_hired = true;
-                break;
             }
         }
         if((cheack_if_employee_a_is_hired == true) && (cheack_if_employee_b_is_hired == true)){
@@ -131,6 +154,7 @@ namespace mtm {
     {
         return workplace_a.getName() == workplace_b.getName();
     }
+
 
 
     ostream& operator<< (ostream& os, const Workplace& workplace) 

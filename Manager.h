@@ -41,6 +41,8 @@ namespace mtm {
         /* Manager copy C'tor */
         Manager (const Manager& manager);
         
+        Manager& operator=(const Manager& manager);
+
         /* Manager D'tor */
         ~Manager () override = default;
 

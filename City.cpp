@@ -8,7 +8,46 @@ namespace mtm {
         workplaces()
     {
     }
+/*
+    City::City (const City& city):
+         city_name(city.getName())
+    {
+        unsigned int size = city.workplaces.size();
+        for (unsigned int i = size; i > 0 ; --i){
+            Workplace work_to_add = city.workplaces[i-1];
+            workplaces.push_back(work_to_add);
+        }
+        size = city.faculties.size();
+        for (unsigned int i = size; i > 0 ; --i){
+            Faculty<Condition> faculty_to_add = city.faculties[i-1];
+            faculties.push_back(faculty_to_add);
+        }
+        citizens = city.citizens;
+    }
 
+    City& City::operator=(const City& city) 
+    {
+        if (this == &city) {
+		return *this;
+	    }
+        workplaces.clear();
+        citizens.clear();
+        faculties.clear();
+        unsigned int size = city.workplaces.size();
+        for (unsigned int i = size; i > 0 ; --i){
+            Workplace work_to_add = city.workplaces[i-1];
+            workplaces.push_back(work_to_add);
+        }
+        size = city.faculties.size();
+        for (unsigned int i = size; i > 0 ; --i){
+            Faculty<Condition> faculty_to_add = city.faculties[i-1];
+            faculties.push_back(faculty_to_add);
+        }
+        citizens = city.citizens;
+	    return *this;
+    }
+*/
+    
     City::City (const City& city):
         city_name(city.getName())
     {

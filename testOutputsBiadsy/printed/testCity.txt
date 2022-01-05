@@ -76,38 +76,7 @@ Salary: 0 Score: 10
 Lionel Smith
 Salary: 0 Score: 10
 test operator = getAllAboveSalary check if the original does not modified
-test operator = printAllEmployeesWithSkill check if the original does not modified
-Lionel Smith
-Salary: 0 Score: 10
-Adi Williams
-Salary: 10000 Score: 20
-test copy constructor getAllAboveSalary
-John Williams
-Salary: 0 Score: 25
-Alex Martinez
-Salary: 0 Score: 10
-Lionel Smith
-Salary: 0 Score: 10
 Mohamad Masarwa
 Salary: 20000
-John Williams
-Salary: 0 Score: 25
-Alex Martinez
-Salary: 0 Score: 10
-Lionel Smith
-Salary: 0 Score: 10
 Mohamad Masarwa
 Salary: 20000
-test copy constructor printAllEmployeesWithSkill
-John Williams
-Salary: 0 Score: 25
-Alex Martinez
-Salary: 0 Score: 10
-Lionel Smith
-Salary: 0 Score: 10
-John Williams
-Salary: 0 Score: 25
-Alex Martinez
-Salary: 0 Score: 10
-Lionel Smith
-Salary: 0 Score: 10

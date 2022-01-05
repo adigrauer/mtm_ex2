@@ -58,8 +58,8 @@ namespace mtm {
         Workplace (int workplace_id,string workplace_name, int workers_salary, int managers_salary);
         
         /* WorkPlace copy C'tor */
-        Workplace (const Workplace& workplace) = default;
-        
+        Workplace (const Workplace& workplace);
+        Workplace& operator=(const Workplace& workplace);
         /* WorkPlace D'tor */
         ~Workplace () = default;
         
@@ -123,6 +123,7 @@ namespace mtm {
         friend ostream& operator<< (ostream& os, const Workplace& workplace) ;
         
         /* friens bool operators */
+        
         friend bool operator< (const Workplace& workplace_a, const Workplace& workplace_b);
         friend bool operator== (const Workplace& workplace_a, const Workplace& workplace_b);
     };

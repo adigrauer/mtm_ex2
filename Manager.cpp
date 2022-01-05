@@ -14,8 +14,35 @@ namespace mtm {
         Citizen(manager),
         salary(manager.getSalary())
     {
-        employees = manager.employees;
+        unsigned int size = manager.employees.size();
+        for (unsigned int i = 0; i < size ; ++i){
+            employees.push_back(new Employee(*manager.employees[i]));
+        }
     }
+
+    
+    Manager& Manager::operator=(const Manager& manager) 
+    {
+        if (this == &manager) {
+		return *this;
+	    }
+        unsigned int size = employees.size();
+        for (unsigned int i = 0; i < size ; ++i){
+            delete employees[i];
+        }
+        size = manager.employees.size();
+        for (unsigned int i = 0; i < size ; ++i){
+            employees.push_back(new Employee(*manager.employees[i]));
+        }
+	    return *this;
+    }
+
+    /*Manager::~Manager () {
+        unsigned int size = employees.size();
+        for (unsigned int i = 0; i < size ; ++i){
+            delete employees[i];
+        }
+    }*/
 
     int Manager::getSalary () const
     {
@@ -37,7 +64,7 @@ namespace mtm {
         Employee temp_employee(employee_id, "temp", "temp", 0);
         for(ptr = employees.begin(); ptr != employees.end(); ++ptr){
             if(**ptr == temp_employee){
-                return true;;
+                return true;
             }
         }
         return false;

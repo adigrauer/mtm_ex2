@@ -29,7 +29,6 @@ namespace mtm {
     private:
         string city_name;
         vector<shared_ptr<Citizen>> citizens;
-        //vector<Faculty<T>> faculties;
         vector<Faculty<Condition>> faculties;
         vector<Workplace> workplaces;
     public:
@@ -38,6 +37,8 @@ namespace mtm {
 
         /* City copy C'tor */
         City (const City& city);
+
+        City& operator=(const City& city);
 
         /* City virtual D'tor */
         ~City () = default;
@@ -126,9 +127,7 @@ namespace mtm {
             if(checkIfWorkplaceExistInCity(workplace_id) == false){
                 throw WorkplaceDoesNotExist();
             }
-            Workplace workplace_to_add_employee = findWorkplaceById(workplace_id);
-            Employee* employee_to_hire = findEmployeeByIdInCity(employee_id);
-            workplace_to_add_employee.hireEmployee(condition_to_hire, employee_to_hire, manager_id);
+            findWorkplaceById(workplace_id).hireEmployee(condition_to_hire, findEmployeeByIdInCity(employee_id), manager_id);
         }
         
         /* hireManagerAtWorkplace: hire manager to given workplace.

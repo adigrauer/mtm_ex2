@@ -1,5 +1,5 @@
 #include "Skill.h"
-
+/*checking stuff*/
 namespace mtm {
 
     Skill::Skill (int id_skill, string name, int required_points): 

@@ -62,8 +62,9 @@ namespace mtm {
         Workplace& operator=(const Workplace& workplace);
         
         /* WorkPlace D'tor */
-        ~Workplace () = default;
-        
+        //~Workplace () = default;
+        ~Workplace () ;
+
         /* getId: return WorkPlace's id.
         return-
         int id */

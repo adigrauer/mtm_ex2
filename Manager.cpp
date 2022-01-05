@@ -18,16 +18,17 @@ namespace mtm {
     {
         unsigned int size = manager.employees.size();
         for (unsigned int i = 0; i < size ; ++i){
-            employees.push_back(new Employee(*(manager.employees[i])));
+            Employee* employee = new Employee(*(manager.employees[i]));
+            employees.push_back(employee);
         }
-        
+        need_to_delete = true;
     }
 
     
     Manager& Manager::operator= (const Manager& manager) 
     {
         if (this == &manager) {
-		return *this;
+		    return *this;
 	    }
         if (employees.empty() == false){
             unsigned int size = employees.size();
@@ -41,7 +42,8 @@ namespace mtm {
         if(manager.employees.empty() == false){
             unsigned int size = manager.employees.size();
             for (unsigned int i = 0; i < size ; ++i){
-                employees.push_back(new Employee(*manager.employees[i]));
+                Employee* employee = new Employee(*(manager.employees[i]));
+                employees.push_back(employee);
             }
         }
         need_to_delete = true;

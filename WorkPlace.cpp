@@ -18,14 +18,15 @@ namespace mtm {
     {
         unsigned int size = workplace.managers.size();
         for (unsigned int i = 0; i < size ; ++i){
-            managers.push_back(new Manager(*workplace.managers[i]));
+            Manager* manager = new Manager(*(workplace.managers[i]));
+            managers.push_back(manager);
         }
     }
 
     Workplace& Workplace::operator=(const Workplace& workplace) 
     {
         if (this == &workplace) {
-		return *this;
+		    return *this;
 	    }
         if(managers.empty() == false){
             unsigned int size = managers.size();
@@ -39,22 +40,25 @@ namespace mtm {
         if(workplace.managers.empty() == false){
             unsigned int size_temp = workplace.managers.size();
             for (unsigned int i = 0; i < size_temp ; ++i){
-                managers.push_back(new Manager(*workplace.managers[i]));
+                Manager* manager = new Manager(*(workplace.managers[i]));
+                managers.push_back(manager);
             }
         }
         //need_to_delete = true;
 	    return *this;
     }
-    /*
+    
     Workplace::~Workplace () 
     {
-        unsigned int size = managers.size();
-        for (unsigned int i = 0; i < size ; ++i){
-            if(managers[i]->need_to_delete){
-                delete managers[i];
+        if(managers.empty() == false){
+            unsigned int size = managers.size();
+            for (unsigned int i = 0; i < size ; ++i){
+                if(managers[i]->need_to_delete){
+                    delete managers[i];
+                }
             }
         }
-    }*/
+    }
 
     int Workplace::getId () const
     {

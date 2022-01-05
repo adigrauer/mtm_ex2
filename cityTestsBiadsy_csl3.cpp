@@ -577,11 +577,11 @@ bool testWorkplace() {
         print("ManagerIsNotHired" , out);
     }
     out.close();
+    delete m1;
+    delete m2;
     delete e1;
     delete e2;
     delete e3;
-    delete m1;
-    delete m2;
     ASSERT(matchFiles(fileName, FILE_PATH + std::string("/expected/testWorkplace.txt")));
     return true;
 }

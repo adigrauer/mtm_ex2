@@ -114,3 +114,5 @@ Salary: 0 Score: 20
 print_after_delete_all_groups
 Workplace name - Meta
 
+ManagerIsNotHired_after_delete_manager
+ManagerIsNotHired

@@ -32,6 +32,9 @@ namespace mtm {
 
     bool Workplace::checkIfManagerExist (int manager_id)
     {
+        if (managers.empty() == true){
+            return false;
+        }
         vector<Manager*>::iterator ptr;
         Manager temp_manager(manager_id, "temp", "temp", 0);
         for(ptr = managers.begin(); ptr != managers.end(); ++ptr){
@@ -61,7 +64,7 @@ namespace mtm {
     {
         Manager temp_manager(manager_id, "temp", "temp", 0);
         Employee temp_employee(worker_id, "temp", "temp", 0); 
-        if(checkIfManagerExist((manager_id) == false)){
+        if(((*this).checkIfManagerExist(manager_id)) == false){
             throw ManagerIsNotHired();
         }
         vector<Manager*>::iterator ptr;
@@ -81,7 +84,7 @@ namespace mtm {
     void Workplace::fireManager (int manager_id)
     {
         Manager temp_manager(manager_id, "temp", "temp", 0);
-        if(checkIfManagerExist((manager_id) == false)){
+        if(((*this).checkIfManagerExist(manager_id)) == false){
             throw ManagerIsNotHired();
         }
         vector<Manager*>::iterator ptr_manager;

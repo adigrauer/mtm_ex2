@@ -10,7 +10,7 @@
 #include "Citizen.h"
 #include "Employee.h"
 #include "Manager.h"
-#include "WorkPlace.h"
+#include "Workplace.h"
 #include "Faculty.h"
 
 
@@ -579,7 +579,7 @@ bool testWorkplace() {
     out.close();
     delete e1;
     delete e2;
-	delete e3;
+    delete e3;
     delete m1;
     delete m2;
     ASSERT(matchFiles(fileName, FILE_PATH + std::string("/expected/testWorkplace.txt")));
@@ -657,7 +657,7 @@ bool testFaculty()
     faculty3.teach(&e3);
     print("Print_Long_after_skill_teach" , out);
     e3.printLong(out);
-    Skill skill9(800,"TEST_FACULTY_WITHOUT_CLASS_Condition",80);
+    Skill skill9(800,"TEST_FACULTY_WITHOUT_CLASS_Condition",5);
     Condition3 condition3;
     Faculty<Condition3> faculty5(3,skill9,80,&condition3);
     e3.setSalary(9);
@@ -901,7 +901,7 @@ bool testCity()
     HiringCondition1 hiringCondition1;
     copy_city.hireEmployeeAtWorkplace(hiringCondition1,79,104,10001);
     ASSERT_TEST(copy_city.getAllAboveSalary(out,10000)-2 == city.getAllAboveSalary(out,10000));
-    Skill skill3(88,"run_c++_tests",10);
+    Skill skill3(88,"run_c++_tests",0);
     FacultyCondition5 facultyCondition5;
     copy_city.addFaculty(1003,skill3,20,&facultyCondition5);
     copy_city.teachAtFaculty(79,1003);

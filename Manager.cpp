@@ -29,14 +29,17 @@ namespace mtm {
         if (this == &manager) {
 		return *this;
 	    }
-        unsigned int size = employees.size();
-        for (unsigned int i = 0; i < size ; ++i){
-            if(employees[i]->need_to_delete){
-                delete employees[i];
+        if (employees.empty() == false){
+            unsigned int size = employees.size();
+            for (unsigned int i = 0; i < size ; ++i){
+                if(employees[i]->need_to_delete){
+                    delete employees[i];
+                }
             }
         }
-        if(employees.empty() == false){
-            size = manager.employees.size();
+        employees.clear();
+        if(manager.employees.empty() == false){
+            unsigned int size = manager.employees.size();
             for (unsigned int i = 0; i < size ; ++i){
                 employees.push_back(new Employee(*manager.employees[i]));
             }

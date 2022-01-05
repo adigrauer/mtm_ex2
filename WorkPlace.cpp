@@ -36,9 +36,11 @@ namespace mtm {
             }
         }
         managers.clear();
-        unsigned int size_temp = workplace.managers.size();
-        for (unsigned int i = 0; i < size_temp ; ++i){
-            managers.push_back(new Manager(*workplace.managers[i]));
+        if(workplace.managers.empty() == false){
+            unsigned int size_temp = workplace.managers.size();
+            for (unsigned int i = 0; i < size_temp ; ++i){
+                managers.push_back(new Manager(*workplace.managers[i]));
+            }
         }
         //need_to_delete = true;
 	    return *this;

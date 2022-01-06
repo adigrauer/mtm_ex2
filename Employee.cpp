@@ -7,16 +7,14 @@ namespace mtm {
         Citizen(id_citizen, first_name, last_name, birth_year),
         salary(STARTING_SALARY),
         score(STARTING_SCORE),
-        skill_set(),
-        need_to_delete(false)
+        skill_set()
     {
     }
-
+    /*
     Employee::Employee (const Employee& employee):
         Citizen(employee),
         salary(employee.getSalary()),
         score(employee.getScore()),
-        need_to_delete(true)
     {
         skill_set = employee.skill_set;
     }
@@ -25,12 +23,10 @@ namespace mtm {
     {
         
     }
-
+    */
     Employee* Employee::clone () const 
     {
-        Employee* clone = new Employee(*this);
-        clone->need_to_delete = true;
-        return clone;
+        return new Employee(*this);
     }
 
     int Employee::getSalary() const{

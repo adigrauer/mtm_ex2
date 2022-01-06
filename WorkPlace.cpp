@@ -9,7 +9,7 @@ namespace mtm {
         managers()
     {
     }
-
+    /*
      Workplace::Workplace (const Workplace& workplace):
         workplace_id(workplace.workplace_id),
         workers_salary(workplace.workers_salary),
@@ -59,6 +59,7 @@ namespace mtm {
             }
         }
     }
+    */
 
     int Workplace::getId () const
     {
@@ -142,9 +143,6 @@ namespace mtm {
             if((**ptr_manager) == temp_manager){
                 (**ptr_manager).setSalary(-managers_salary);
                 (**ptr_manager).ChangeAllEmployeesSalary(-workers_salary);
-                if ((**ptr_manager).need_to_delete == true){
-                    delete *ptr_manager;
-                }
                 managers.erase(ptr_manager);
                 return;
             }

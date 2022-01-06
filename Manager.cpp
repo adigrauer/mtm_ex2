@@ -6,11 +6,10 @@ namespace mtm {
     Manager::Manager (int id_citizen, string first_name, string last_name, int birth_year) :
         Citizen(id_citizen, first_name, last_name, birth_year),
         salary(STARTING_SALARY_MANAGER),
-        employees(),
-        need_to_delete(false)
+        employees()
     {
     }
-    
+    /*
     Manager::Manager (const Manager& manager):
         Citizen(manager),
         salary(manager.getSalary()),
@@ -63,6 +62,7 @@ namespace mtm {
             }
         }
     }
+    */
 
     int Manager::getSalary () const
     {
@@ -71,19 +71,7 @@ namespace mtm {
 
     Manager* Manager::clone () const
     {
-        Manager* clone = new Manager(*this);
-        //clone->need_to_delete = true;
-        return clone;
-        /*
-        (*clone).need_to_delete = true;
-        unsigned int size = employees.size();
-        (*clone).employees.clear();
-        for (unsigned int i = 0; i < size ; ++i){
-            //Employee* employee_to_add((*employees[i]).clone());
-            ((*clone).employees).push_back((*employees[i]).clone());
-        }
-        */
-        //return new Manager(*this);
+        return new Manager(*this);
     }
     
     bool Manager::cheackIfEmployeeExist (int employee_id) 

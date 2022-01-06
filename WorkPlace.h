@@ -58,12 +58,11 @@ namespace mtm {
         Workplace (int workplace_id,string workplace_name, int workers_salary, int managers_salary);
         
         /* WorkPlace copy C'tor */
-        Workplace (const Workplace& workplace);
-        Workplace& operator=(const Workplace& workplace);
+        Workplace (const Workplace& workplace) = default;
         
         /* WorkPlace D'tor */
         //~Workplace () = default;
-        ~Workplace () ;
+        ~Workplace () = default;
 
         /* getId: return WorkPlace's id.
         return-

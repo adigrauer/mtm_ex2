@@ -28,21 +28,16 @@ namespace mtm {
     private:
         int salary;
         vector<Employee*> employees;
-        
     public:
-        bool need_to_delete;
-        
         /* Manager C'tor */
         Manager (int id_citizen, string first_name, string last_name, int birth_year);
         
         /* Manager copy C'tor */
-        Manager (const Manager& manager);
+        Manager (const Manager& manager) = default;
         
-        Manager& operator=(const Manager& manager);
-
         /* Manager D'tor */
         //~Manager () override = default;
-        ~Manager () override ;
+        ~Manager () override = default;
 
         /* getSalary: return Manager's salary.
         return-

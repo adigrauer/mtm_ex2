@@ -51,40 +51,15 @@ int main() {
     city.hireEmployeeAtWorkplace(hiringCondition, 11, 104, 10001);
     city.hireEmployeeAtWorkplace(hiringCondition, 12, 104, 10001);
     city.hireEmployeeAtWorkplace(hiringCondition, 13, 104, 10001);
-    City copy_city = city;
-    
-    Employee employee1(1, "adi", "grauer", 1998);
-    Employee employee2(2, "nadav", "ru", 1998);
-    Manager manager1(3, "gili", "gal", 1998);
-    Skill s1(1, "C++", 0);
-    employee1.learnSkill(s1);
-    manager1.addEmployee(&employee1);
-    manager1.addEmployee(&employee2);
-    Manager copy = manager1;
-    //manager1.printLong(cout);
-    //copy.printLong(cout);
-    Citizen* clone1 = employee1.clone();
-    Citizen* clone2 = manager1.clone();
-    delete clone1;
-    delete clone2;
-    //cout << "clone1" << endl << endl;
-    //clone1->printLong(cout);
-    //cout << "clone2" << endl << endl;
-    //clone2->printLong(cout);
-    Faculty<Condition> faculty(1, s1, 5, &fc1);
-    Faculty<Condition> copy_faculty = faculty;
     city.fireEmployeeAtWorkplace(12,104,10001);
     cout << "getAllAboveSalary output: " << endl;
-    int count1 = city.getAllAboveSalary(cout,1000);
-    cout << endl << count1 << endl;
+    city.getAllAboveSalary(cout,1000);
     cout << endl << "printAllEmployeesWithSkill output" << endl;
     city.printAllEmployeesWithSkill(cout, 1);
     city.fireManagerAtWorkplace(104,10001);
     cout << "getAllAboveSalary output: " << endl;
-    int count = city.getAllAboveSalary(cout,1000);
-    cout << endl << count << endl;
+    city.getAllAboveSalary(cout,1000);
     cout << endl << "printAllEmployeesWithSkill output" << endl;
     city.printAllEmployeesWithSkill(cout, 1);
-    
     return 0;
 }

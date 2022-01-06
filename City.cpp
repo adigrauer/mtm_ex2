@@ -354,8 +354,10 @@ namespace mtm {
     {
         vector<shared_ptr<Citizen>>::const_iterator iterator = citizens.begin();
         const Employee* current_next(last_printed);
+        const Manager* check_if_manager;
         while (iterator != citizens.end()){
-            if(typeid(**iterator) == typeid(Manager)){
+            check_if_manager = dynamic_cast<const Manager*>((*iterator).get());
+            if(check_if_manager != NULL ){
                 ++iterator;
                 continue;
             }

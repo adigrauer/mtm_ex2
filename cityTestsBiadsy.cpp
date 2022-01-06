@@ -902,7 +902,7 @@ bool testCity()
     city.printAllEmployeesWithSkill(out,1);
     copy_city.printAllEmployeesWithSkill(out,1);
     copy_city.hireManagerAtWorkplace(104,10001);
-     /*
+    /*
     why adi is printed if add to copy_city just after the print??
     i wrote to omar i think its a mistake
     */
@@ -951,7 +951,7 @@ bool (*tests[]) (void) = {
         testManager,
         testWorkplace,
         testFaculty,
-        //testCity,
+        testCity,
 };
 
 #define NUMBER_TESTS ((long)(sizeof(tests)/sizeof(*tests)))
@@ -963,7 +963,7 @@ const char* testNames[NUMBER_TESTS] = {
         "testManager",
         "testWorkplace",
         "testFaculty",
-        //"testCity",
+        "testCity",
 };
 
 int main(int argc, char *argv[])

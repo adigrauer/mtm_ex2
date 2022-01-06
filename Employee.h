@@ -26,15 +26,14 @@ namespace mtm {
         int score;
         set<Skill> skill_set; 
     public:
-        bool need_to_delete;
         /* Employee C'tor */
         Employee (int id_citizen, string first_name, string last_name, int birth_year); 
         
         /* Employee copy C'tor */
-        Employee (const Employee& employee); 
+        Employee (const Employee& employee) = default; 
         
         /* Employee D'tor */
-        ~Employee () override;
+        ~Employee () override = default;
         
         /* clone: return copy of existing EmployeeEmployee.
         return-

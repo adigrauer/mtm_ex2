@@ -16,12 +16,13 @@ namespace mtm {
         salary(manager.getSalary()),
         need_to_delete(true)
     {
-        unsigned int size = manager.employees.size();
-        for (unsigned int i = 0; i < size ; ++i){
-            Employee* employee = new Employee(*(manager.employees[i]));
-            employees.push_back(employee);
+        if (manager.employees.empty() == false) {
+            unsigned int size = manager.employees.size();
+            for (unsigned int i = 0; i < size ; ++i){
+                Employee* employee = new Employee(*(manager.employees[i]));
+                employees.push_back(employee);
+            }
         }
-        need_to_delete = true;
     }
 
     
@@ -51,11 +52,13 @@ namespace mtm {
     }
 
     Manager::~Manager () {
-        if(employees.empty() == false){
-            unsigned int size = employees.size();
-            for (unsigned int i = 0; i < size ; ++i){
-                if(employees[i]->need_to_delete){
-                    delete employees[i];
+        if (need_to_delete == true){
+            if(employees.empty() == false){
+                unsigned int size = employees.size();
+                for (unsigned int i = 0; i < size ; ++i){
+                    if(employees[i]->need_to_delete){
+                        delete employees[i];
+                    }
                 }
             }
         }

@@ -34,7 +34,7 @@ namespace mtm {
         Employee (const Employee& employee); 
         
         /* Employee D'tor */
-        ~Employee () override = default;
+        ~Employee () override;
         
         /* clone: return copy of existing EmployeeEmployee.
         return-

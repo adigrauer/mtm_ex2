@@ -142,6 +142,9 @@ namespace mtm {
             if((**ptr_manager) == temp_manager){
                 (**ptr_manager).setSalary(-managers_salary);
                 (**ptr_manager).ChangeAllEmployeesSalary(-workers_salary);
+                if ((**ptr_manager).need_to_delete == true){
+                    delete *ptr_manager;
+                }
                 managers.erase(ptr_manager);
                 return;
             }

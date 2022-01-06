@@ -21,6 +21,11 @@ namespace mtm {
         skill_set = employee.skill_set;
     }
 
+    Employee::~Employee()
+    {
+        
+    }
+
     Employee* Employee::clone () const 
     {
         Employee* clone = new Employee(*this);

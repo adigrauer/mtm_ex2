@@ -1,18 +1,34 @@
-#include "Dry.h"
+
+#include <exception>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <memory>
+using std::cout;
+using std::endl;
+using std::vector;
+using std::shared_ptr;
+
+class BadInput {
+};
+
+const int MIN  = 0;
+
+template <class T>
+vector<T> slice(std::vector<T> vec, int start, int step, int stop);
+
 //q5 part 5.1
-
-
 template <class T>
 vector<T> slice(std::vector<T> vec, int start, int step, int stop)
 {
     if(start < MIN || start >= vec.size()){
-        throw BadInput;
+        throw BadInput();
     }
     if(stop < MIN || stop > vec.size()){
-        throw BadInput;
+        throw BadInput();
     }
     if(step <= MIN){
-        throw BadInput;
+        throw BadInput();
     }
     if(start >= stop){
         vector<T> empty_vector;
@@ -26,6 +42,7 @@ vector<T> slice(std::vector<T> vec, int start, int step, int stop)
     return new_vector;
 }
 
+//q5 part 5.2
 class A {
 public:
     vector<shared_ptr<int>> values;
@@ -34,6 +51,7 @@ public:
         values.push_back(to_add); 
     }
 };
+
 int main() {
     A a, sliced;
     a.add(0); a.add(1); a.add(2); a.add(3); a.add(4); a.add(5);
@@ -43,100 +61,3 @@ int main() {
     return 0;
 }
 
-
-
-
-/*
-void test_dry_1()
-{
-    // this syntax initializes a vector with values a,b,c,d,e
-    vector<char> vec_char {'a', 'b', 'c', 'd', 'e'};
-    // returns vector with values a,c
-    vector<char> vec_sliced_1 = slice(vec_char, 0, 2, 4);
-    cout << "print vec_sliced_1" << endl;
-    for (unsigned int i = 0; i < vec_sliced_1.size(); i++){
-            cout << vec_sliced_1[i] << " ";
-    }
-    cout << endl;
-    // returns vector with values b,c,d,e
-    vector<char> vec_sliced_2 = slice(vec_char, 1, 1, 5);
-    cout << "print vec_sliced_2" << endl;
-    for (unsigned int i = 0; i < vec_sliced_2.size(); i++){
-            cout << vec_sliced_2[i] << " ";
-    }
-    cout << endl;
-    vector<double> vec_double {0.2, 1.2, 2.2, 3.2, 4.2, 5.2, 6.2, 7.2, 8.2};
-    // returns vector with values 0.2, 1.2, 2.2
-    vector<double> vec_sliced_3 = slice(vec_double, 0, 1, 3);
-    cout << "print vec_sliced_3" << endl;
-    for (unsigned int i = 0; i < vec_sliced_3.size(); i++){
-            cout << vec_sliced_3[i] << " ";
-    }
-    cout << endl;
-    //returns vector with values 2.2, 4.2
-    vector<double> vec_sliced_4 = slice(vec_double, 2, 2, 6);
-    cout << "print vec_sliced_4" << endl;
-    for (unsigned int i = 0; i < vec_sliced_4.size(); i++){
-            cout << vec_sliced_4[i] << " ";
-    }
-    cout << endl;
-}
-
-int main () {
-    test_dry_1();
-}
-*/
-
-//q5 part 5.2
-/*class A {
-public:
-    std::vector<int*> values;
-    A ();
-    A (const A& a);
-    ~A ();
-    A& operator=(const A& a);
-    void add(int x);
-};
-
-//A class methods
-A::A()
-{
-}
-
-A::A (const A& a)
-{
-    for(unsigned int it = 0; it < (a.values).size(); ++it){
-        values[it] = new int(*((a.values)[it]));
-    }
-}
-
-A::~A()
-{
-    //change to unsigned int from int cause vector.size return unsigned int
-    for(unsigned int it = 0; it < values.size(); ++it){
-        int* temp = values[it];
-        delete temp;
-    }
-    for (vector<int*>::iterator i = values.begin(); i != values.end(); ++i) {
-        delete *i;
-    }
-    values.clear();
-}
-
-A& A::operator= (const A& a)
-{   
-    if (this == &a){
-        return *this;
-    }
-    for (vector<int*>::const_iterator i = a.values.begin(); i != a.values.end(); ++i) {
-        add(**i);
-    }
-    return *this;
-}
-
-//cant do new in initialization list
-void A::add(int x)
-{
-    values.push_back(new int(x)); 
-}
-*/

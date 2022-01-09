@@ -23,10 +23,8 @@ int main() {
     Meta.fireManager(m1->getId());
     cout << "-----------" << endl;
     cout << Meta;
-    /*
+    delete (m1);
     delete (e1);
     delete (e2);
-    delete (m1);
-    */
     return 0;
 }

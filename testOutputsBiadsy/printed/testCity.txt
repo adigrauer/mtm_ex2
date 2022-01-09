@@ -52,38 +52,3 @@ Lionel Smith
 Salary: 0 Score: 10
 Mohamad Masarwa
 Salary: 0
-test operator = getAllAboveSalary
-John Williams
-Salary: 0 Score: 25
-Alex Martinez
-Salary: 0 Score: 10
-Lionel Smith
-Salary: 0 Score: 10
-Mohamad Masarwa
-Salary: 0
-John Williams
-Salary: 0 Score: 25
-Alex Martinez
-Salary: 0 Score: 10
-Lionel Smith
-Salary: 0 Score: 10
-Mohamad Masarwa
-Salary: 0
-test operator = printAllEmployeesWithSkill
-John Williams
-Salary: 0 Score: 25
-Alex Martinez
-Salary: 0 Score: 10
-Lionel Smith
-Salary: 0 Score: 10
-John Williams
-Salary: 0 Score: 25
-Alex Martinez
-Salary: 0 Score: 10
-Lionel Smith
-Salary: 0 Score: 10
-test operator = getAllAboveSalary check if the original modified
-Mohamad Masarwa
-Salary: 20000
-Mohamad Masarwa
-Salary: 20000

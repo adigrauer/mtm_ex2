@@ -50,11 +50,6 @@ namespace mtm {
             if((check_if_employee != NULL) && ((**ptr).getId() == id_citizen)){
                 return true;
             }
-            /*
-            if((**ptr).getId() == id_citizen){
-                return true;
-            }
-            */
         }
         return false; 
     }
@@ -81,11 +76,6 @@ namespace mtm {
             if((check_if_manager != NULL) && ((**ptr).getId() == id_citizen)){
                 return true;
             }
-            /*
-            if((**ptr).getId() == id_citizen){
-                return true;
-            }
-            */
         }
         return false;
     }
@@ -122,7 +112,6 @@ namespace mtm {
         return false;
     }
 
-    //workplace cant have negative salary, witch error to return
     void City::createWorkplace (int workplace_id, string workplace_name, int workers_salary, int managers_salary)
     {
         Workplace workplace_to_add(workplace_id, workplace_name, workers_salary, managers_salary);
@@ -201,7 +190,7 @@ namespace mtm {
         if(checkIfWorkplaceExistInCity(workplace_id) == false){
             throw WorkplaceDoesNotExist();
         }
-        Manager* manager_to_hire  = findManagerByIdInCity(manager_id); 
+        Manager* manager_to_hire = findManagerByIdInCity(manager_id); 
         findWorkplaceById(workplace_id).hireManager(manager_to_hire);
     }
 
@@ -214,6 +203,7 @@ namespace mtm {
             throw WorkplaceDoesNotExist();
         }
         findWorkplaceById(workplace_id).fireManager(manager_id);
+        findManagerByIdInCity(manager_id)->fireAllEmployees();
     }
 
     void City::fireEmployeeAtWorkplace (int employee_id, int manager_id, int workplace_id)

@@ -58,15 +58,22 @@ namespace mtm {
         }
     }
 
-    void Manager::ChangeAllEmployeesSalary (int employee_salary_to_decraese)
+    void Manager::fireAllEmployees ()
+    {
+        employees.clear();
+    }
+
+    void Manager::ChangeAllEmployeesSalary (int employee_salary_to_change)
     { 
+        if(employees.empty() == true){
+            return;
+        }
         vector<Employee*>::iterator ptr_employee;
         for(ptr_employee = employees.begin(); ptr_employee != employees.end(); ++ptr_employee){
-            (*ptr_employee)->setSalary(employee_salary_to_decraese);
+            (*ptr_employee)->setSalary(employee_salary_to_change);
         }
     }
 
-    
     void Manager::ChangeEmployeeSalary (int employee_id, int salary_to_decrese)
     { 
         vector<Employee*>::iterator ptr_employee;
@@ -102,7 +109,7 @@ namespace mtm {
         os << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl;
         os << "Salary: " << getSalary() << endl;
         if(employees.empty() == false){
-            os << "Employees:" << endl;
+            os << "Employees: " << endl;
             int how_many_to_print = employees.size();
             for (print_ptr = findMinimalIdEmployee(); how_many_to_print != 0; --how_many_to_print){
                 (*print_ptr).printShort(os);

@@ -66,7 +66,7 @@ namespace mtm {
         /* ChangeAllEmployeesSalary: change the salary of all employees under given manager
         return-
         void function.*/
-        void ChangeAllEmployeesSalary (int employee_salary_to_decraese);
+        void ChangeAllEmployeesSalary (int employee_salary_to_change);
 
         /* ChangeEmployeeSalary: change the salary of given employees
         return-
@@ -77,6 +77,11 @@ namespace mtm {
         return-
         void function*/
         void setSalary (int salary_to_add);
+
+        /* fireAllEmployees- fire all employees from given mamager
+        return-
+        void function*/
+        void fireAllEmployees ();
         
         /* printShort- print short information of the Manager by given format */
         ostream& printShort (ostream& os) const override;

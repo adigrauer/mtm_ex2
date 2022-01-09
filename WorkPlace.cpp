@@ -54,6 +54,7 @@ namespace mtm {
             throw CanNotHireManager();
         }
         manager->setSalary(getManagersSalary());
+        manager->ChangeAllEmployeesSalary(getWorkersSalary());
         managers.push_back(manager);
     }
             

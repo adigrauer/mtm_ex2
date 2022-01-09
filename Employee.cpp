@@ -81,7 +81,7 @@ namespace mtm {
         << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl
         << "Salary: " << getSalary() << " Score: " << getScore();
         if(skill_set.empty() == false){ 
-            os << " Skills:" << endl;
+            os << " Skills: " << endl;
             for (print_iterator = skill_set.begin(); print_iterator != skill_set.end(); ++print_iterator) {
                 os << ((*print_iterator).getName()) << endl;
             }

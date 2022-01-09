@@ -1,6 +1,4 @@
 #include "Employee.h"
-#include "exceptions.h"
-//#include "Faculty.h"
 
 namespace mtm {
     Employee::Employee (int id_citizen, string first_name, string last_name, int birth_year): 
@@ -10,20 +8,7 @@ namespace mtm {
         skill_set()
     {
     }
-    /*
-    Employee::Employee (const Employee& employee):
-        Citizen(employee),
-        salary(employee.getSalary()),
-        score(employee.getScore()),
-    {
-        skill_set = employee.skill_set;
-    }
-
-    Employee::~Employee()
-    {
-        
-    }
-    */
+    
     Employee* Employee::clone () const 
     {
         return new Employee(*this);
@@ -94,13 +79,15 @@ namespace mtm {
         set<Skill>::iterator print_iterator;
         os << getFirstName() << " " << getLastName() << endl
         << "id - " << getId() << " " << "birth_year - " << getBirthYear() << endl
-        << "Salary: " << getSalary() << " Score: " << getScore() << " Skills:" << endl;;
+        << "Salary: " << getSalary() << " Score: " << getScore();
         if(skill_set.empty() == false){ 
+            os << " Skills:" << endl;
             for (print_iterator = skill_set.begin(); print_iterator != skill_set.end(); ++print_iterator) {
                 os << ((*print_iterator).getName()) << endl;
             }
             return os;
         }
+        os << endl;
         return os;
     }
 

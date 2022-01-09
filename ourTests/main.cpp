@@ -1,13 +1,13 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include "Skill.h"
-#include "exceptions.h"
-#include "Employee.h"
-#include "Citizen.h"
-#include "Manager.h"
-#include "WorkPlace.h"
-#include "Faculty.h"
+#include "../Skill.h"
+#include "../exceptions.h"
+#include "../Employee.h"
+#include "../Citizen.h"
+#include "../Manager.h"
+#include "../WorkPlace.h"
+#include "../Faculty.h"
 
 using std::ostream;
 using std::cout;
@@ -45,8 +45,10 @@ void test_our()
 
 void test_skill()
 {
-    Skill s1(1, "C++", 0);
-    cout << s1;
+    Skill s1 (1,"C++",3);   
+    Skill s2 = 1 + s1 + 3;
+    cout << s1 << endl;
+    cout << s2.getRequiredPoints() << endl;
     return;
 }
 
@@ -84,7 +86,7 @@ void test_faculty()
             return emp->getId()>0;
         }
     };
-    WorkPlace Meta(1,"Meta", 10000, 20000);
+    Workplace Meta(1,"Meta", 10000, 20000);
     Employee* e1 = new Employee(1, "John", "Williams", 2002);
     Employee* e2 = new Employee(2, "Alex", "Martinez", 2000);
     Manager* m1 = new Manager(1,"Robert", "stark", 1980);
@@ -142,7 +144,7 @@ int main()
     //test_manager();
     //test_our();
     //cout << endl << endl;
-    //test_skill();
-    test_operators();
+    test_skill();
+    //test_operators();
     return 0;
 }

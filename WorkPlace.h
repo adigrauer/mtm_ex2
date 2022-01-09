@@ -7,8 +7,8 @@
 #include <memory>
 #include "Manager.h"
 #include "Citizen.h"
+#include "exceptions.h"
 
-//are all needed??
 using std::ostream;
 using std::vector;
 using std::cout;
@@ -17,7 +17,7 @@ using std::string;
 using std::shared_ptr;
 
 namespace mtm {
-    /* WorkPlace class declaration */
+    /* Workplace class declaration */
     class Workplace {
     private:
         int workplace_id;

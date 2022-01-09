@@ -8,7 +8,6 @@
 #include "Citizen.h"
 #include "exceptions.h"
 
-//are all needed??
 using std::ostream;
 using std::set;
 using std::cout;
@@ -84,5 +83,3 @@ namespace mtm {
     };
 }
 #endif /* EMPLOYEE_H */
-
-//employee can work in few places

@@ -9,7 +9,7 @@
 
 #include "Manager.h"
 #include "Faculty.h"
-#include "WorkPlace.h"
+#include "Workplace.h"
 #include "Citizen.h"
 #include "Employee.h"
 #include "Skill.h"
@@ -24,7 +24,6 @@ using std::cout;
 using std::endl;
 
 namespace mtm {
-    //template<typename T> //is it true???
     class City {
     private:
         string city_name;
@@ -38,8 +37,6 @@ namespace mtm {
         /* City copy C'tor */
         City (const City& city);
 
-        City& operator=(const City& city);
-
         /* City virtual D'tor */
         ~City () = default;
 
@@ -47,6 +44,11 @@ namespace mtm {
         return-
         string name */
         string getName () const;
+
+        /* checkIfCitizenExistInCity: cheack if citizen exist by id
+        return-
+        true if exist, otherewise false */
+        bool checkIfCitizenExistInCity (int id_citizen);
 
         /* checkIfEmployeeExistInCity: cheack if employee exist by id
         return-

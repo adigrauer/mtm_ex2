@@ -5,7 +5,7 @@ EmployeeNotAccepted
 Print_Long
 Muhammad Ghanayem
 id - 90 birth_year - 1890
-Salary: 0 Score: 0 Skills:
+Salary: 0 Score: 0
 Print_Long_after_skill_teach
 Muhammad Ghanayem
 id - 90 birth_year - 1890

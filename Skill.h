@@ -2,7 +2,6 @@
 #define SKILL_H
 
 #include <string>
-#include <fstream>
 #include <iostream>
 #include "exceptions.h"
 
@@ -12,7 +11,9 @@ using std::endl;
 using std::string;
 
 namespace mtm {
+    /*const declerations*/
     const int ZERO = 0;
+    
     /* Skill class declaration */
     class Skill {
     private: 
@@ -61,9 +62,6 @@ namespace mtm {
     bool operator> (const Skill& skill_a, const Skill& skill_b);
     Skill operator+ (const Skill& skill, int point_to_add); 
     Skill operator+ (int point_to_add, const Skill& skill);
-    
-    //Skill operator+ (const Skill& skill, int points); 
-    //Skill operator+ (int points, const Skill& skill);
 }
 
 #endif /* SKILL_H */ 

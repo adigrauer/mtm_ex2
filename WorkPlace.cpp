@@ -1,4 +1,4 @@
-#include "WorkPlace.h"
+#include "Workplace.h"
 
 namespace mtm {
     Workplace::Workplace (int workplace_id, string workplace_name, int workers_salary, int managers_salary):
@@ -8,58 +8,7 @@ namespace mtm {
         workplace_name(workplace_name),
         managers()
     {
-    }
-    /*
-     Workplace::Workplace (const Workplace& workplace):
-        workplace_id(workplace.workplace_id),
-        workers_salary(workplace.workers_salary),
-        managers_salary(workplace.managers_salary),
-        workplace_name(workplace.workplace_name)
-    {
-        unsigned int size = workplace.managers.size();
-        for (unsigned int i = 0; i < size ; ++i){
-            Manager* manager = new Manager(*(workplace.managers[i]));
-            managers.push_back(manager);
-        }
-    }
-
-    Workplace& Workplace::operator=(const Workplace& workplace) 
-    {
-        if (this == &workplace) {
-		    return *this;
-	    }
-        if(managers.empty() == false){
-            unsigned int size = managers.size();
-            for (unsigned int i = 0; i < size ; ++i){
-                if(managers[i]->need_to_delete){
-                    delete managers[i];
-                }
-            }
-        }
-        managers.clear();
-        if(workplace.managers.empty() == false){
-            unsigned int size_temp = workplace.managers.size();
-            for (unsigned int i = 0; i < size_temp ; ++i){
-                Manager* manager = new Manager(*(workplace.managers[i]));
-                managers.push_back(manager);
-            }
-        }
-        //need_to_delete = true;
-	    return *this;
-    }
-    
-    Workplace::~Workplace () 
-    {
-        if(managers.empty() == false){
-            unsigned int size = managers.size();
-            for (unsigned int i = 0; i < size ; ++i){
-                if(managers[i]->need_to_delete){
-                    delete managers[i];
-                }
-            }
-        }
-    }
-    */
+    }     
 
     int Workplace::getId () const
     {
@@ -105,9 +54,6 @@ namespace mtm {
             throw CanNotHireManager();
         }
         manager->setSalary(getManagersSalary());
-        //Manager* manager1 = new Manager(*manager);
-        //shared_ptr<Manager> manager_to_add(manager);
-        //managers.push_back(manager_to_add);
         managers.push_back(manager);
     }
             

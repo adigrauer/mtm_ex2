@@ -26,7 +26,6 @@ namespace mtm {
         Skill skill;
         int faculty_id; 
         int add_points;
-        //compareFunction compare_function;
     public:
         T* compare_function;
         /* Faculty C'tor */
@@ -117,7 +116,6 @@ namespace mtm {
             throw EmployeeNotAccepted();
         }
         (*employee).learnSkill(skill); 
-        /////////if learnSkill passed than we will add score, doest this implementation right?
         (*employee).setScore(add_points);
     }
 

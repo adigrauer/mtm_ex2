@@ -10,66 +10,19 @@ namespace mtm {
     }
 
     City::City (const City& city):
-         city_name(city.getName())
-    {
-        unsigned int size = city.workplaces.size();
-        for (unsigned int i = 0; i < size ; ++i){
-            Workplace work_to_add = city.workplaces[i];
-            workplaces.push_back(work_to_add);
-        }
-        size = city.faculties.size();
-        for (unsigned int i = 0; i < size ; ++i){
-            Faculty<Condition> faculty_to_add = city.faculties[i];
-            faculties.push_back(faculty_to_add);
-        }
-        size = city.citizens.size();
-        for (unsigned int i = 0; i < size ; ++i){
-            shared_ptr<Citizen> citizen_to_add((*city.citizens[i]).clone());
-            citizens.push_back(citizen_to_add);
-        }
-    }
-
-    City& City::operator=(const City& city) 
-    {
-        if (this == &city) {
-		return *this;
-	    }
-        workplaces.clear();
-        citizens.clear();
-        faculties.clear();
-        unsigned int size = city.workplaces.size();
-        for (unsigned int i = 0; i < size ; ++i){
-            Workplace work_to_add = city.workplaces[i];
-            workplaces.push_back(work_to_add);
-        }
-        size = city.faculties.size();
-        for (unsigned int i = 0; i < size ; ++i){
-            Faculty<Condition> faculty_to_add = city.faculties[i];
-            faculties.push_back(faculty_to_add);
-        }
-        size = city.citizens.size();
-        for (unsigned int i = 0; i < size ; ++i){
-            shared_ptr<Citizen> citizen_to_add((*city.citizens[i]).clone());
-            citizens.push_back(citizen_to_add);
-        }
-	    return *this;
-    }
-
-    /*
-    City::City (const City& city):
         city_name(city.getName())
     {
         citizens = city.citizens;
         faculties = city.faculties;
         workplaces = city.workplaces;
     }
-    */
+    
     string City::getName () const
     {
         return city_name;
     }
 
-    bool City::checkIfEmployeeExistInCity (int id_citizen)
+    bool City::checkIfCitizenExistInCity (int id_citizen)
     {
         if (citizens.empty() == true) 
         {
@@ -78,46 +31,70 @@ namespace mtm {
         vector<shared_ptr<Citizen>>::iterator ptr;
         for(ptr = citizens.begin(); ptr != citizens.end(); ++ptr){
             if((**ptr).getId() == id_citizen){
-                return true;;
+                return true;
             }
+        }
+        return false; 
+    }
+
+    bool City::checkIfEmployeeExistInCity (int id_citizen)
+    {
+        if (citizens.empty() == true) 
+        {
+            return false;
+        }
+        Employee* check_if_employee = NULL;
+        vector<shared_ptr<Citizen>>::iterator ptr;
+        for(ptr = citizens.begin(); ptr != citizens.end(); ++ptr){
+            check_if_employee = dynamic_cast<Employee*>((*ptr).get());
+            if((check_if_employee != NULL) && ((**ptr).getId() == id_citizen)){
+                return true;
+            }
+            /*
+            if((**ptr).getId() == id_citizen){
+                return true;
+            }
+            */
         }
         return false; 
     }
 
     void City::addEmployee (int id_citizen, string first_name, string last_name, int birth_year) 
     {
-        if(checkIfEmployeeExistInCity(id_citizen) == true){
+        if(checkIfCitizenExistInCity(id_citizen) == true){
              throw CitizenAlreadyExists();
         }
-        //Employee* employee = new Employee(id_citizen, first_name, last_name, birth_year);
-        //shared_ptr<Employee> employee_to_add(employee);
         shared_ptr<Employee> employee_to_add(new Employee(id_citizen, first_name, last_name, birth_year));
         citizens.push_back(employee_to_add);
     }
 
-    ////code duplication!!!!!!!!!!
     bool City::checkIfManagerExistInCity (int id_citizen)
     {
          if (citizens.empty() == true) 
         {
             return false;
         }
+        Manager* check_if_manager = NULL;
         vector<shared_ptr<Citizen>>::iterator ptr;
-        Manager temp_manager(id_citizen, "temp", "temp", 0);
         for(ptr = citizens.begin(); ptr != citizens.end(); ++ptr){
-            if(**ptr == temp_manager){
-                return true;;
+            check_if_manager = dynamic_cast<Manager*>((*ptr).get());
+            if((check_if_manager != NULL) && ((**ptr).getId() == id_citizen)){
+                return true;
             }
+            /*
+            if((**ptr).getId() == id_citizen){
+                return true;
+            }
+            */
         }
         return false;
     }
 
     void City::addManager (int id_citizen, string first_name, string last_name, int birth_year) 
     {
-        if(checkIfManagerExistInCity(id_citizen) == true){
+        if(checkIfCitizenExistInCity(id_citizen) == true){
             throw CitizenAlreadyExists();
         }
-        //Manager* manager = new Manager(id_citizen, first_name, last_name, birth_year);
         shared_ptr<Manager> manager_to_add(new Manager(id_citizen, first_name, last_name, birth_year));
         citizens.push_back(manager_to_add);
     }
@@ -188,7 +165,6 @@ namespace mtm {
             }
         }
         return *ptr; 
-        ////////////////////what to return here in cade of endind the for loop///////////
     }
 
     Manager* City::findManagerByIdInCity (int manager_id) 
@@ -202,21 +178,19 @@ namespace mtm {
             }
         }
         return manager;
-        ////////////////////what to return here in cade of endind the for loop///////////
     }
 
     Employee* City::findEmployeeByIdInCity (int employee_id) 
     {
         vector<shared_ptr<Citizen>>::iterator ptr;
-        Employee* manager = NULL;
+        Employee* employee = NULL;
         for(ptr = citizens.begin(); ptr != citizens.end(); ++ptr){
             if((**ptr).getId() == employee_id){
-                manager = dynamic_cast<Employee*>((*ptr).get());
-                return manager;
+                employee = dynamic_cast<Employee*>((*ptr).get());
+                return employee;
             }
         }
-        return manager;
-        ////////////////////what to return here in cade of endind the for loop///////////
+        return employee;
     }
 
     void City::hireManagerAtWorkplace (int manager_id, int workplace_id)
@@ -240,7 +214,6 @@ namespace mtm {
             throw WorkplaceDoesNotExist();
         }
         findWorkplaceById(workplace_id).fireManager(manager_id);
-        ////////////////////will all his workers be deletet by this function?????///////////
     }
 
     void City::fireEmployeeAtWorkplace (int employee_id, int manager_id, int workplace_id)
@@ -295,7 +268,7 @@ namespace mtm {
                 continue;
             }
             if((**iterator) < *current_next) {
-                current_next = (*iterator).get();
+                current_next = ((*iterator).get());
                 ++iterator;
                 continue;
             }
@@ -324,8 +297,8 @@ namespace mtm {
                 print_ptr = findNextCitizenWithSalary(print_ptr, salary_to_print);
             }
             if (print_ptr->getSalary() >= salary_to_print){
-                    (*print_ptr).printShort(os);
-                    counter++;
+                (*print_ptr).printShort(os);
+                counter++;
             }
             return counter;
         }
@@ -354,7 +327,7 @@ namespace mtm {
     {
         vector<shared_ptr<Citizen>>::const_iterator iterator = citizens.begin();
         const Employee* current_next(last_printed);
-        const Manager* check_if_manager;
+        const Manager* check_if_manager = NULL;
         while (iterator != citizens.end()){
             check_if_manager = dynamic_cast<const Manager*>((*iterator).get());
             if(check_if_manager != NULL ){

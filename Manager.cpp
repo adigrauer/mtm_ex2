@@ -1,6 +1,5 @@
 #include "Manager.h"
-#include "Employee.h"
-#include "exceptions.h"
+
 namespace mtm {
     
     Manager::Manager (int id_citizen, string first_name, string last_name, int birth_year) :
@@ -9,61 +8,7 @@ namespace mtm {
         employees()
     {
     }
-    /*
-    Manager::Manager (const Manager& manager):
-        Citizen(manager),
-        salary(manager.getSalary()),
-        need_to_delete(true)
-    {
-        if (manager.employees.empty() == false) {
-            unsigned int size = manager.employees.size();
-            for (unsigned int i = 0; i < size ; ++i){
-                Employee* employee = new Employee(*(manager.employees[i]));
-                employees.push_back(employee);
-            }
-        }
-    }
-
-    
-    Manager& Manager::operator= (const Manager& manager) 
-    {
-        if (this == &manager) {
-		    return *this;
-	    }
-        if (employees.empty() == false){
-            unsigned int size = employees.size();
-            for (unsigned int i = 0; i < size ; ++i){
-                if(employees[i]->need_to_delete){
-                    delete employees[i];
-                }
-            }
-        }
-        employees.clear();
-        if(manager.employees.empty() == false){
-            unsigned int size = manager.employees.size();
-            for (unsigned int i = 0; i < size ; ++i){
-                Employee* employee = new Employee(*(manager.employees[i]));
-                employees.push_back(employee);
-            }
-        }
-        need_to_delete = true;
-	    return *this;
-    }
-
-    Manager::~Manager () {
-        if (need_to_delete == true){
-            if(employees.empty() == false){
-                unsigned int size = employees.size();
-                for (unsigned int i = 0; i < size ; ++i){
-                    if(employees[i]->need_to_delete){
-                        delete employees[i];
-                    }
-                }
-            }
-        }
-    }
-    */
-
+   
     int Manager::getSalary () const
     {
         return salary;

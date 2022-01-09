@@ -2,15 +2,14 @@
 #define MANAGER_H
 
 #include <string>
-//#include <fstream>
 #include <iostream>
 #include <vector>
 #include <memory>
 #include "Skill.h"
 #include "Citizen.h"
 #include "Employee.h"
+#include "exceptions.h"
 
-//are all needed??
 using std::ostream;
 using std::vector;
 using std::cout;
@@ -36,7 +35,6 @@ namespace mtm {
         Manager (const Manager& manager) = default;
         
         /* Manager D'tor */
-        //~Manager () override = default;
         ~Manager () override = default;
 
         /* getSalary: return Manager's salary.
